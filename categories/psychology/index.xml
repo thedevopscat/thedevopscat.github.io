@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Psychology on thedevopscat blog site</title>
-    <link>https://www.thedevopscat.co.uk/categories/psychology/</link>
+    <link>https://git.thedevopscat.co.uk/categories/psychology/</link>
     <description>Recent content in Psychology on thedevopscat blog site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 01 Nov 2021 13:01:14 +0100</lastBuildDate><atom:link href="https://www.thedevopscat.co.uk/categories/psychology/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Nov 2021 13:01:14 +0100</lastBuildDate><atom:link href="https://git.thedevopscat.co.uk/categories/psychology/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Famous Quotes</title>
-      <link>https://www.thedevopscat.co.uk/quote/carl-jung/</link>
+      <link>https://git.thedevopscat.co.uk/quote/carl-jung/</link>
       <pubDate>Mon, 01 Nov 2021 13:01:14 +0100</pubDate>
       
-      <guid>https://www.thedevopscat.co.uk/quote/carl-jung/</guid>
+      <guid>https://git.thedevopscat.co.uk/quote/carl-jung/</guid>
       <description>To be normal is the ultimate aim of the unsuccessful.</description>
     </item>
     

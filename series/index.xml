@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Series on thedevopscat blog site</title>
-    <link>https://www.thedevopscat.co.uk/series/</link>
+    <link>https://git.thedevopscat.co.uk/series/</link>
     <description>Recent content in Series on thedevopscat blog site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 06 Jan 2023 10:45:32 +0000</lastBuildDate><atom:link href="https://www.thedevopscat.co.uk/series/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Jan 2023 10:45:32 +0000</lastBuildDate><atom:link href="https://git.thedevopscat.co.uk/series/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo &amp; Themes</title>
-      <link>https://www.thedevopscat.co.uk/series/hugo-themes/</link>
+      <link>https://git.thedevopscat.co.uk/series/hugo-themes/</link>
       <pubDate>Fri, 06 Jan 2023 10:45:32 +0000</pubDate>
       
-      <guid>https://www.thedevopscat.co.uk/series/hugo-themes/</guid>
+      <guid>https://git.thedevopscat.co.uk/series/hugo-themes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Terraform Articles</title>
-      <link>https://www.thedevopscat.co.uk/series/terraform-articles/</link>
+      <link>https://git.thedevopscat.co.uk/series/terraform-articles/</link>
       <pubDate>Fri, 23 Dec 2022 14:45:39 +0000</pubDate>
       
-      <guid>https://www.thedevopscat.co.uk/series/terraform-articles/</guid>
+      <guid>https://git.thedevopscat.co.uk/series/terraform-articles/</guid>
       <description></description>
     </item>
     

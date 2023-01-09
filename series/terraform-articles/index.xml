@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Terraform Articles on thedevopscat blog site</title>
-    <link>https://www.thedevopscat.co.uk/series/terraform-articles/</link>
+    <link>https://git.thedevopscat.co.uk/series/terraform-articles/</link>
     <description>Recent content in Terraform Articles on thedevopscat blog site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 23 Dec 2022 14:45:39 +0000</lastBuildDate><atom:link href="https://www.thedevopscat.co.uk/series/terraform-articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 23 Dec 2022 14:45:39 +0000</lastBuildDate><atom:link href="https://git.thedevopscat.co.uk/series/terraform-articles/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Terraform Articles</title>
-      <link>https://www.thedevopscat.co.uk/code/terraform/</link>
+      <link>https://git.thedevopscat.co.uk/code/terraform/</link>
       <pubDate>Fri, 23 Dec 2022 14:45:39 +0000</pubDate>
       
-      <guid>https://www.thedevopscat.co.uk/code/terraform/</guid>
+      <guid>https://git.thedevopscat.co.uk/code/terraform/</guid>
       <description>On this page we will explore some opportunities to enhance the functionality of some basic terraform resources to optimise the efficiency whilst not losing the declarative nature of the code&amp;hellip;DRY is not always good.
 These posts will be pitched at those with a firm understanding of terraform basics, looking to raise their terraform game beyond a monolithic main.tf file!
 Table of Contents Terraform Count IndexElements Terraform FunctionTerraform Conditional ExpressionsSecuring Access from a Public IPBringing It All Together</description>

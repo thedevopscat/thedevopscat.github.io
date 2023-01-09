@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Author on thedevopscat blog site</title>
-    <link>https://www.thedevopscat.co.uk/author/</link>
+    <link>https://git.thedevopscat.co.uk/author/</link>
     <description>Recent content in Author on thedevopscat blog site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 07 Jan 2023 15:05:50 +0000</lastBuildDate><atom:link href="https://www.thedevopscat.co.uk/author/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 07 Jan 2023 15:05:50 +0000</lastBuildDate><atom:link href="https://git.thedevopscat.co.uk/author/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>thedevopscat</title>
-      <link>https://www.thedevopscat.co.uk/author/thedevopscat/</link>
+      <link>https://git.thedevopscat.co.uk/author/thedevopscat/</link>
       <pubDate>Sat, 07 Jan 2023 15:05:50 +0000</pubDate>
       
-      <guid>https://www.thedevopscat.co.uk/author/thedevopscat/</guid>
+      <guid>https://git.thedevopscat.co.uk/author/thedevopscat/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Carl Jung</title>
-      <link>https://www.thedevopscat.co.uk/author/carl-jung/</link>
+      <link>https://git.thedevopscat.co.uk/author/carl-jung/</link>
       <pubDate>Mon, 01 Nov 2021 13:01:14 +0100</pubDate>
       
-      <guid>https://www.thedevopscat.co.uk/author/carl-jung/</guid>
+      <guid>https://git.thedevopscat.co.uk/author/carl-jung/</guid>
       <description></description>
     </item>
     
