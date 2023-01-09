@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>thedevopscat on thedevopscat blog site</title>
+    <link>https://www.thedevopscat.co.uk/author/thedevopscat/</link>
+    <description>Recent content in thedevopscat on thedevopscat blog site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 07 Jan 2023 15:05:50 +0000</lastBuildDate><atom:link href="https://www.thedevopscat.co.uk/author/thedevopscat/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What Info is Permissible on a Redacted CV?</title>
+      <link>https://www.thedevopscat.co.uk/article/redacted-cv/</link>
+      <pubDate>Sat, 07 Jan 2023 15:05:50 +0000</pubDate>
+      
+      <guid>https://www.thedevopscat.co.uk/article/redacted-cv/</guid>
+      <description>I recently saw a job advertised where the application process required a redacted CV, but didn&amp;rsquo;t go as far to say what information was permissible. It did however state if your CV contains any personal details your application may be withdrawn. Assuming you were genuinely interested in the job, this is not something that you want to get wrong!
+I think we can all agree that we all like to be treated fairly, and would like to think we were hired for a new job based on the merits of our skills and experience rather than gender, age, race, or ethnicity etc.</description>
+    </item>
+    
+    <item>
+      <title>Automating Algolia Search</title>
+      <link>https://www.thedevopscat.co.uk/article/hugo/enabling-algolia/</link>
+      <pubDate>Fri, 06 Jan 2023 10:45:32 +0000</pubDate>
+      
+      <guid>https://www.thedevopscat.co.uk/article/hugo/enabling-algolia/</guid>
+      <description>Having just completed the setup of algolia search on this site I felt compelled to write a new post and let you know my experience, as it may save you some time! Suffice to say, the potentially difficult part was easy, and the easy part was hard! This may be down to the combination of my (feature rich) Bilberry theme and Hugo, so if you choose this combination, This may be of particular interest.</description>
+    </item>
+    
+    <item>
+      <title>Installing Bilberry Theme</title>
+      <link>https://www.thedevopscat.co.uk/article/hugo/installing-bilberry-theme/</link>
+      <pubDate>Tue, 01 Nov 2022 09:31:27 +0100</pubDate>
+      
+      <guid>https://www.thedevopscat.co.uk/article/hugo/installing-bilberry-theme/</guid>
+      <description>&lt;p&gt;You will find all information to setup this theme with your hugo site
+on the official &lt;!-- raw HTML omitted --&gt; &lt;a href=&#34;https://github.com/Lednerb/bilberry-hugo-theme&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;
+    Github Repository
+&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>count.index on thedevopscat blog site</title>
+    <link>https://www.thedevopscat.co.uk/tags/count.index/</link>
+    <description>Recent content in count.index on thedevopscat blog site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 22 Dec 2022 15:47:39 +0000</lastBuildDate><atom:link href="https://www.thedevopscat.co.uk/tags/count.index/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Terraform Count Index</title>
+      <link>https://www.thedevopscat.co.uk/code/terraform/terraform2/</link>
+      <pubDate>Thu, 22 Dec 2022 15:47:39 +0000</pubDate>
+      
+      <guid>https://www.thedevopscat.co.uk/code/terraform/terraform2/</guid>
+      <description>As a quick summary, a count index can be used to create multiple resource instances of the same type from one block of code, for example lets say you want a spin up multiple vm&amp;rsquo;s behind a load balancer for some fault tolerance.
+The benefit here is you would have one block of code which would be automatically processed multiple times, as specified by your count variable/local, (it can also be set 1 or even zero, but more on this another time&amp;hellip;).</description>
+    </item>
+    
+  </channel>
+</rss>
