@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="siteBaseUrl" content="https://git.thedevopscat.co.uk/">
     <meta name="author" content="thedevopscat">
-    <meta name="description" content="thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Hugo, Themes, Bilberry, Git, Professional Certifications and cute cat videos!">
-    <meta name="keywords" content="blog,personal,cats,devops,terraform,azure,hugo,algolia">
+    <meta name="description" content="thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!">
+    <meta name="keywords" content="blog,personal,cats,devops,terraform,azure,hugo,algolia,git,github">
     <meta name="generator" content="Hugo 0.109.0">
     <title>
         
@@ -20,9 +20,9 @@
         
     </title>
     <meta itemprop="name" content="Automating Algolia Search">
-    <meta itemprop="description" content="Automating Algolia Search - thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Hugo, Themes, Bilberry, Git, Professional Certifications and cute cat videos!">
+    <meta itemprop="description" content="Automating Algolia Search - thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!">
     <meta property="og:title" content="Automating Algolia Search">
-    <meta property="og:description" content="Automating Algolia Search - thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Hugo, Themes, Bilberry, Git, Professional Certifications and cute cat videos!">
+    <meta property="og:description" content="Automating Algolia Search - thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!">
     <meta property="og:image" content="https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?size=200">
     <meta property="og:url" content="https://git.thedevopscat.co.uk/article/hugo/enabling-algolia/">
     <meta property="og:site_name" content="thedevopscat blog site">
@@ -81,11 +81,6 @@
             
         </ul>
 
-        
-            <div id="search-box" class="search">
-                <i class="fas fa-search"></i>
-                <input id="search" type="text" placeholder="Search ...">
-            </div>
         
     </div>
 </nav>
@@ -208,7 +203,7 @@ Suffice to say, the potentially difficult part was easy, and the easy part was h
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Set this option to false if you want to search within all articles in all languages at once
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>algolia_currentLanguageOnly <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div><h2 id="the-index-file">The Index File</h2>
-<p>You would naively hope that was it! But it turns out that a website search facility is more complex behind the scenes than a non-techie might imagine.  An index needs to be created and maintained each time the site content is modified, having already automated the deployment of my site to Azure via GitHub actions, the thought of downloading more binaries to my local machine and manually running scripts to generate an index file to manually upload to the algolia website each time I make an update to the site was not something I wanted to get into, and so not DevOps!</p>
+<p>You would naively hope that was it! But it turns out that a website search facility is more complex behind the scenes than a non-techie might imagine.  An index needs to be created and maintained each time the site content is modified, having already automated the deployment of my site to Azure via GitHub actions, the thought of downloading more binaries to my local machine and manually running scripts to generate an index file to manually upload to the algolia website each time I make an update to the site was not something I wanted to get into, and is so not DevOps!</p>
 <p>Consequently, rightly or wrongly, I went straight to the automation phase to add this dependency to my deployment pipeline, which I expected might be the difficult bit, but as it happened work first time!  The manual process of creating/updating the index file is covered in the <a href="https://github.com/Lednerb/bilberry-hugo-theme#algolia-search"  target="_blank" rel="noopener noreferrer" >
     bilberry theme readme
 </a>.  All I did was refer to the <a href="https://learn.microsoft.com/en-gb/azure/static-web-apps/build-configuration?tabs=github-actions#build-configuration"  target="_blank" rel="noopener noreferrer" >
@@ -260,7 +255,7 @@ Suffice to say, the potentially difficult part was easy, and the easy part was h
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">with</span><span style="color:#960050;background-color:#1e0010">:</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">azure_static_web_apps_api_token</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">${</span><span style="color:#960050;background-color:#1e0010">{</span> <span style="color:#960050;background-color:#1e0010">secrets</span>.<span style="color:#960050;background-color:#1e0010">AZURE_STATIC_WEB_APPS_API_TOKEN</span> <span style="color:#e6db74">}</span>}
 </span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">action</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;close&#34;</span>
-</span></span></code></pre></div><p>Now, when I perform a new deployment, the JavaScript is called to recreate a new index file which it uploads to the algolia website to populate the index using my algolia admin API key which is stored in GitHub as a secret for obvious reasons.</p>
+</span></span></code></pre></div><p>Now, when I perform a new deployment, the automated Hugo site compilation recreates a new index file and the JavaScript built-in to the theme is called to upload the index file to the algolia website to populate the live index using my algolia admin API key which is stored in GitHub as a secret for obvious reasons.</p>
 <p>We can check this is working by going to the algolia portal, we should now see our index has been automatically populated and we can search from the algolia portal for keywords featured on our blog site and note some matches.</p>
 <p><figure><img src="/images/enabling-angolia/algolia-matches.png"/>
 </figure>
@@ -390,6 +385,10 @@ Suffice to say, the potentially difficult part was easy, and the easy part was h
                 
                 
                     <li>
+                        <a href="https://git.thedevopscat.co.uk/article/hugo/github-site-hosting1/">Static Website Hosting on Github - Part 1</a>
+                    </li>
+                
+                    <li>
                         <a href="https://git.thedevopscat.co.uk/article/redacted-cv/">What Info is Permissible on a Redacted CV?</a>
                     </li>
                 
@@ -413,10 +412,6 @@ Suffice to say, the potentially difficult part was easy, and the easy part was h
                         <a href="https://git.thedevopscat.co.uk/code/terraform/terraform6/">Bringing It All Together</a>
                     </li>
                 
-                    <li>
-                        <a href="https://git.thedevopscat.co.uk/code/terraform/terraform3/">Elements Terraform Function</a>
-                    </li>
-                
             </ul>
         </div>
         
@@ -433,7 +428,7 @@ Suffice to say, the potentially difficult part was easy, and the easy part was h
                 
                 <li>
                     <a href="/categories/hugo">Hugo
-                        (3)</a>
+                        (4)</a>
                 </li>
                 
                 <li>
@@ -510,18 +505,6 @@ Suffice to say, the potentially difficult part was easy, and the easy part was h
     
     
     
-
-    
-    <div id="activate-algolia-search" class="hidden">
-  <input type="hidden" id="algolia-search-appId" value="CKM9HO0A7S">
-  <input type="hidden" id="algolia-search-apiKey" value="180d489edd420a08db5915d22d7232db">
-  <input type="hidden" id="algolia-search-indexName" value="wwwdoc">
-  <input type="hidden" id="algolia-search-noSearchResults" value="Nothing found.">
-
-  
-  <input type="hidden" id="algolia-search-currentLanguageOnly">
-  
-</div>
 
     
 </body>
