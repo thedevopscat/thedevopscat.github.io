@@ -32,7 +32,7 @@
       <guid>https://git.thedevopscat.co.uk/page/cv/</guid>
       <description>1 This is the first section.
 2 This is the second section&amp;hellip;
-3 This is a flowchart made with mermaid. graph TDA[Start] --&gt;|Text| B(Round)B --&gt; C{Decision}C --&gt;|One| D[Result 1]C --&gt;|Two| E[Result 2]4 Lets try GoAT Ascii 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 </description>
+3 This is a flowchart made with mermaid. graph TD A[Start] --&gt;|Text| B(Round) B --&gt; C{Decision} C --&gt;|One| D[Result 1] C --&gt;|Two| E[Result 2] 4 Lets try GoAT Ascii 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 </description>
     </item>
     
     <item>

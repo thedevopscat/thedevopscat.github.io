@@ -82,9 +82,9 @@ The benefit here is you would have one block of code which would be automaticall
       
       <guid>https://git.thedevopscat.co.uk/code/terraform/terraform3/</guid>
       <description>Lets start by taking a brief look at the element function, then explore why this simple function is so useful.
-We won&amp;rsquo;t labour the point here as that&amp;rsquo;s what the hashicorp help pageis for, although sometimes the examples could be better.
+We won&amp;rsquo;t labour the point here as that&amp;rsquo;s what the hashicorp help page is for, although sometimes the examples could be better.
 The element function looks like this:
-element(list, index) You&amp;rsquo;ll note it uses an index &amp;hellip; like our count index in the previous postso we will expand upon the previous example to demonstrate a real would use case.</description>
+element(list, index) You&amp;rsquo;ll note it uses an index &amp;hellip; like our count index in the previous post so we will expand upon the previous example to demonstrate a real would use case.</description>
     </item>
     
     <item>
@@ -135,8 +135,8 @@ on the official &lt;!-- raw HTML omitted --&gt; &lt;a href=&#34;https://github.c
       <pubDate>Mon, 01 Nov 2021 13:18:45 +0100</pubDate>
       
       <guid>https://git.thedevopscat.co.uk/article/hugo/bilberry-hugo-theme/</guid>
-      <description>This site is built using Hugo Static Website Builder.
-Written in Go, Hugo is an open source static site generator available under the Apache Licence 2.0.Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
+      <description>This site is built using Hugo Static Website Builder .
+Written in Go, Hugo is an open source static site generator available under the Apache Licence 2.0. Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
 I use a customised version of the Bilberry theme, which is a premium theme featuring comprehensive built-in functionality and integrations such as:</description>
     </item>
     

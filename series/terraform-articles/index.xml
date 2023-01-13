@@ -14,7 +14,7 @@
       <guid>https://git.thedevopscat.co.uk/code/terraform/</guid>
       <description>On this page we will explore some opportunities to enhance the functionality of some basic terraform resources to optimise the efficiency whilst not losing the declarative nature of the code&amp;hellip;DRY is not always good.
 These posts will be pitched at those with a firm understanding of terraform basics, looking to raise their terraform game beyond a monolithic main.tf file!
-Table of Contents Terraform Count IndexElements Terraform FunctionTerraform Conditional ExpressionsSecuring Access from a Public IPBringing It All Together</description>
+Table of Contents Terraform Count Index Elements Terraform Function Terraform Conditional Expressions Securing Access from a Public IP Bringing It All Together </description>
     </item>
     
   </channel>
