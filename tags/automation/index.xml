@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>automation on thedevopscat blog site</title>
+    <link>https://git.thedevopscat.co.uk/tags/automation/</link>
+    <description>Recent content in automation on thedevopscat blog site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 15 Jan 2023 01:45:06 +0000</lastBuildDate><atom:link href="https://git.thedevopscat.co.uk/tags/automation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Azure Static Web Apps vs Github Pages</title>
+      <link>https://git.thedevopscat.co.uk/article/hugo/azure-vs-github/</link>
+      <pubDate>Sun, 15 Jan 2023 01:45:06 +0000</pubDate>
+      
+      <guid>https://git.thedevopscat.co.uk/article/hugo/azure-vs-github/</guid>
+      <description>In this post I compare hosting a static website on Github Pages vs Azure Static Websites, and give my thoughts, who will win!?  Guess you&amp;rsquo;ll have to read it&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>Static Website Hosting on Github - Part 3</title>
+      <link>https://git.thedevopscat.co.uk/article/hugo/github-site-hosting3/</link>
+      <pubDate>Sat, 14 Jan 2023 09:43:24 +0000</pubDate>
+      
+      <guid>https://git.thedevopscat.co.uk/article/hugo/github-site-hosting3/</guid>
+      <description>This post covers hosting a static website on github pages with fully automated jamstack workflow and all builds done by github actions.</description>
+    </item>
+    
+  </channel>
+</rss>

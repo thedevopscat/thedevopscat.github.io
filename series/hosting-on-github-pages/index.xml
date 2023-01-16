@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hosting on Github Pages on thedevopscat blog site</title>
+    <link>https://git.thedevopscat.co.uk/series/hosting-on-github-pages/</link>
+    <description>Recent content in Hosting on Github Pages on thedevopscat blog site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 14 Jan 2023 09:43:24 +0000</lastBuildDate><atom:link href="https://git.thedevopscat.co.uk/series/hosting-on-github-pages/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Static Website Hosting on Github - Part 3</title>
+      <link>https://git.thedevopscat.co.uk/article/hugo/github-site-hosting3/</link>
+      <pubDate>Sat, 14 Jan 2023 09:43:24 +0000</pubDate>
+      
+      <guid>https://git.thedevopscat.co.uk/article/hugo/github-site-hosting3/</guid>
+      <description>This post covers hosting a static website on github pages with fully automated jamstack workflow and all builds done by github actions.</description>
+    </item>
+    
+    <item>
+      <title>Static Website Hosting on Github - Part 2</title>
+      <link>https://git.thedevopscat.co.uk/article/hugo/github-site-hosting2/</link>
+      <pubDate>Tue, 10 Jan 2023 17:43:24 +0000</pubDate>
+      
+      <guid>https://git.thedevopscat.co.uk/article/hugo/github-site-hosting2/</guid>
+      <description>This post explores hosting a static website on github pages and what would be required to move to github pages from azure static web app hosting.</description>
+    </item>
+    
+    <item>
+      <title>Static Website Hosting on Github - Part 1</title>
+      <link>https://git.thedevopscat.co.uk/article/hugo/github-site-hosting1/</link>
+      <pubDate>Mon, 09 Jan 2023 18:43:24 +0000</pubDate>
+      
+      <guid>https://git.thedevopscat.co.uk/article/hugo/github-site-hosting1/</guid>
+      <description>This post covers the basics of hosting a static website on github pages and what would be required to move to github pages from azure static web app hosting.</description>
+    </item>
+    
+  </channel>
+</rss>

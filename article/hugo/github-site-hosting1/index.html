@@ -161,6 +161,11 @@
                         <a href="https://git.thedevopscat.co.uk/categories/hugo/">Hugo</a>
                     
                 
+                    
+                    
+                        <a href="https://git.thedevopscat.co.uk/categories/github-pages/">Github Pages</a>
+                    
+                
             </span>
         
 
@@ -206,7 +211,7 @@ I set myself a task of trying to make the switchover as seamless as possible, wi
 <ol>
 <li>Modified my config.toml file for a new unique base URL on a different domain name prefix, but the same domain (&lsquo;www&rsquo; element changed to &lsquo;git&rsquo;) and saved the file.</li>
 <li>typed ‘Hugo’ with no parameters. (this builds a fully compiled copy of the site with new URL embedded throughout in the /public folder)</li>
-<li>Then type the following to initialise the folder and push the code up to the new repo (which triggers the build):</li>
+<li>Then typed the following (standard steps) to initialise the folder as a git repo and push the code up to the new repo (which triggers the build):</li>
 </ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>cd public
 </span></span><span style="display:flex;"><span>git init
@@ -219,7 +224,7 @@ I set myself a task of trying to make the switchover as seamless as possible, wi
 </a></p>
 <p>Initially I left the GitHub page settings in their default mode to deploy from a branch for the ‘classic pages experience’, which seemed to work just fine.</p>
 <p>At the time of testing, the alternative github actions option was marked as beta, but I decided to switch to this setting anyway to see what was available.  Notably Jekyll is an option, but not Hugo, but we are still at the ‘Static HTML - Deploy static files in a repository without a build’ phase anyway.</p>
-<p>The (beta) Pages, Github Action also worked fine for me, so I will stick with this as I intend to add to the actions later.</p>
+<p>The (beta) Pages, Github Action also worked fine for me, so I will stick with this as I likey to add to the actions later.</p>
 <h2 id="adding-a-custom-domain">Adding a Custom Domain</h2>
 <p>First of all, you need to add your custom domain to your gihub account, this is done in your <strong>GitHub user</strong> settings, not your repo settings.  This will give you a DNS verification text record to create which we won&rsquo;t go into here as you already did this or something very similar when setting up on Azure static website.  Note the first value it gives you is the record name, and the second is the record content (don&rsquo;t do what I did and not read the dialogue!).</p>
 <p>Whist you&rsquo;re in your DNS provider configuration, you should also add a CNAME record to redirect the traffic from your new FQDN domain name to your GITHUBUSERNAME.github.io.</p>
@@ -230,7 +235,9 @@ I set myself a task of trying to make the switchover as seamless as possible, wi
 <p>An obvious limitation is this is hosting just compiled code in a GitHub repo and assumes the Hugo code is compiled locally, this is so not DevOps!</p>
 <p>The way the GitHub actions deployment works for Azure static websites is the uncompiled Hugo website is pushed to a GitHub repo, which triggers the action, the uncompiled code is copied by github action to a runner and the runner compiles the website and deploys straight to Azure.  This is preferable as it protects and version controls the source code in a repo, rather than the compiled code.</p>
 <h2 id="next-steps">Next Steps</h2>
-<p>My next step are to look into the possibility of pushing my uncompiled Hugo code to the first repo, (like I do for Azure), but then run an new action that compiles that code and pushes it to the second (new) repo, which then runs an action to deploy it to GitHub pages(!).</p>
+<p>My <a href="/2023/01/static-website-hosting-on-github-part-2" >
+    next step
+</a> is to look into the possibility of pushing my uncompiled Hugo code to the first repo, (like I do for Azure), but then run an new action that compiles that code and pushes it to the second (new) repo, which then runs an action to deploy it to GitHub Pages(!).</p>
 <p>Then maybe look to do this as a one repo solution with .gitignore work and selective paths for the actions.</p>
 
     
@@ -322,6 +329,18 @@ I set myself a task of trying to make the switchover as seamless as possible, wi
                 
                 
                     <li>
+                        <a href="https://git.thedevopscat.co.uk/article/hugo/azure-vs-github/">Azure Static Web Apps vs Github Pages</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://git.thedevopscat.co.uk/article/hugo/github-site-hosting3/">Static Website Hosting on Github - Part 3</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://git.thedevopscat.co.uk/article/hugo/github-site-hosting2/">Static Website Hosting on Github - Part 2</a>
+                    </li>
+                
+                    <li>
                         <a href="https://git.thedevopscat.co.uk/article/hugo/github-site-hosting1/">Static Website Hosting on Github - Part 1</a>
                     </li>
                 
@@ -330,23 +349,11 @@ I set myself a task of trying to make the switchover as seamless as possible, wi
                     </li>
                 
                     <li>
-                        <a href="https://git.thedevopscat.co.uk/article/hugo/enabling-algolia/">Automating Algolia Search</a>
+                        <a href="https://git.thedevopscat.co.uk/article/hugo/enabling-algolia/">Automating Algolia Search with Azure Static Web App</a>
                     </li>
                 
                     <li>
                         <a href="https://git.thedevopscat.co.uk/code/terraform/terraform4/">Terraform Conditional Expressions</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://git.thedevopscat.co.uk/code/terraform/terraform2/">Terraform Count Index</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://git.thedevopscat.co.uk/code/terraform/terraform5/">Securing Access from a Public IP</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://git.thedevopscat.co.uk/code/terraform/terraform6/">Bringing It All Together</a>
                     </li>
                 
             </ul>
@@ -359,12 +366,17 @@ I set myself a task of trying to make the switchover as seamless as possible, wi
             <ul>
                 
                 <li>
+                    <a href="/categories/hugo">Hugo
+                        (7)</a>
+                </li>
+                
+                <li>
                     <a href="/categories/terraform">Terraform
                         (6)</a>
                 </li>
                 
                 <li>
-                    <a href="/categories/hugo">Hugo
+                    <a href="/categories/github-pages">Github pages
                         (4)</a>
                 </li>
                 
