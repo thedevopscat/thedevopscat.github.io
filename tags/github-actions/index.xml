@@ -5,49 +5,50 @@
     <link>https://git.thedevopscat.co.uk/tags/github-actions/</link>
     <description>Recent content in github actions on thedevopscat blog site</description>
     <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
     <lastBuildDate>Sun, 15 Jan 2023 01:45:06 +0000</lastBuildDate><atom:link href="https://git.thedevopscat.co.uk/tags/github-actions/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Azure Static Web Apps vs Github Pages</title>
-      <link>https://git.thedevopscat.co.uk/article/hugo/azure-vs-github/</link>
+      <link>https://git.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/</link>
       <pubDate>Sun, 15 Jan 2023 01:45:06 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/article/hugo/azure-vs-github/</guid>
-      <description>In this post I compare hosting a static website on Github Pages vs Azure Static Websites, and give my thoughts, who will win!?  Guess you&amp;rsquo;ll have to read it&amp;hellip;</description>
+      <guid>https://git.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/</guid>
+      <description>I compare hosting a Hugo static website on Github Pages vs Azure Static Web App, and give my thoughts, which platform will win!?  Guess you&amp;rsquo;ll have to read it&amp;hellip;</description>
     </item>
     
     <item>
       <title>Static Website Hosting on Github - Part 3</title>
-      <link>https://git.thedevopscat.co.uk/article/hugo/github-site-hosting3/</link>
+      <link>https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/</link>
       <pubDate>Sat, 14 Jan 2023 09:43:24 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/article/hugo/github-site-hosting3/</guid>
-      <description>This post covers hosting a static website on github pages with fully automated jamstack workflow and all builds done by github actions.</description>
+      <guid>https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/</guid>
+      <description>This post covers hosting a Hugo static website on Github Pages with fully automated jamstack workflow and all builds performed by Github Actions.</description>
     </item>
     
     <item>
       <title>Static Website Hosting on Github - Part 2</title>
-      <link>https://git.thedevopscat.co.uk/article/hugo/github-site-hosting2/</link>
+      <link>https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/</link>
       <pubDate>Tue, 10 Jan 2023 17:43:24 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/article/hugo/github-site-hosting2/</guid>
-      <description>This post explores hosting a static website on github pages and what would be required to move to github pages from azure static web app hosting.</description>
+      <guid>https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/</guid>
+      <description>This post explores hosting a Hugo static website code on Github repo&amp;rsquo;s and hosting using Github Pages for website hosting.</description>
     </item>
     
     <item>
       <title>Static Website Hosting on Github - Part 1</title>
-      <link>https://git.thedevopscat.co.uk/article/hugo/github-site-hosting1/</link>
+      <link>https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/</link>
       <pubDate>Mon, 09 Jan 2023 18:43:24 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/article/hugo/github-site-hosting1/</guid>
-      <description>This post covers the basics of hosting a static website on github pages and what would be required to move to github pages from azure static web app hosting.</description>
+      <guid>https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/</guid>
+      <description>This post covers the basics of hosting a Hugo static website on Github Pages and what would be required to move to Github Pages from Azure Static Web App hosting.</description>
     </item>
     
     <item>
       <title>Automating Algolia Search with Azure Static Web App</title>
-      <link>https://git.thedevopscat.co.uk/article/hugo/enabling-algolia/</link>
+      <link>https://git.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/</link>
       <pubDate>Fri, 06 Jan 2023 10:45:32 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/article/hugo/enabling-algolia/</guid>
+      <guid>https://git.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/</guid>
       <description>Having just completed the setup of algolia search on this site I felt compelled to write a new post and let you know my experience, as it may save you some time! Suffice to say, the potentially difficult part was easy, and the easy part was hard! This may be down to the combination of my (feature rich) Bilberry theme and Hugo, so if you choose this combination, This may be of particular interest.</description>
     </item>
     

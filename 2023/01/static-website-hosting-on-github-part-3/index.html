@@ -1,0 +1,535 @@
+<!DOCTYPE html><html itemscope itemtype="https://schema.org/WebPage" class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="siteBaseUrl" content="https://git.thedevopscat.co.uk/">
+    <meta name="author" content="thedevopscat">
+    <meta name="description" content="thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!">
+    <meta name="keywords" content="blog,personal,cats,devops,terraform,azure,hugo,algolia,git,github"><meta name="generator" content="Hugo 0.115.3"><title>Static Website Hosting on Github - Part 3&vert;thedevopscat blog site</title>
+    <meta itemprop="name" content="Static Website Hosting on Github - Part 3">
+    <meta itemprop="description" content="Static Website Hosting on Github - Part 3 - thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!">
+    <meta property="og:site_name" content="thedevopscat blog site"><meta property="og:title" content="Static Website Hosting on Github - Part 3" />
+<meta property="og:description" content="This post covers hosting a Hugo static website on Github Pages with fully automated jamstack workflow and all builds performed by Github Actions." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/" /><meta property="article:section" content="article" />
+<meta property="article:published_time" content="2023-01-14T09:43:24+00:00" />
+<meta property="article:modified_time" content="2023-01-14T09:43:24+00:00" />
+<meta property="og:see_also" content="https://git.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/" /><meta property="og:see_also" content="https://git.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/" /><meta property="og:see_also" content="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/" /><meta property="og:see_also" content="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/" /><meta property="og:see_also" content="https://git.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/" />
+<meta property="og:see_also" content="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/" /><meta property="og:see_also" content="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/" />
+
+
+<script src="/modernizr-simple.js"></script><link href="/2023/01/static-website-hosting-on-github-part-3/" rel="alternate" type="application/rss+xml" title="thedevopscat blog site" />
+    <link href="/2023/01/static-website-hosting-on-github-part-3/" rel="feed" type="application/rss+xml" title="thedevopscat blog site" /><link rel="canonical" href="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/"><link rel="stylesheet" href="https://git.thedevopscat.co.uk/theme.css"></head>
+
+<body class="bilberry-hugo-theme">
+    <nav>
+
+    <div class="container">
+        <ul class="topnav">
+            
+                
+                    <li><a href="/categories/hugo/" target="">Hugo&#43;Themes</a></li>
+                
+            
+                
+                    <li><a href="/categories/terraform/" target="">Terraform</a></li>
+                
+            
+                
+                    <li><a href="https://github.com/thedevopscat" target="_blank&#34; rel=&#34;nofollow noopener noreferrer">My Github</a></li>
+                
+            
+                
+                    <li><a href="https://git.thedevopscat.co.uk/page/disclaimer/">Disclaimer</a></li>
+                
+            
+        </ul>
+
+        
+            <div id="search-box" class="search">
+                <i class="fas fa-search"></i>
+                <input id="search" type="text" placeholder="Search ...">
+            </div>
+        
+    </div>
+</nav>
+
+    <header>
+
+    <div class="container">
+        <div class="logo">
+            <a href="/" class="logo">
+                
+                    <img src="/images/davey.jpg" alt="">
+                
+
+                <span class="overlay"><i class="fa fa-home"></i></span>
+            </a>
+        </div>
+        <div class="titles">
+            <h3 class="title">
+                <a href="/">
+                    thedevopscat blog site
+                </a>
+            </h3>
+
+            
+                <span class="subtitle">Thoughts, observations and learnings of the devopscat...</span>
+            
+        </div>
+
+        
+
+        
+            <div class="toggler">
+        
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+    </div>
+</header>
+<div class="main container"><div class="article-wrapper u-cf single"><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script><a class="bubble" href="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/">
+    <i class="fas fa-fw fa-pencil-alt"></i>
+</a>
+
+<article class="default article">
+    
+    <div class="content">
+    <h1 class="article-title">
+        <a href="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/">
+            Static Website Hosting on Github - Part 3
+        </a>
+    </h1>
+
+    <div class="meta">
+        
+            
+                <span class="date moment">2023-01-14</span>
+            
+        
+
+        
+            
+                <span class="readingTime">8 min read</span>
+            
+        
+
+        
+            <span class="categories">
+                
+                    
+                    
+                        <a href="https://git.thedevopscat.co.uk/categories/hugo/">Hugo</a>
+                    
+                
+                    
+                    
+                        <a href="https://git.thedevopscat.co.uk/categories/github-pages/">Github Pages</a>
+                    
+                
+            </span>
+        
+
+        
+            <span class="author">
+                
+                
+                    <a href="https://git.thedevopscat.co.uk/author/thedevopscat/">thedevopscat</a>
+                
+            </span>
+        
+    </div>
+
+    
+        
+            <h2>Table of Contents</h2>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#overall-automated-workflow">Overall Automated Workflow</a></li>
+    <li><a href="#first-step---ignore-compiled-code">First Step - Ignore Compiled Code!</a></li>
+    <li><a href="#repo1-custom-github-action">Repo1 Custom Github Action</a></li>
+    <li><a href="#the-custom-repo1-action-code">The Custom Repo1 Action Code</a></li>
+    <li><a href="#security-settings">Security Settings</a></li>
+    <li><a href="#pat-token-creation">PAT Token Creation</a></li>
+    <li><a href="#testing">Testing</a></li>
+    <li><a href="#final-thoughts">Final Thoughts</a></li>
+  </ul>
+</nav>
+        
+
+        <p>I dream of an uncomplicated life, where with the single ‘push’ I can instigate a complete workflow to do my bidding!  In this final part, I will to do just that.</p>
+<p>The goals are simple:</p>
+<ol>
+<li>no local compilation</li>
+<li>automatic search index update and upload</li>
+<li>no messing with git submodules</li>
+<li>Source files version controlled in github</li>
+</ol>
+<p>The solution will however require custom GitHub actions to complete.</p>
+<h2 id="overall-automated-workflow">Overall Automated Workflow</h2>
+<p>As a reminder, for the purposes of these posts, repo1 stores my source files and repo2 stores my built site and has GitHub pages enabled.  Our overall workflow across both repo&rsquo;s will look like this:</p>
+<div class="mermaid">flowchart TD
+subgraph Local
+  A[Start] -->|Update Website markdown locally| B(fa:fa-cat git push)
+end
+B -->|public folder always empty & ignored| C(fab:fa-github Source Files Pushed to Repo1)
+subgraph Repo1 Actions
+  C -->|Repo1 Github Action Triggered on Push| D(fa:fa-robot Repo1 Runner builds the site, updates & uploads the search index)
+end
+subgraph Repo2 Actions
+  D -->|Repo1 Runner pushes *only* latest build in public folder to Repo2|E(fab:fa-github Repo2 now holds new build code)
+  E -->|Repo2 'standard' Pages Action Triggered on Push| F(fa:fa-robot Update deployed to Github Pages)
+end
+F --> G[End]
+</div>
+<h2 id="first-step---ignore-compiled-code">First Step - Ignore Compiled Code!</h2>
+<p>We will start by modifying our .gitignore in the root of repo1, used for our uncompiled website code by adding the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span># Compiled Website Code
+</span></span><span style="display:flex;"><span>/my-blog-site/public
+</span></span></code></pre></div><p>(Where ‘my-blog-site’ is substituted for the name of the folder your site resides in)</p>
+<p>This stops git tracking the default folder where Hugo compiles the website, as we can generate this on demand from the source code.  we certainly don&rsquo;t want to be pulling this down in scenarios where we are using multiple machines.</p>
+<p>Our runner on repo1 will build this code on demand, as such we have no reason to store it anywhere other than repo2 for the live version of the site.</p>
+<p>Note: If you&rsquo;re following along from part 2, be sure to delete all references to /public being a git submodule, delete the entire folder and edit the .gitsubmodule file in the root of the repo.</p>
+<h2 id="repo1-custom-github-action">Repo1 Custom Github Action</h2>
+<p>We will push just the uncomplied files to repo1, so the custom Github Action here will do all the heavy lifting.  The Actions steps and specific order are very important, they are as follows:</p>
+<div class="mermaid">flowchart TD
+subgraph fa:fa-robot Repo1 Github Actions
+A[Start] -->|Custom Action Triggered on Push| C(1. Checkout the repo1 source content on runner)
+C --> D("3. Install Extra Dependancies - (Node.js and Hugo)")
+D --> E(4. Clone repo2 to /public folder)
+E --> F(5. Run Hugo from root of website to update public folder)
+F --> G(6. Run script to upload new index to algolia website)
+G --> H(7. Run git commands to commit /public content to repo2)
+H --> J[End]
+end
+</div>
+<p>This is fairly standard fare until we get to Step 4, which is worth mentioning as this step initialises, by way of a clone of the origin, the public folder which contains the build code homed in repo2.  Remember in repo1 we ignore this folder in our git config.  The new public folder is then ready to receive the new version of the website created when we run Hugo in Step 5 (the order of these two steps is particularly important). Then, with the new site built we can send the new index to algolia website in step 6.</p>
+<p>Step 7 links all of this work together and runs the usual git commands from the public sub-folder to push the latest build code from repo1 to repo2, from where it will be deployed by the standard GitHub Pages action as before.</p>
+<p>Note that step 7 is complicated by the fact that the runner is targeting an alternate repo, for this we need custom security which is achieved by the use of a PAT token stored as a GitHub secret, the creation of which we cover later in this post.</p>
+<h2 id="the-custom-repo1-action-code">The Custom Repo1 Action Code</h2>
+<p>I&rsquo;ve deliberately left a number of commented out steps that I used in the development phase, which are useful initially to view the folder paths and contents as the pipeline runs.  I avoided, where possible, the use of potted marketplace solutions for relatively simple chains of commands, preferring instead the verbosity of running them individually.</p>
+<p>I also created a separate search index in algolia for this instance so that I could be sure the automation was working and so that this site would not conflict with my main site, which is still running in parallel on Azure.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Upload Data to Algolia Index and Push Latest Site Build to Repo2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">push</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">branches</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">upload_data</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Git Checkout</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v3</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">submodules</span>: <span style="color:#66d9ef">true</span> <span style="color:#75715e"># Fetch Hugo themes (true OR recursive)</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">fetch-depth</span>: <span style="color:#ae81ff">0</span> <span style="color:#75715e"># Fetch all history for .GitInfo and .Lastmod</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Setup Node.js</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/setup-node@v2</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">node-version</span>: <span style="color:#e6db74">&#34;16&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Setup Hugo</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">peaceiris/actions-hugo@v2</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">hugo-version</span>: <span style="color:#e6db74">&#34;latest&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">extended</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># - name: Display the current path and folder content</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">#   run: pwd &amp;&amp; ls -a</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">#   shell: bash</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># - name: Display the website folder content</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">#   working-directory: ./website # equivalent of &#39;cd website&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">#   run: ls -a</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">#   shell: bash</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Clone to public folder</span> <span style="color:#75715e"># do this before hugo run to push up separately</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">working-directory</span>: <span style="color:#ae81ff">./website</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">git clone https://github.com/GITHUBUSERNAME/GITHUBUSERNAME.github.io.git public</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">shell</span>: <span style="color:#ae81ff">bash</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># - name: Display the current path and content of public folder (before update)</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">#   working-directory: ./website</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">#   run: pwd &amp;&amp; ls ./public</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">#   shell: bash</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run Hugo to Build Latest Site into public folder</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">working-directory</span>: <span style="color:#ae81ff">./website</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">pwd &amp;&amp; hugo</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># - name: Display content of public folder (after update).</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">#   working-directory: ./website</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">#   run: ls -a -all ./public</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">#   shell: bash</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Upload Search Data to Algolia</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">working-directory</span>: <span style="color:#ae81ff">./website/algolia</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          npm install
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          npm run data-upload -- -c \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            -f ../public/index.json \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            -a DOC7HO0A8P \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            -k ${{ secrets.ALGOLIA_ADMIN_API_KEY }} \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            -n gitdoc</span>          
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Push Latest Build to Repo2</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">working-directory</span>: <span style="color:#ae81ff">./website/public</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          git config --global user.email &#34;your@email.com&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          git config --global user.name &#34;yourusername&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          git add .
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          git commit -a -m &#34;$(date) automated commit from repo1&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          git push https://GITHUBUSERNAME:${{ secrets.PAT_TOKEN }}@github.com/GITHUBUSERNAME/GITHUBUSERNAME.github.io.git
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          rm -rf .git</span>          
+</span></span></code></pre></div><p>(Where &lsquo;GITHUBUSERNAME&rsquo; is replace with your Github Username is lower case!)</p>
+<h2 id="security-settings">Security Settings</h2>
+<p>The permission changes needed on either repo are surprisingly minimal, this is by virtue of the fact that the cross-repo actions are done under the security context of your PAT token, as opposed to the native security context of the runner.  Hence, default permissions granted to the GITHUB_TOKEN when running workflows is left as read-only.</p>
+<p>If you haven&rsquo;t used a PAT token before, there are a few things worth noting.  PAT stands for Personal Access Token, and as such this token is associated with the user account of the person that creates it, essentially it allows automation to impersonate you.</p>
+<p>Consequently, wherever possible a PAT token should be created with granular access with the minimum number of rights possible.  With this in mind, we will create a fine-grained token, even though at the time of writing this feature is marked as beta.</p>
+<h2 id="pat-token-creation">PAT Token Creation</h2>
+<p>The PAT token is created from the Github user settings (not repo settings) from your GitHub web page, go to settings, then scroll right down to the bottom, and select developer settings from the left-hand menu.</p>
+<figure><img src="/images/github-pages/pat1.png"/>
+</figure>
+
+<p>From the developer settings page, select personal access tokens from the left-hand menu, then select fine grained tokens. From here hit the button to generate new token, I would suggest separate tokens for each individual use case, so give this token a meaningful name based on what we will use it for, I called mine ‘repo1 to repo2’ - you could probably think of something better here!</p>
+<figure><img src="/images/github-pages/pat2.png"/>
+</figure>
+
+<p>In the repository&rsquo;s access section select ‘only select repositories’ select the name of your repo2 (USERNAME/GITHUBUSERNAME.github.io)</p>
+<figure><img src="/images/github-pages/pat3.png"/>
+</figure>
+
+<p>In terms of permissions, only two are needed, with one being added automatically as a mandatory prerequisite of the other.  Scroll down the list and find ‘Contents’ Change the access to read and write, note that metadata read will be marked as mandatory for you.</p>
+<figure><img src="/images/github-pages/pat4.png"/>
+</figure>
+
+<p>Don&rsquo;t forget to save your settings!</p>
+<p>Copy the value of your token and save it as a Github Secret for <strong>repo1</strong>.  I named mine <em>PAT_TOKEN</em>, be sure you match the name with the call in the action!</p>
+<h2 id="testing">Testing</h2>
+<p>That&rsquo;s it, you&rsquo;re done!  You can test both work flows by simply updating your Hugo site content and pushing to repo1, go to the actions tab and drill down to find the run logs should you receive an error.</p>
+<h2 id="final-thoughts">Final Thoughts</h2>
+<p>I&rsquo;m very happy with the end result, I was worried for a moment that the GitHub security requirements might stop me jumping between the two repos and I’d over committed on the art of the possible, but it worked out in the end!</p>
+<p>I originally said in part 1 I might try and make this a single repo solution, which in hindsight would probably be easier! However leaving it as two separate repo’s gives you the option of making the first repo private, which I find preferable.</p>
+<p>We&rsquo;ve now reach as close to automation feature parity between the Azure and Github hosting Actions 😎.</p>
+<p>I will follow up in <a href="/2023/01/azure-static-web-apps-vs-github-pages" >
+    my next post
+</a> with my personal opinions on Azure static web apps vs GitHub Pages now that I&rsquo;ve tried both solutions in an automated fashion.</p>
+
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    
+                    
+                    <a href="https://git.thedevopscat.co.uk/tags/hugo/">hugo</a>
+                    
+                
+                    
+                    
+                    <a href="https://git.thedevopscat.co.uk/tags/hosting/">hosting</a>
+                    
+                
+                    
+                    
+                    <a href="https://git.thedevopscat.co.uk/tags/static-website/">static website</a>
+                    
+                
+                    
+                    
+                    <a href="https://git.thedevopscat.co.uk/tags/jamstack/">jamstack</a>
+                    
+                
+                    
+                    
+                    <a href="https://git.thedevopscat.co.uk/tags/github-pages/">github pages</a>
+                    
+                
+                    
+                    
+                    <a href="https://git.thedevopscat.co.uk/tags/github-actions/">github actions</a>
+                    
+                
+                    
+                    
+                    <a href="https://git.thedevopscat.co.uk/tags/automation/">automation</a>
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+</div><div id="comments-container">
+<details class="comments">
+    <summary class="ctr pokey">
+        <strong>View/hide comments</strong>
+    </summary>
+    <div class="giscus-comments">
+        <script src="https://giscus.app/client.js" data-repo="thedevopscat/blogcomments"
+            data-repo-id="R_kgDOIoOO8A" data-category="General"
+            data-category-id="DIC_kwDOIoOO8M4CTG6Z" data-mapping="www"
+            data-reactions-enabled="1"
+            data-emit-metadata="" data-theme="light"  data-lang="en"  crossorigin="anonymous" async>
+            </script>
+        <p class="ctr pokey sansSerif">
+        </p>
+    </div>
+</details>
+</div></div>
+<footer>
+    <div class="container">
+
+        
+        <div class="recent-posts">
+            <strong>Latest posts</strong>
+            <ul>
+                
+                
+                    <li>
+                        <a href="https://git.thedevopscat.co.uk/code/terraform/terraform15/">Automatic Code Generation for Imported Resources!</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://git.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/">Adding Grafana Cloud Website Monitoring via Terraform</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://git.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/">Azure Static Web Apps vs Github Pages</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/">Static Website Hosting on Github - Part 3</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/">Static Website Hosting on Github - Part 2</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/">Static Website Hosting on Github - Part 1</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://git.thedevopscat.co.uk/2023/01/what-info-is-permissible-on-a-redacted-cv/">What Info is Permissible on a Redacted CV?</a>
+                    </li>
+                
+            </ul>
+        </div>
+        
+
+        
+        <div class="categories">
+            <a href="/categories/"><strong>Categories</strong></a>
+            <ul>
+                
+                <li>
+                    <a href="/categories/hugo">Hugo
+                        (8)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/terraform">Terraform
+                        (7)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/github-pages">Github pages
+                        (5)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/psychology">Psychology
+                        (2)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/cats">Cats
+                        (1)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/privacy">Privacy
+                        (1)</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+
+        <div class="right">
+            
+            <div class="external-profiles">
+                <strong>My Links</strong>
+
+                
+                <a href="https://www.linkedin.com/in/mr-david-kent" target="_blank" rel="me"><em class="fab fa-linkedin"></em></a>
+                
+                <a href="https://github.com/thedevopscat" target="_blank" rel=""><em class="fab fa-github"></em></a>
+                
+                <a href="https://discord.com/users/thedevopscat#8281" target="_blank" rel=""><em class="fab fa-discord"></em></a>
+                
+                <br><br>
+                <a href="https://www.buymeacoffee.com/thedevopscat" target="_blank" rel="nofollow noopener noreferrer" rel="me"><img src="/images/bmc_qr.png" width="84px" height="80px" alt="Buy Me A Coffee"></a>
+            </div>
+            
+
+            
+
+            
+            <div class="archive">
+                <a href="/archive/"><strong>Archive</strong></a>
+            </div>			
+            
+        </div>
+    </div>
+</footer>
+
+
+<div class="credits">
+    <div class="container">
+        <div class="copyright">
+            <a href="https://www.thedevopscat.co.uk/page/disclaimer/" target="_blank">
+                &copy;
+                
+                2023
+                
+                thedevopscat
+            </a>
+            
+        </div>
+        <div class="author">
+            <a href="https://github.com/Lednerb/bilberry-hugo-theme"
+                target="_blank">Powered by Bilberry Hugo Theme</a>
+        </div>
+    </div>
+</div>
+<script src="https://git.thedevopscat.co.uk/theme.js"></script><div id="activate-algolia-search" class="hidden">
+  <input type="hidden" id="algolia-search-appId" value="CKM9HO0A7S">
+  <input type="hidden" id="algolia-search-apiKey" value="180d489edd420a08db5915d22d7232db">
+  <input type="hidden" id="algolia-search-indexName" value="gitdoc">
+  <input type="hidden" id="algolia-search-noSearchResults" value="Nothing found.">
+
+  
+  <input type="hidden" id="algolia-search-currentLanguageOnly">
+  
+</div>
+</body>
+
+</html>

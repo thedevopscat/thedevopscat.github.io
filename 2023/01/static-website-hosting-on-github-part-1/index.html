@@ -1,0 +1,410 @@
+<!DOCTYPE html><html itemscope itemtype="https://schema.org/WebPage" class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="siteBaseUrl" content="https://git.thedevopscat.co.uk/">
+    <meta name="author" content="thedevopscat">
+    <meta name="description" content="thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!">
+    <meta name="keywords" content="blog,personal,cats,devops,terraform,azure,hugo,algolia,git,github"><meta name="generator" content="Hugo 0.115.3"><title>Static Website Hosting on Github - Part 1&vert;thedevopscat blog site</title>
+    <meta itemprop="name" content="Static Website Hosting on Github - Part 1">
+    <meta itemprop="description" content="Static Website Hosting on Github - Part 1 - thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!">
+    <meta property="og:site_name" content="thedevopscat blog site"><meta property="og:title" content="Static Website Hosting on Github - Part 1" />
+<meta property="og:description" content="This post covers the basics of hosting a Hugo static website on Github Pages and what would be required to move to Github Pages from Azure Static Web App hosting." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/" /><meta property="article:section" content="article" />
+<meta property="article:published_time" content="2023-01-09T18:43:24+00:00" />
+<meta property="article:modified_time" content="2023-01-09T18:43:24+00:00" />
+<meta property="og:see_also" content="https://git.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/" /><meta property="og:see_also" content="https://git.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/" /><meta property="og:see_also" content="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/" /><meta property="og:see_also" content="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/" /><meta property="og:see_also" content="https://git.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/" />
+<meta property="og:see_also" content="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/" /><meta property="og:see_also" content="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/" />
+
+
+<script src="/modernizr-simple.js"></script><link href="/2023/01/static-website-hosting-on-github-part-1/" rel="alternate" type="application/rss+xml" title="thedevopscat blog site" />
+    <link href="/2023/01/static-website-hosting-on-github-part-1/" rel="feed" type="application/rss+xml" title="thedevopscat blog site" /><link rel="canonical" href="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/"><link rel="stylesheet" href="https://git.thedevopscat.co.uk/theme.css"></head>
+
+<body class="bilberry-hugo-theme">
+    <nav>
+
+    <div class="container">
+        <ul class="topnav">
+            
+                
+                    <li><a href="/categories/hugo/" target="">Hugo&#43;Themes</a></li>
+                
+            
+                
+                    <li><a href="/categories/terraform/" target="">Terraform</a></li>
+                
+            
+                
+                    <li><a href="https://github.com/thedevopscat" target="_blank&#34; rel=&#34;nofollow noopener noreferrer">My Github</a></li>
+                
+            
+                
+                    <li><a href="https://git.thedevopscat.co.uk/page/disclaimer/">Disclaimer</a></li>
+                
+            
+        </ul>
+
+        
+            <div id="search-box" class="search">
+                <i class="fas fa-search"></i>
+                <input id="search" type="text" placeholder="Search ...">
+            </div>
+        
+    </div>
+</nav>
+
+    <header>
+
+    <div class="container">
+        <div class="logo">
+            <a href="/" class="logo">
+                
+                    <img src="/images/davey.jpg" alt="">
+                
+
+                <span class="overlay"><i class="fa fa-home"></i></span>
+            </a>
+        </div>
+        <div class="titles">
+            <h3 class="title">
+                <a href="/">
+                    thedevopscat blog site
+                </a>
+            </h3>
+
+            
+                <span class="subtitle">Thoughts, observations and learnings of the devopscat...</span>
+            
+        </div>
+
+        
+
+        
+            <div class="toggler">
+        
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+    </div>
+</header>
+<div class="main container"><div class="article-wrapper u-cf single"><a class="bubble" href="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/">
+    <i class="fas fa-fw fa-pencil-alt"></i>
+</a>
+
+<article class="default article">
+    
+    <div class="content">
+    <h1 class="article-title">
+        <a href="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/">
+            Static Website Hosting on Github - Part 1
+        </a>
+    </h1>
+
+    <div class="meta">
+        
+            
+                <span class="date moment">2023-01-09</span>
+            
+        
+
+        
+            
+                <span class="readingTime">5 min read</span>
+            
+        
+
+        
+            <span class="categories">
+                
+                    
+                    
+                        <a href="https://git.thedevopscat.co.uk/categories/hugo/">Hugo</a>
+                    
+                
+                    
+                    
+                        <a href="https://git.thedevopscat.co.uk/categories/github-pages/">Github Pages</a>
+                    
+                
+            </span>
+        
+
+        
+            <span class="author">
+                
+                
+                    <a href="https://git.thedevopscat.co.uk/author/thedevopscat/">thedevopscat</a>
+                
+            </span>
+        
+    </div>
+
+    
+        
+            <h2>Table of Contents</h2>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#github-website-steps">Github Website Steps</a></li>
+    <li><a href="#local-steps">Local Steps</a></li>
+    <li><a href="#adding-a-custom-domain">Adding a Custom Domain</a></li>
+    <li><a href="#limitations">Limitations</a></li>
+    <li><a href="#next-steps">Next Steps</a></li>
+  </ul>
+</nav>
+        
+
+        <h1 id="site-hosting">Site Hosting</h1>
+<p>Due to my familiarity with Microsoft Azure, I initially chose to host this blog on Azure, possibly influenced by the fact that hosting a basic static website is free on the platform!</p>
+<p>Not long after the successful launch of the thedevopscat.co.uk blog my website became unavailable, after performing some basic checks it became apparent it was nothing that I had done wrong and was in fact a transient issue with Azure.  When you are in receipt of a free service, it&rsquo;s difficult to complain when that service becomes temporarily unavailable, your only real option is to have a backup plan.</p>
+<p>To this end I decided to investigate hosting the site on GitHub, which seemed to make sense as the source code and the comments engine are already hosted there.</p>
+<p>So rather than complain I decided to look upon the situation as an opportunity to learn and create some new content for the blog at the same time!
+I set myself a task of trying to make the switchover as seamless as possible, with the minimum amount of self-inflicted downtime, my thoughts were to bring the site up on its native GitHub domain, test, then add a unique custom domain name, once I was happy I could perform the switch of my real site by switching over the target of the existing DNS records in a similar manner.</p>
+<p>I started by creating a parallel test site so I could satisfy myself of the process before moving my live site.  It turns out hosting a website via GitHub pages is incredibly easy:</p>
+<h2 id="github-website-steps">Github Website Steps</h2>
+<ol>
+<li>Create a new repository in GitHub that will hold your (compiled) site code.  This must be left as public for github pages to be enabled.</li>
+<li>Name the repo GITHUBUSERNAME.github.io. The name will determine your native URL, however this will be supplemented later with a custom domain.  I did not initialise the repo.</li>
+<li>Go to the repo’s Settings tab, Pages, ensure Pages are enabled (mine were by default), note it uses the main branch to be the source of the website.</li>
+</ol>
+<h2 id="local-steps">Local Steps</h2>
+<p>I then went to the folder containing my websites Hugo code and performed the following steps:</p>
+<ol>
+<li>Modified my config.toml file for a new unique base URL on a different domain name prefix, but the same domain (&lsquo;www&rsquo; element changed to &lsquo;git&rsquo;) and saved the file.</li>
+<li>typed ‘Hugo’ with no parameters. (this builds a fully compiled copy of the site with new URL embedded throughout in the /public folder)</li>
+<li>Then typed the following (standard steps) to initialise the folder as a git repo and push the code up to the new repo (which triggers the build):</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>cd public
+</span></span><span style="display:flex;"><span>git init
+</span></span><span style="display:flex;"><span>git add .
+</span></span><span style="display:flex;"><span>git commit -m &#34;initial deploy&#34;
+</span></span><span style="display:flex;"><span>git remote add origin https://github.com/GITHUBUSERNAME/GITHUBUSERNAME.github.io.git
+</span></span><span style="display:flex;"><span>git push -u origin main
+</span></span></code></pre></div><p>At this point you should be able to test the site in a web browser by going to your version of: <a href="https://GITHUBUSERNAME.github.io/"  target="_blank" rel="noopener noreferrer" >
+    https://GITHUBUSERNAME.github.io/
+</a></p>
+<p>Initially I left the GitHub page settings in their default mode to deploy from a branch for the ‘classic pages experience’, which seemed to work just fine.</p>
+<p>At the time of testing, the alternative github actions option was marked as beta, but I decided to switch to this setting anyway to see what was available.  Notably Jekyll is an option, but not Hugo, but we are still at the ‘Static HTML - Deploy static files in a repository without a build’ phase anyway.</p>
+<p>The (beta) Pages, Github Action also worked fine for me, so I will stick with this as I likey to add to the actions later.</p>
+<h2 id="adding-a-custom-domain">Adding a Custom Domain</h2>
+<p>First of all, you need to add your custom domain to your gihub account, this is done in your <strong>GitHub user</strong> settings, not your repo settings.  This will give you a DNS verification text record to create which we won&rsquo;t go into here as you already did this or something very similar when setting up on Azure static website.  Note the first value it gives you is the record name, and the second is the record content (don&rsquo;t do what I did and not read the dialogue!).</p>
+<p>Whist you&rsquo;re in your DNS provider configuration, you should also add a CNAME record to redirect the traffic from your new FQDN domain name to your GITHUBUSERNAME.github.io.</p>
+<p>Once the domain has been verified for use, we can add a custom domain from the repo settings, pages menu, when successfully added your new domain will be queued for automatic certificate creation so now is a good time to go for a well-earned cup of tea! (Mine took just a few minutes).</p>
+<p>When the certificate has been created, the cheque box will become available to enforce https and you should now be able to access your website via your custom domain using the GitHub provided automatic SSL certificate and verify the functionality of the site.</p>
+<p>This test gave me the confidence that I could move my website within the space of an hour or so, should I need to, which I may do in the future depending on service reliability.</p>
+<h2 id="limitations">Limitations</h2>
+<p>An obvious limitation is this is hosting just compiled code in a GitHub repo and assumes the Hugo code is compiled locally, this is so not DevOps!</p>
+<p>The way the GitHub actions deployment works for Azure static websites is the uncompiled Hugo website is pushed to a GitHub repo, which triggers the action, the uncompiled code is copied by github action to a runner and the runner compiles the website and deploys straight to Azure.  This is preferable as it protects and version controls the source code in a repo, rather than the compiled code.</p>
+<h2 id="next-steps">Next Steps</h2>
+<p>My <a href="/2023/01/static-website-hosting-on-github-part-2" >
+    next step
+</a> is to look into the possibility of pushing my uncompiled Hugo code to the first repo, (like I do for Azure), but then run an new action that compiles that code and pushes it to the second (new) repo, which then runs an action to deploy it to GitHub Pages(!).</p>
+<p>Then maybe look to do this as a one repo solution with .gitignore work and selective paths for the actions.</p>
+
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    
+                    
+                    <a href="https://git.thedevopscat.co.uk/tags/hugo/">hugo</a>
+                    
+                
+                    
+                    
+                    <a href="https://git.thedevopscat.co.uk/tags/hosting/">hosting</a>
+                    
+                
+                    
+                    
+                    <a href="https://git.thedevopscat.co.uk/tags/static-website/">static website</a>
+                    
+                
+                    
+                    
+                    <a href="https://git.thedevopscat.co.uk/tags/jamstack/">jamstack</a>
+                    
+                
+                    
+                    
+                    <a href="https://git.thedevopscat.co.uk/tags/github-pages/">github pages</a>
+                    
+                
+                    
+                    
+                    <a href="https://git.thedevopscat.co.uk/tags/github-actions/">github actions</a>
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+</div><div id="comments-container">
+<details class="comments">
+    <summary class="ctr pokey">
+        <strong>View/hide comments</strong>
+    </summary>
+    <div class="giscus-comments">
+        <script src="https://giscus.app/client.js" data-repo="thedevopscat/blogcomments"
+            data-repo-id="R_kgDOIoOO8A" data-category="General"
+            data-category-id="DIC_kwDOIoOO8M4CTG6Z" data-mapping="www"
+            data-reactions-enabled="1"
+            data-emit-metadata="" data-theme="light"  data-lang="en"  crossorigin="anonymous" async>
+            </script>
+        <p class="ctr pokey sansSerif">
+        </p>
+    </div>
+</details>
+</div></div>
+<footer>
+    <div class="container">
+
+        
+        <div class="recent-posts">
+            <strong>Latest posts</strong>
+            <ul>
+                
+                
+                    <li>
+                        <a href="https://git.thedevopscat.co.uk/code/terraform/terraform15/">Automatic Code Generation for Imported Resources!</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://git.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/">Adding Grafana Cloud Website Monitoring via Terraform</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://git.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/">Azure Static Web Apps vs Github Pages</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/">Static Website Hosting on Github - Part 3</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/">Static Website Hosting on Github - Part 2</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/">Static Website Hosting on Github - Part 1</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://git.thedevopscat.co.uk/2023/01/what-info-is-permissible-on-a-redacted-cv/">What Info is Permissible on a Redacted CV?</a>
+                    </li>
+                
+            </ul>
+        </div>
+        
+
+        
+        <div class="categories">
+            <a href="/categories/"><strong>Categories</strong></a>
+            <ul>
+                
+                <li>
+                    <a href="/categories/hugo">Hugo
+                        (8)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/terraform">Terraform
+                        (7)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/github-pages">Github pages
+                        (5)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/psychology">Psychology
+                        (2)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/cats">Cats
+                        (1)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/privacy">Privacy
+                        (1)</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+
+        <div class="right">
+            
+            <div class="external-profiles">
+                <strong>My Links</strong>
+
+                
+                <a href="https://www.linkedin.com/in/mr-david-kent" target="_blank" rel="me"><em class="fab fa-linkedin"></em></a>
+                
+                <a href="https://github.com/thedevopscat" target="_blank" rel=""><em class="fab fa-github"></em></a>
+                
+                <a href="https://discord.com/users/thedevopscat#8281" target="_blank" rel=""><em class="fab fa-discord"></em></a>
+                
+                <br><br>
+                <a href="https://www.buymeacoffee.com/thedevopscat" target="_blank" rel="nofollow noopener noreferrer" rel="me"><img src="/images/bmc_qr.png" width="84px" height="80px" alt="Buy Me A Coffee"></a>
+            </div>
+            
+
+            
+
+            
+            <div class="archive">
+                <a href="/archive/"><strong>Archive</strong></a>
+            </div>			
+            
+        </div>
+    </div>
+</footer>
+
+
+<div class="credits">
+    <div class="container">
+        <div class="copyright">
+            <a href="https://www.thedevopscat.co.uk/page/disclaimer/" target="_blank">
+                &copy;
+                
+                2023
+                
+                thedevopscat
+            </a>
+            
+        </div>
+        <div class="author">
+            <a href="https://github.com/Lednerb/bilberry-hugo-theme"
+                target="_blank">Powered by Bilberry Hugo Theme</a>
+        </div>
+    </div>
+</div>
+<script src="https://git.thedevopscat.co.uk/theme.js"></script><div id="activate-algolia-search" class="hidden">
+  <input type="hidden" id="algolia-search-appId" value="CKM9HO0A7S">
+  <input type="hidden" id="algolia-search-apiKey" value="180d489edd420a08db5915d22d7232db">
+  <input type="hidden" id="algolia-search-indexName" value="gitdoc">
+  <input type="hidden" id="algolia-search-noSearchResults" value="Nothing found.">
+
+  
+  <input type="hidden" id="algolia-search-currentLanguageOnly">
+  
+</div>
+</body>
+
+</html>

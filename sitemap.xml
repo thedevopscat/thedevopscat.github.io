@@ -8,28 +8,85 @@
     <loc>https://git.thedevopscat.co.uk/page/terraform-topnav/</loc>
     <lastmod>2016-12-24T13:33:01+00:00</lastmod>
   </url><url>
-    <loc>https://git.thedevopscat.co.uk/page/cv/</loc>
-    <lastmod>2022-12-13T18:33:01+00:00</lastmod>
-  </url><url>
     <loc>https://git.thedevopscat.co.uk/page/github/</loc>
     <lastmod>2021-11-01T13:17:56+01:00</lastmod>
   </url><url>
     <loc>https://git.thedevopscat.co.uk/page/disclaimer/</loc>
     <lastmod>2023-01-04T16:08:14+00:00</lastmod>
   </url><url>
-    <loc>https://git.thedevopscat.co.uk/article/</loc>
-    <lastmod>2023-01-15T01:45:06+00:00</lastmod>
-  </url><url>
     <loc>https://git.thedevopscat.co.uk/author/</loc>
-    <lastmod>2023-01-15T01:45:06+00:00</lastmod>
+    <lastmod>2023-06-15T10:30:40+01:00</lastmod>
   </url><url>
-    <loc>https://git.thedevopscat.co.uk/tags/automation/</loc>
-    <lastmod>2023-01-15T01:45:06+00:00</lastmod>
-  </url><url>
-    <loc>https://git.thedevopscat.co.uk/article/hugo/azure-vs-github/</loc>
-    <lastmod>2023-01-15T01:45:06+00:00</lastmod>
+    <loc>https://git.thedevopscat.co.uk/code/terraform/terraform15/</loc>
+    <lastmod>2023-06-15T10:30:40+01:00</lastmod>
   </url><url>
     <loc>https://git.thedevopscat.co.uk/categories/</loc>
+    <lastmod>2023-06-15T10:30:40+01:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/code/</loc>
+    <lastmod>2023-06-15T10:30:40+01:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/tags/import/</loc>
+    <lastmod>2023-06-15T10:30:40+01:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/tags/</loc>
+    <lastmod>2023-06-15T10:30:40+01:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/tags/terraform/</loc>
+    <lastmod>2023-06-15T10:30:40+01:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/categories/terraform/</loc>
+    <lastmod>2023-06-15T10:30:40+01:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/author/thedevopscat/</loc>
+    <lastmod>2023-06-15T10:30:40+01:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/</loc>
+    <lastmod>2023-06-15T10:30:40+01:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/tags/v1.5/</loc>
+    <lastmod>2023-06-15T10:30:40+01:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/</loc>
+    <lastmod>2023-02-15T13:14:42+00:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/article/</loc>
+    <lastmod>2023-02-15T13:14:42+00:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/tags/automation/</loc>
+    <lastmod>2023-02-15T13:14:42+00:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/categories/github-pages/</loc>
+    <lastmod>2023-02-15T13:14:42+00:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/tags/hosting/</loc>
+    <lastmod>2023-02-15T13:14:42+00:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/tags/hugo/</loc>
+    <lastmod>2023-02-15T13:14:42+00:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/categories/hugo/</loc>
+    <lastmod>2023-02-15T13:14:42+00:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/series/hugo-themes/</loc>
+    <lastmod>2023-02-15T13:14:42+00:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/tags/jamstack/</loc>
+    <lastmod>2023-02-15T13:14:42+00:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/tags/monitoring/</loc>
+    <lastmod>2023-02-15T13:14:42+00:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/series/</loc>
+    <lastmod>2023-02-15T13:14:42+00:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/tags/static-website/</loc>
+    <lastmod>2023-02-15T13:14:42+00:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/tags/uptime/</loc>
+    <lastmod>2023-02-15T13:14:42+00:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/</loc>
     <lastmod>2023-01-15T01:45:06+00:00</lastmod>
   </url><url>
     <loc>https://git.thedevopscat.co.uk/tags/github-actions/</loc>
@@ -38,49 +95,16 @@
     <loc>https://git.thedevopscat.co.uk/tags/github-pages/</loc>
     <lastmod>2023-01-15T01:45:06+00:00</lastmod>
   </url><url>
-    <loc>https://git.thedevopscat.co.uk/categories/github-pages/</loc>
-    <lastmod>2023-01-15T01:45:06+00:00</lastmod>
-  </url><url>
-    <loc>https://git.thedevopscat.co.uk/tags/hosting/</loc>
-    <lastmod>2023-01-15T01:45:06+00:00</lastmod>
-  </url><url>
-    <loc>https://git.thedevopscat.co.uk/tags/hugo/</loc>
-    <lastmod>2023-01-15T01:45:06+00:00</lastmod>
-  </url><url>
-    <loc>https://git.thedevopscat.co.uk/categories/hugo/</loc>
-    <lastmod>2023-01-15T01:45:06+00:00</lastmod>
-  </url><url>
-    <loc>https://git.thedevopscat.co.uk/series/hugo-themes/</loc>
-    <lastmod>2023-01-15T01:45:06+00:00</lastmod>
-  </url><url>
-    <loc>https://git.thedevopscat.co.uk/tags/jamstack/</loc>
-    <lastmod>2023-01-15T01:45:06+00:00</lastmod>
-  </url><url>
-    <loc>https://git.thedevopscat.co.uk/series/</loc>
-    <lastmod>2023-01-15T01:45:06+00:00</lastmod>
-  </url><url>
-    <loc>https://git.thedevopscat.co.uk/tags/static-website/</loc>
-    <lastmod>2023-01-15T01:45:06+00:00</lastmod>
-  </url><url>
-    <loc>https://git.thedevopscat.co.uk/tags/</loc>
-    <lastmod>2023-01-15T01:45:06+00:00</lastmod>
-  </url><url>
-    <loc>https://git.thedevopscat.co.uk/author/thedevopscat/</loc>
-    <lastmod>2023-01-15T01:45:06+00:00</lastmod>
-  </url><url>
-    <loc>https://git.thedevopscat.co.uk/</loc>
-    <lastmod>2023-01-15T01:45:06+00:00</lastmod>
-  </url><url>
     <loc>https://git.thedevopscat.co.uk/series/hosting-on-github-pages/</loc>
     <lastmod>2023-01-14T09:43:24+00:00</lastmod>
   </url><url>
-    <loc>https://git.thedevopscat.co.uk/article/hugo/github-site-hosting3/</loc>
+    <loc>https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/</loc>
     <lastmod>2023-01-14T09:43:24+00:00</lastmod>
   </url><url>
-    <loc>https://git.thedevopscat.co.uk/article/hugo/github-site-hosting2/</loc>
+    <loc>https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/</loc>
     <lastmod>2023-01-10T17:43:24+00:00</lastmod>
   </url><url>
-    <loc>https://git.thedevopscat.co.uk/article/hugo/github-site-hosting1/</loc>
+    <loc>https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/</loc>
     <lastmod>2023-01-09T18:43:24+00:00</lastmod>
   </url><url>
     <loc>https://git.thedevopscat.co.uk/tags/cv/</loc>
@@ -89,19 +113,25 @@
     <loc>https://git.thedevopscat.co.uk/tags/job-hunting/</loc>
     <lastmod>2023-01-07T15:05:50+00:00</lastmod>
   </url><url>
+    <loc>https://git.thedevopscat.co.uk/tags/permissible/</loc>
+    <lastmod>2023-01-07T15:05:50+00:00</lastmod>
+  </url><url>
     <loc>https://git.thedevopscat.co.uk/tags/psychology/</loc>
+    <lastmod>2023-01-07T15:05:50+00:00</lastmod>
+  </url><url>
+    <loc>https://git.thedevopscat.co.uk/categories/psychology/</loc>
     <lastmod>2023-01-07T15:05:50+00:00</lastmod>
   </url><url>
     <loc>https://git.thedevopscat.co.uk/tags/redacted/</loc>
     <lastmod>2023-01-07T15:05:50+00:00</lastmod>
   </url><url>
-    <loc>https://git.thedevopscat.co.uk/article/redacted-cv/</loc>
+    <loc>https://git.thedevopscat.co.uk/2023/01/what-info-is-permissible-on-a-redacted-cv/</loc>
     <lastmod>2023-01-07T15:05:50+00:00</lastmod>
   </url><url>
-    <loc>https://git.thedevopscat.co.uk/tags/angolia/</loc>
+    <loc>https://git.thedevopscat.co.uk/tags/algolia/</loc>
     <lastmod>2023-01-06T10:45:32+00:00</lastmod>
   </url><url>
-    <loc>https://git.thedevopscat.co.uk/article/hugo/enabling-algolia/</loc>
+    <loc>https://git.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/</loc>
     <lastmod>2023-01-06T10:45:32+00:00</lastmod>
   </url><url>
     <loc>https://git.thedevopscat.co.uk/tags/bilberry/</loc>
@@ -115,15 +145,6 @@
   </url><url>
     <loc>https://git.thedevopscat.co.uk/page/</loc>
     <lastmod>2023-01-04T16:08:14+00:00</lastmod>
-  </url><url>
-    <loc>https://git.thedevopscat.co.uk/code/</loc>
-    <lastmod>2022-12-23T14:45:39+00:00</lastmod>
-  </url><url>
-    <loc>https://git.thedevopscat.co.uk/tags/terraform/</loc>
-    <lastmod>2022-12-23T14:45:39+00:00</lastmod>
-  </url><url>
-    <loc>https://git.thedevopscat.co.uk/categories/terraform/</loc>
-    <lastmod>2022-12-23T14:45:39+00:00</lastmod>
   </url><url>
     <loc>https://git.thedevopscat.co.uk/series/terraform-articles/</loc>
     <lastmod>2022-12-23T14:45:39+00:00</lastmod>
@@ -161,7 +182,7 @@
     <loc>https://git.thedevopscat.co.uk/tags/badges/</loc>
     <lastmod>2022-12-13T17:08:11+00:00</lastmod>
   </url><url>
-    <loc>https://git.thedevopscat.co.uk/article/badges/</loc>
+    <loc>https://git.thedevopscat.co.uk/2022/12/reflections-on-the-year/</loc>
     <lastmod>2022-12-13T17:08:11+00:00</lastmod>
   </url><url>
     <loc>https://git.thedevopscat.co.uk/tags/cats/</loc>
@@ -188,10 +209,10 @@
     <loc>https://git.thedevopscat.co.uk/status/</loc>
     <lastmod>2022-12-10T10:45:44+02:00</lastmod>
   </url><url>
-    <loc>https://git.thedevopscat.co.uk/article/hugo/installing-bilberry-theme/</loc>
+    <loc>https://git.thedevopscat.co.uk/2022/11/installing-bilberry-theme/</loc>
     <lastmod>2022-11-01T09:31:27+01:00</lastmod>
   </url><url>
-    <loc>https://git.thedevopscat.co.uk/article/hugo/bilberry-hugo-theme/</loc>
+    <loc>https://git.thedevopscat.co.uk/2021/11/hugo-bilberry-features/</loc>
     <lastmod>2021-11-01T13:18:45+01:00</lastmod>
   </url><url>
     <loc>https://git.thedevopscat.co.uk/link/duckduckgo/</loc>
@@ -212,14 +233,10 @@
     <loc>https://git.thedevopscat.co.uk/quote/carl-jung/</loc>
     <lastmod>2021-11-01T13:01:14+01:00</lastmod>
   </url><url>
-    <loc>https://git.thedevopscat.co.uk/categories/psychology/</loc>
-    <lastmod>2021-11-01T13:01:14+01:00</lastmod>
-  </url><url>
     <loc>https://git.thedevopscat.co.uk/quote/</loc>
     <lastmod>2021-11-01T13:01:14+01:00</lastmod>
   </url><url>
     <loc>https://git.thedevopscat.co.uk/gallery/</loc>
-    <priority>0</priority>
   </url><url>
     <loc>https://git.thedevopscat.co.uk/archive/</loc>
   </url>

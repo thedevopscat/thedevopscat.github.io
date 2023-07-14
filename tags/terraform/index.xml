@@ -5,7 +5,17 @@
     <link>https://git.thedevopscat.co.uk/tags/terraform/</link>
     <description>Recent content in terraform on thedevopscat blog site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 23 Dec 2022 14:45:39 +0000</lastBuildDate><atom:link href="https://git.thedevopscat.co.uk/tags/terraform/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Thu, 15 Jun 2023 10:30:40 +0100</lastBuildDate><atom:link href="https://git.thedevopscat.co.uk/tags/terraform/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automatic Code Generation for Imported Resources!</title>
+      <link>https://git.thedevopscat.co.uk/code/terraform/terraform15/</link>
+      <pubDate>Thu, 15 Jun 2023 10:30:40 +0100</pubDate>
+      
+      <guid>https://git.thedevopscat.co.uk/code/terraform/terraform15/</guid>
+      <description>This post covers Terraform Config Driven Imports for Automatic Code Generation!</description>
+    </item>
+    
     <item>
       <title>Terraform Articles</title>
       <link>https://git.thedevopscat.co.uk/code/terraform/</link>

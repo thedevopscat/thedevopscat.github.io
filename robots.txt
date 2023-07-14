@@ -1,1 +1,7 @@
 User-agent: *
+Disallow: /tags/
+Disallow: /categories/
+Disallow: /author/
+Disallow: /series/
+
+Sitemap: https://www.thedevopscat.co.uk/sitemap.xml

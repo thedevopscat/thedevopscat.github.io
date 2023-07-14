@@ -5,11 +5,21 @@
     <link>https://git.thedevopscat.co.uk/categories/</link>
     <description>Recent content in Categories on thedevopscat blog site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 15 Jan 2023 01:45:06 +0000</lastBuildDate><atom:link href="https://git.thedevopscat.co.uk/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Thu, 15 Jun 2023 10:30:40 +0100</lastBuildDate><atom:link href="https://git.thedevopscat.co.uk/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>terraform</title>
+      <link>https://git.thedevopscat.co.uk/categories/terraform/</link>
+      <pubDate>Thu, 15 Jun 2023 10:30:40 +0100</pubDate>
+      
+      <guid>https://git.thedevopscat.co.uk/categories/terraform/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Github Pages</title>
       <link>https://git.thedevopscat.co.uk/categories/github-pages/</link>
-      <pubDate>Sun, 15 Jan 2023 01:45:06 +0000</pubDate>
+      <pubDate>Wed, 15 Feb 2023 13:14:42 +0000</pubDate>
       
       <guid>https://git.thedevopscat.co.uk/categories/github-pages/</guid>
       <description></description>
@@ -18,18 +28,18 @@
     <item>
       <title>Hugo</title>
       <link>https://git.thedevopscat.co.uk/categories/hugo/</link>
-      <pubDate>Sun, 15 Jan 2023 01:45:06 +0000</pubDate>
+      <pubDate>Wed, 15 Feb 2023 13:14:42 +0000</pubDate>
       
       <guid>https://git.thedevopscat.co.uk/categories/hugo/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>terraform</title>
-      <link>https://git.thedevopscat.co.uk/categories/terraform/</link>
-      <pubDate>Fri, 23 Dec 2022 14:45:39 +0000</pubDate>
+      <title>psychology</title>
+      <link>https://git.thedevopscat.co.uk/categories/psychology/</link>
+      <pubDate>Sat, 07 Jan 2023 15:05:50 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/categories/terraform/</guid>
+      <guid>https://git.thedevopscat.co.uk/categories/psychology/</guid>
       <description></description>
     </item>
     
@@ -48,15 +58,6 @@
       <pubDate>Mon, 01 Nov 2021 13:05:27 +0100</pubDate>
       
       <guid>https://git.thedevopscat.co.uk/categories/privacy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Psychology</title>
-      <link>https://git.thedevopscat.co.uk/categories/psychology/</link>
-      <pubDate>Mon, 01 Nov 2021 13:01:14 +0100</pubDate>
-      
-      <guid>https://git.thedevopscat.co.uk/categories/psychology/</guid>
       <description></description>
     </item>
     
