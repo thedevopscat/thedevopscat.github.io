@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Privacy on thedevopscat blog site</title>
+    <title>Privacy on thedevopscat blog - github pages edition</title>
     <link>https://git.thedevopscat.co.uk/categories/privacy/</link>
-    <description>Recent content in Privacy on thedevopscat blog site</description>
+    <description>Recent content in Privacy on thedevopscat blog - github pages edition</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 01 Nov 2021 13:05:27 +0100</lastBuildDate><atom:link href="https://git.thedevopscat.co.uk/categories/privacy/index.xml" rel="self" type="application/rss+xml" />
