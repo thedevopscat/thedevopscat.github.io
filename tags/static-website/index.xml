@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>static website on thedevopscat blog - t2</title>
+    <title>static website on thedevopscat blog</title>
     <link>https://www.thedevopscat.co.uk/tags/static-website/</link>
-    <description>Recent content in static website on thedevopscat blog - t2</description>
+    <description>Recent content in static website on thedevopscat blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Wed, 15 Feb 2023 13:14:42 +0000</lastBuildDate><atom:link href="https://www.thedevopscat.co.uk/tags/static-website/index.xml" rel="self" type="application/rss+xml" />
