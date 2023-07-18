@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Articles on thedevopscat blog - github pages edition</title>
+    <title>Articles on thedevopscat blog</title>
     <link>https://git.thedevopscat.co.uk/article/</link>
-    <description>Recent content in Articles on thedevopscat blog - github pages edition</description>
+    <description>Recent content in Articles on thedevopscat blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Wed, 15 Feb 2023 13:14:42 +0000</lastBuildDate><atom:link href="https://git.thedevopscat.co.uk/article/index.xml" rel="self" type="application/rss+xml" />

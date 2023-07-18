@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>datasources on thedevopscat blog - github pages edition</title>
+    <title>datasources on thedevopscat blog</title>
     <link>https://git.thedevopscat.co.uk/tags/datasources/</link>
-    <description>Recent content in datasources on thedevopscat blog - github pages edition</description>
+    <description>Recent content in datasources on thedevopscat blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Thu, 22 Dec 2022 15:47:39 +0000</lastBuildDate><atom:link href="https://git.thedevopscat.co.uk/tags/datasources/index.xml" rel="self" type="application/rss+xml" />

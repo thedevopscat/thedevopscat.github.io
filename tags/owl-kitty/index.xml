@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Owl Kitty on thedevopscat blog - github pages edition</title>
+    <title>Owl Kitty on thedevopscat blog</title>
     <link>https://git.thedevopscat.co.uk/tags/owl-kitty/</link>
-    <description>Recent content in Owl Kitty on thedevopscat blog - github pages edition</description>
+    <description>Recent content in Owl Kitty on thedevopscat blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 12 Dec 2022 16:23:40 +0100</lastBuildDate><atom:link href="https://git.thedevopscat.co.uk/tags/owl-kitty/index.xml" rel="self" type="application/rss+xml" />
