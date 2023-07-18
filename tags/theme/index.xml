@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>theme on thedevopscat blog</title>
-    <link>https://git.thedevopscat.co.uk/tags/theme/</link>
-    <description>Recent content in theme on thedevopscat blog</description>
+    <title>theme on thedevopscat blog - t2</title>
+    <link>https://www.thedevopscat.co.uk/tags/theme/</link>
+    <description>Recent content in theme on thedevopscat blog - t2</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 06 Jan 2023 10:45:32 +0000</lastBuildDate><atom:link href="https://git.thedevopscat.co.uk/tags/theme/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Jan 2023 10:45:32 +0000</lastBuildDate><atom:link href="https://www.thedevopscat.co.uk/tags/theme/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Automating Algolia Search with Azure Static Web App</title>
-      <link>https://git.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/</link>
+      <link>https://www.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/</link>
       <pubDate>Fri, 06 Jan 2023 10:45:32 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/</guid>
+      <guid>https://www.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/</guid>
       <description>Having just completed the setup of algolia search on this site I felt compelled to write a new post and let you know my experience, as it may save you some time! Suffice to say, the potentially difficult part was easy, and the easy part was hard! This may be down to the combination of my (feature rich) Bilberry theme and Hugo, so if you choose this combination, This may be of particular interest.</description>
     </item>
     
     <item>
       <title>Installing Bilberry Theme</title>
-      <link>https://git.thedevopscat.co.uk/2022/11/installing-bilberry-theme/</link>
+      <link>https://www.thedevopscat.co.uk/2022/11/installing-bilberry-theme/</link>
       <pubDate>Tue, 01 Nov 2022 09:31:27 +0100</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/2022/11/installing-bilberry-theme/</guid>
+      <guid>https://www.thedevopscat.co.uk/2022/11/installing-bilberry-theme/</guid>
       <description>&lt;p&gt;You will find all information to setup this theme with your hugo site
 on the official &lt;!-- raw HTML omitted --&gt; &lt;a href=&#34;https://github.com/Lednerb/bilberry-hugo-theme&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;
     Github Repository
@@ -30,10 +30,10 @@ on the official &lt;!-- raw HTML omitted --&gt; &lt;a href=&#34;https://github.c
     
     <item>
       <title>Hugo &amp; Bilberry Features</title>
-      <link>https://git.thedevopscat.co.uk/2021/11/hugo-bilberry-features/</link>
+      <link>https://www.thedevopscat.co.uk/2021/11/hugo-bilberry-features/</link>
       <pubDate>Mon, 01 Nov 2021 13:18:45 +0100</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/2021/11/hugo-bilberry-features/</guid>
+      <guid>https://www.thedevopscat.co.uk/2021/11/hugo-bilberry-features/</guid>
       <description>This site is built using Hugo Static Website Builder .
 Written in Go, Hugo is an open source static site generator available under the Apache Licence 2.0. Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
 I use a customised version of the Bilberry theme, which is a premium theme featuring comprehensive built-in functionality and integrations such as:</description>

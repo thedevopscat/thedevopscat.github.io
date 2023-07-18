@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>monitoring on thedevopscat blog</title>
-    <link>https://git.thedevopscat.co.uk/tags/monitoring/</link>
-    <description>Recent content in monitoring on thedevopscat blog</description>
+    <title>monitoring on thedevopscat blog - t2</title>
+    <link>https://www.thedevopscat.co.uk/tags/monitoring/</link>
+    <description>Recent content in monitoring on thedevopscat blog - t2</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 15 Feb 2023 13:14:42 +0000</lastBuildDate><atom:link href="https://git.thedevopscat.co.uk/tags/monitoring/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 15 Feb 2023 13:14:42 +0000</lastBuildDate><atom:link href="https://www.thedevopscat.co.uk/tags/monitoring/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Adding Grafana Cloud Website Monitoring via Terraform</title>
-      <link>https://git.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/</link>
+      <link>https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/</link>
       <pubDate>Wed, 15 Feb 2023 13:14:42 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/</guid>
+      <guid>https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/</guid>
       <description>This post covers setting up Grafana Cloud Synthetic Monitoring for your Website Using Terraform</description>
     </item>
     

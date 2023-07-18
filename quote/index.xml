@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Quotes on thedevopscat blog</title>
-    <link>https://git.thedevopscat.co.uk/quote/</link>
-    <description>Recent content in Quotes on thedevopscat blog</description>
+    <title>Quotes on thedevopscat blog - t2</title>
+    <link>https://www.thedevopscat.co.uk/quote/</link>
+    <description>Recent content in Quotes on thedevopscat blog - t2</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 01 Nov 2021 13:01:14 +0100</lastBuildDate><atom:link href="https://git.thedevopscat.co.uk/quote/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Nov 2021 13:01:14 +0100</lastBuildDate><atom:link href="https://www.thedevopscat.co.uk/quote/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Famous Quotes</title>
-      <link>https://git.thedevopscat.co.uk/quote/carl-jung/</link>
+      <link>https://www.thedevopscat.co.uk/quote/carl-jung/</link>
       <pubDate>Mon, 01 Nov 2021 13:01:14 +0100</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/quote/carl-jung/</guid>
+      <guid>https://www.thedevopscat.co.uk/quote/carl-jung/</guid>
       <description>To be normal is the ultimate aim of the unsuccessful.</description>
     </item>
     

@@ -1,132 +1,132 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>thedevopscat blog</title>
-    <link>https://git.thedevopscat.co.uk/</link>
-    <description>Recent content on thedevopscat blog</description>
+    <title>thedevopscat blog - t2</title>
+    <link>https://www.thedevopscat.co.uk/</link>
+    <description>Recent content on thedevopscat blog - t2</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Thu, 15 Jun 2023 10:30:40 +0100</lastBuildDate>
     
-        <atom:link href="https://git.thedevopscat.co.uk/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.thedevopscat.co.uk/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Automatic Code Generation for Imported Resources!</title>
-      <link>https://git.thedevopscat.co.uk/code/terraform/terraform15/</link>
+      <link>https://www.thedevopscat.co.uk/code/terraform/terraform15/</link>
       <pubDate>Thu, 15 Jun 2023 10:30:40 +0100</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/code/terraform/terraform15/</guid>
+      <guid>https://www.thedevopscat.co.uk/code/terraform/terraform15/</guid>
       <description>This post covers Terraform Config Driven Imports for Automatic Code Generation!</description>
     </item>
     
     <item>
       <title>Adding Grafana Cloud Website Monitoring via Terraform</title>
-      <link>https://git.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/</link>
+      <link>https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/</link>
       <pubDate>Wed, 15 Feb 2023 13:14:42 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/</guid>
+      <guid>https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/</guid>
       <description>This post covers setting up Grafana Cloud Synthetic Monitoring for your Website Using Terraform</description>
     </item>
     
     <item>
       <title>Azure Static Web Apps vs Github Pages</title>
-      <link>https://git.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/</link>
+      <link>https://www.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/</link>
       <pubDate>Sun, 15 Jan 2023 01:45:06 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/</guid>
+      <guid>https://www.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/</guid>
       <description>I compare hosting a Hugo static website on Github Pages vs Azure Static Web App, and give my thoughts, which platform will win!?  Guess you&amp;rsquo;ll have to read it&amp;hellip;</description>
     </item>
     
     <item>
       <title>Static Website Hosting on Github - Part 3</title>
-      <link>https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/</link>
+      <link>https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/</link>
       <pubDate>Sat, 14 Jan 2023 09:43:24 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/</guid>
+      <guid>https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/</guid>
       <description>This post covers hosting a Hugo static website on Github Pages with fully automated jamstack workflow and all builds performed by Github Actions.</description>
     </item>
     
     <item>
       <title>Static Website Hosting on Github - Part 2</title>
-      <link>https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/</link>
+      <link>https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/</link>
       <pubDate>Tue, 10 Jan 2023 17:43:24 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/</guid>
+      <guid>https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/</guid>
       <description>This post explores hosting a Hugo static website code on Github repo&amp;rsquo;s and hosting using Github Pages for website hosting.</description>
     </item>
     
     <item>
       <title>Static Website Hosting on Github - Part 1</title>
-      <link>https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/</link>
+      <link>https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/</link>
       <pubDate>Mon, 09 Jan 2023 18:43:24 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/</guid>
+      <guid>https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/</guid>
       <description>This post covers the basics of hosting a Hugo static website on Github Pages and what would be required to move to Github Pages from Azure Static Web App hosting.</description>
     </item>
     
     <item>
       <title>What Info is Permissible on a Redacted CV?</title>
-      <link>https://git.thedevopscat.co.uk/2023/01/what-info-is-permissible-on-a-redacted-cv/</link>
+      <link>https://www.thedevopscat.co.uk/2023/01/what-info-is-permissible-on-a-redacted-cv/</link>
       <pubDate>Sat, 07 Jan 2023 15:05:50 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/2023/01/what-info-is-permissible-on-a-redacted-cv/</guid>
+      <guid>https://www.thedevopscat.co.uk/2023/01/what-info-is-permissible-on-a-redacted-cv/</guid>
       <description>I recently saw a job advertised where the application process required a redacted CV, but didn&amp;rsquo;t go as far to say what information was permissible. It did however state if your CV contains any personal details your application may be withdrawn. Assuming you were genuinely interested in the job, this is not something that you want to get wrong!
 I think we can all agree that we all like to be treated fairly, and would like to think we were hired for a new job based on the merits of our skills and experience rather than gender, age, race, or ethnicity etc.</description>
     </item>
     
     <item>
       <title>Automating Algolia Search with Azure Static Web App</title>
-      <link>https://git.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/</link>
+      <link>https://www.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/</link>
       <pubDate>Fri, 06 Jan 2023 10:45:32 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/</guid>
+      <guid>https://www.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/</guid>
       <description>Having just completed the setup of algolia search on this site I felt compelled to write a new post and let you know my experience, as it may save you some time! Suffice to say, the potentially difficult part was easy, and the easy part was hard! This may be down to the combination of my (feature rich) Bilberry theme and Hugo, so if you choose this combination, This may be of particular interest.</description>
     </item>
     
     <item>
       <title>Terraform Conditional Expressions</title>
-      <link>https://git.thedevopscat.co.uk/code/terraform/terraform4/</link>
+      <link>https://www.thedevopscat.co.uk/code/terraform/terraform4/</link>
       <pubDate>Fri, 23 Dec 2022 14:44:39 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/code/terraform/terraform4/</guid>
+      <guid>https://www.thedevopscat.co.uk/code/terraform/terraform4/</guid>
       <description>&lt;p&gt;As you are no doubt aware, Terraform is a declarative laungage, it reads like a shopping list rather than code with a bunch of conditional statements.  I like to think of it as matter of fact, there simply isn&amp;rsquo;t &lt;em&gt;if&lt;/em&gt;, &lt;em&gt;elseif&lt;/em&gt; (etc) type statements at play here and this is a (generally) a good thing.  &amp;ldquo;Do or do not&amp;hellip;&amp;rdquo; as somebody wise once said&amp;hellip; (I know my audience!).&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Bringing It All Together</title>
-      <link>https://git.thedevopscat.co.uk/code/terraform/terraform6/</link>
+      <link>https://www.thedevopscat.co.uk/code/terraform/terraform6/</link>
       <pubDate>Thu, 22 Dec 2022 15:47:39 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/code/terraform/terraform6/</guid>
+      <guid>https://www.thedevopscat.co.uk/code/terraform/terraform6/</guid>
       <description>&lt;p&gt;In this series of blog posts, I&amp;rsquo;ve shared some cool tricks and tips I use in my Terraform code.  For brevities sake I&amp;rsquo;ve only ever share code snippets rather than full code blocks or worked examples.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Securing Access from a Public IP</title>
-      <link>https://git.thedevopscat.co.uk/code/terraform/terraform5/</link>
+      <link>https://www.thedevopscat.co.uk/code/terraform/terraform5/</link>
       <pubDate>Thu, 22 Dec 2022 15:47:39 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/code/terraform/terraform5/</guid>
+      <guid>https://www.thedevopscat.co.uk/code/terraform/terraform5/</guid>
       <description>&lt;p&gt;In this blog post I&amp;rsquo;ll share some tips on how you can securely use your cloud resources from a public IP, such as your home connection.  I&amp;rsquo;ll be using Azure but the principles will apply to other vendor clouds.&lt;/p&gt;
 &lt;p&gt;The specific use case we&amp;rsquo;ll consider is MSDN subscription access, hence the desire to avoid the cost of running a dedicated Azure Firewall, whilst not leaving ourselves vulnerable.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Terraform Count Index</title>
-      <link>https://git.thedevopscat.co.uk/code/terraform/terraform2/</link>
+      <link>https://www.thedevopscat.co.uk/code/terraform/terraform2/</link>
       <pubDate>Thu, 22 Dec 2022 15:47:39 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/code/terraform/terraform2/</guid>
+      <guid>https://www.thedevopscat.co.uk/code/terraform/terraform2/</guid>
       <description>As a quick summary, a count index can be used to create multiple resource instances of the same type from one block of code, for example lets say you want a spin up multiple vm&amp;rsquo;s behind a load balancer for some fault tolerance.
 The benefit here is you would have one block of code which would be automatically processed multiple times, as specified by your count variable/local, (it can also be set 1 or even zero, but more on this another time&amp;hellip;).</description>
     </item>
     
     <item>
       <title>Elements Terraform Function</title>
-      <link>https://git.thedevopscat.co.uk/code/terraform/terraform3/</link>
+      <link>https://www.thedevopscat.co.uk/code/terraform/terraform3/</link>
       <pubDate>Thu, 22 Dec 2022 14:47:39 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/code/terraform/terraform3/</guid>
+      <guid>https://www.thedevopscat.co.uk/code/terraform/terraform3/</guid>
       <description>Lets start by taking a brief look at the element function, then explore why this simple function is so useful.
 We won&amp;rsquo;t labour the point here as that&amp;rsquo;s what the hashicorp help page is for, although sometimes the examples could be better.
 The element function looks like this:
@@ -135,10 +135,10 @@ element(list, index) You&amp;rsquo;ll note it uses an index &amp;hellip; like ou
     
     <item>
       <title>Reflections on the Year</title>
-      <link>https://git.thedevopscat.co.uk/2022/12/reflections-on-the-year/</link>
+      <link>https://www.thedevopscat.co.uk/2022/12/reflections-on-the-year/</link>
       <pubDate>Tue, 13 Dec 2022 17:08:11 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/2022/12/reflections-on-the-year/</guid>
+      <guid>https://www.thedevopscat.co.uk/2022/12/reflections-on-the-year/</guid>
       <description>&lt;p&gt;About this time of year, I start to feel reflective on the years achievements, the road is
 not always smooth and as a driven technical professional progress can seem quite pedestrian
 in its pace.  It’s very easy to forget how much ground has been covered.&lt;/p&gt;</description>
@@ -146,29 +146,29 @@ in its pace.  It’s very easy to forget how much ground has been covered.&lt;/p
     
     <item>
       <title>Owl Kitty does Top Gun!</title>
-      <link>https://git.thedevopscat.co.uk/video/owlkitty-topgun/</link>
+      <link>https://www.thedevopscat.co.uk/video/owlkitty-topgun/</link>
       <pubDate>Mon, 12 Dec 2022 16:23:40 +0100</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/video/owlkitty-topgun/</guid>
+      <guid>https://www.thedevopscat.co.uk/video/owlkitty-topgun/</guid>
       <description>&lt;p&gt;Owl Kitty is a YouTube celebrity cat and certainly improves the acting skills in this film!&lt;/p&gt;
 &lt;p&gt;Most of her videos are based on famous films, with behind-the-scenes greenscreen videos to show how these are painstakingly made.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
-      <link>https://git.thedevopscat.co.uk/status/blog-released/</link>
+      <link>https://www.thedevopscat.co.uk/status/blog-released/</link>
       <pubDate>Sat, 10 Dec 2022 10:45:44 +0200</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/status/blog-released/</guid>
+      <guid>https://www.thedevopscat.co.uk/status/blog-released/</guid>
       <description>I&amp;rsquo;m glad to announce the release of my new blog. The focus here will be around Terraform code, DevOps best practice, observations and maybe the odd link to a funny cat video!</description>
     </item>
     
     <item>
       <title>Installing Bilberry Theme</title>
-      <link>https://git.thedevopscat.co.uk/2022/11/installing-bilberry-theme/</link>
+      <link>https://www.thedevopscat.co.uk/2022/11/installing-bilberry-theme/</link>
       <pubDate>Tue, 01 Nov 2022 09:31:27 +0100</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/2022/11/installing-bilberry-theme/</guid>
+      <guid>https://www.thedevopscat.co.uk/2022/11/installing-bilberry-theme/</guid>
       <description>&lt;p&gt;You will find all information to setup this theme with your hugo site
 on the official &lt;!-- raw HTML omitted --&gt; &lt;a href=&#34;https://github.com/Lednerb/bilberry-hugo-theme&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;
     Github Repository
@@ -177,10 +177,10 @@ on the official &lt;!-- raw HTML omitted --&gt; &lt;a href=&#34;https://github.c
     
     <item>
       <title>Hugo &amp; Bilberry Features</title>
-      <link>https://git.thedevopscat.co.uk/2021/11/hugo-bilberry-features/</link>
+      <link>https://www.thedevopscat.co.uk/2021/11/hugo-bilberry-features/</link>
       <pubDate>Mon, 01 Nov 2021 13:18:45 +0100</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/2021/11/hugo-bilberry-features/</guid>
+      <guid>https://www.thedevopscat.co.uk/2021/11/hugo-bilberry-features/</guid>
       <description>This site is built using Hugo Static Website Builder .
 Written in Go, Hugo is an open source static site generator available under the Apache Licence 2.0. Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
 I use a customised version of the Bilberry theme, which is a premium theme featuring comprehensive built-in functionality and integrations such as:</description>
@@ -188,19 +188,19 @@ I use a customised version of the Bilberry theme, which is a premium theme featu
     
     <item>
       <title>Duckduckgo.com</title>
-      <link>https://git.thedevopscat.co.uk/link/duckduckgo/</link>
+      <link>https://www.thedevopscat.co.uk/link/duckduckgo/</link>
       <pubDate>Mon, 01 Nov 2021 13:05:27 +0100</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/link/duckduckgo/</guid>
+      <guid>https://www.thedevopscat.co.uk/link/duckduckgo/</guid>
       <description>A search engine that respects your privacy.</description>
     </item>
     
     <item>
       <title>Famous Quotes</title>
-      <link>https://git.thedevopscat.co.uk/quote/carl-jung/</link>
+      <link>https://www.thedevopscat.co.uk/quote/carl-jung/</link>
       <pubDate>Mon, 01 Nov 2021 13:01:14 +0100</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/quote/carl-jung/</guid>
+      <guid>https://www.thedevopscat.co.uk/quote/carl-jung/</guid>
       <description>To be normal is the ultimate aim of the unsuccessful.</description>
     </item>
     

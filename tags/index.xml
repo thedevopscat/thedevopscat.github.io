@@ -1,279 +1,279 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on thedevopscat blog</title>
-    <link>https://git.thedevopscat.co.uk/tags/</link>
-    <description>Recent content in Tags on thedevopscat blog</description>
+    <title>Tags on thedevopscat blog - t2</title>
+    <link>https://www.thedevopscat.co.uk/tags/</link>
+    <description>Recent content in Tags on thedevopscat blog - t2</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 15 Jun 2023 10:30:40 +0100</lastBuildDate><atom:link href="https://git.thedevopscat.co.uk/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 15 Jun 2023 10:30:40 +0100</lastBuildDate><atom:link href="https://www.thedevopscat.co.uk/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>import</title>
-      <link>https://git.thedevopscat.co.uk/tags/import/</link>
+      <link>https://www.thedevopscat.co.uk/tags/import/</link>
       <pubDate>Thu, 15 Jun 2023 10:30:40 +0100</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/import/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/import/</guid>
       <description></description>
     </item>
     
     <item>
       <title>terraform</title>
-      <link>https://git.thedevopscat.co.uk/tags/terraform/</link>
+      <link>https://www.thedevopscat.co.uk/tags/terraform/</link>
       <pubDate>Thu, 15 Jun 2023 10:30:40 +0100</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/terraform/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/terraform/</guid>
       <description></description>
     </item>
     
     <item>
       <title>v1.5</title>
-      <link>https://git.thedevopscat.co.uk/tags/v1.5/</link>
+      <link>https://www.thedevopscat.co.uk/tags/v1.5/</link>
       <pubDate>Thu, 15 Jun 2023 10:30:40 +0100</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/v1.5/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/v1.5/</guid>
       <description></description>
     </item>
     
     <item>
       <title>automation</title>
-      <link>https://git.thedevopscat.co.uk/tags/automation/</link>
+      <link>https://www.thedevopscat.co.uk/tags/automation/</link>
       <pubDate>Wed, 15 Feb 2023 13:14:42 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/automation/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/automation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hosting</title>
-      <link>https://git.thedevopscat.co.uk/tags/hosting/</link>
+      <link>https://www.thedevopscat.co.uk/tags/hosting/</link>
       <pubDate>Wed, 15 Feb 2023 13:14:42 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/hosting/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/hosting/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hugo</title>
-      <link>https://git.thedevopscat.co.uk/tags/hugo/</link>
+      <link>https://www.thedevopscat.co.uk/tags/hugo/</link>
       <pubDate>Wed, 15 Feb 2023 13:14:42 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/hugo/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>jamstack</title>
-      <link>https://git.thedevopscat.co.uk/tags/jamstack/</link>
+      <link>https://www.thedevopscat.co.uk/tags/jamstack/</link>
       <pubDate>Wed, 15 Feb 2023 13:14:42 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/jamstack/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/jamstack/</guid>
       <description></description>
     </item>
     
     <item>
       <title>monitoring</title>
-      <link>https://git.thedevopscat.co.uk/tags/monitoring/</link>
+      <link>https://www.thedevopscat.co.uk/tags/monitoring/</link>
       <pubDate>Wed, 15 Feb 2023 13:14:42 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/monitoring/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/monitoring/</guid>
       <description></description>
     </item>
     
     <item>
       <title>static website</title>
-      <link>https://git.thedevopscat.co.uk/tags/static-website/</link>
+      <link>https://www.thedevopscat.co.uk/tags/static-website/</link>
       <pubDate>Wed, 15 Feb 2023 13:14:42 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/static-website/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/static-website/</guid>
       <description></description>
     </item>
     
     <item>
       <title>uptime</title>
-      <link>https://git.thedevopscat.co.uk/tags/uptime/</link>
+      <link>https://www.thedevopscat.co.uk/tags/uptime/</link>
       <pubDate>Wed, 15 Feb 2023 13:14:42 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/uptime/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/uptime/</guid>
       <description></description>
     </item>
     
     <item>
       <title>github actions</title>
-      <link>https://git.thedevopscat.co.uk/tags/github-actions/</link>
+      <link>https://www.thedevopscat.co.uk/tags/github-actions/</link>
       <pubDate>Sun, 15 Jan 2023 01:45:06 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/github-actions/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/github-actions/</guid>
       <description></description>
     </item>
     
     <item>
       <title>github pages</title>
-      <link>https://git.thedevopscat.co.uk/tags/github-pages/</link>
+      <link>https://www.thedevopscat.co.uk/tags/github-pages/</link>
       <pubDate>Sun, 15 Jan 2023 01:45:06 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/github-pages/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/github-pages/</guid>
       <description></description>
     </item>
     
     <item>
       <title>cv</title>
-      <link>https://git.thedevopscat.co.uk/tags/cv/</link>
+      <link>https://www.thedevopscat.co.uk/tags/cv/</link>
       <pubDate>Sat, 07 Jan 2023 15:05:50 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/cv/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/cv/</guid>
       <description></description>
     </item>
     
     <item>
       <title>job hunting</title>
-      <link>https://git.thedevopscat.co.uk/tags/job-hunting/</link>
+      <link>https://www.thedevopscat.co.uk/tags/job-hunting/</link>
       <pubDate>Sat, 07 Jan 2023 15:05:50 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/job-hunting/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/job-hunting/</guid>
       <description></description>
     </item>
     
     <item>
       <title>permissible</title>
-      <link>https://git.thedevopscat.co.uk/tags/permissible/</link>
+      <link>https://www.thedevopscat.co.uk/tags/permissible/</link>
       <pubDate>Sat, 07 Jan 2023 15:05:50 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/permissible/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/permissible/</guid>
       <description></description>
     </item>
     
     <item>
       <title>psychology</title>
-      <link>https://git.thedevopscat.co.uk/tags/psychology/</link>
+      <link>https://www.thedevopscat.co.uk/tags/psychology/</link>
       <pubDate>Sat, 07 Jan 2023 15:05:50 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/psychology/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/psychology/</guid>
       <description></description>
     </item>
     
     <item>
       <title>redacted</title>
-      <link>https://git.thedevopscat.co.uk/tags/redacted/</link>
+      <link>https://www.thedevopscat.co.uk/tags/redacted/</link>
       <pubDate>Sat, 07 Jan 2023 15:05:50 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/redacted/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/redacted/</guid>
       <description></description>
     </item>
     
     <item>
       <title>algolia</title>
-      <link>https://git.thedevopscat.co.uk/tags/algolia/</link>
+      <link>https://www.thedevopscat.co.uk/tags/algolia/</link>
       <pubDate>Fri, 06 Jan 2023 10:45:32 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/algolia/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/algolia/</guid>
       <description></description>
     </item>
     
     <item>
       <title>bilberry</title>
-      <link>https://git.thedevopscat.co.uk/tags/bilberry/</link>
+      <link>https://www.thedevopscat.co.uk/tags/bilberry/</link>
       <pubDate>Fri, 06 Jan 2023 10:45:32 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/bilberry/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/bilberry/</guid>
       <description></description>
     </item>
     
     <item>
       <title>search</title>
-      <link>https://git.thedevopscat.co.uk/tags/search/</link>
+      <link>https://www.thedevopscat.co.uk/tags/search/</link>
       <pubDate>Fri, 06 Jan 2023 10:45:32 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/search/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/search/</guid>
       <description></description>
     </item>
     
     <item>
       <title>theme</title>
-      <link>https://git.thedevopscat.co.uk/tags/theme/</link>
+      <link>https://www.thedevopscat.co.uk/tags/theme/</link>
       <pubDate>Fri, 06 Jan 2023 10:45:32 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/theme/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/theme/</guid>
       <description></description>
     </item>
     
     <item>
       <title>count.index</title>
-      <link>https://git.thedevopscat.co.uk/tags/count.index/</link>
+      <link>https://www.thedevopscat.co.uk/tags/count.index/</link>
       <pubDate>Thu, 22 Dec 2022 15:47:39 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/count.index/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/count.index/</guid>
       <description></description>
     </item>
     
     <item>
       <title>datasources</title>
-      <link>https://git.thedevopscat.co.uk/tags/datasources/</link>
+      <link>https://www.thedevopscat.co.uk/tags/datasources/</link>
       <pubDate>Thu, 22 Dec 2022 15:47:39 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/datasources/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/datasources/</guid>
       <description></description>
     </item>
     
     <item>
       <title>security</title>
-      <link>https://git.thedevopscat.co.uk/tags/security/</link>
+      <link>https://www.thedevopscat.co.uk/tags/security/</link>
       <pubDate>Thu, 22 Dec 2022 15:47:39 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/security/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/security/</guid>
       <description></description>
     </item>
     
     <item>
       <title>elements</title>
-      <link>https://git.thedevopscat.co.uk/tags/elements/</link>
+      <link>https://www.thedevopscat.co.uk/tags/elements/</link>
       <pubDate>Thu, 22 Dec 2022 14:47:39 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/elements/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/elements/</guid>
       <description></description>
     </item>
     
     <item>
       <title>badges</title>
-      <link>https://git.thedevopscat.co.uk/tags/badges/</link>
+      <link>https://www.thedevopscat.co.uk/tags/badges/</link>
       <pubDate>Tue, 13 Dec 2022 17:08:11 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/badges/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/badges/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Cats</title>
-      <link>https://git.thedevopscat.co.uk/tags/cats/</link>
+      <link>https://www.thedevopscat.co.uk/tags/cats/</link>
       <pubDate>Mon, 12 Dec 2022 16:23:40 +0100</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/cats/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/cats/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Owl Kitty</title>
-      <link>https://git.thedevopscat.co.uk/tags/owl-kitty/</link>
+      <link>https://www.thedevopscat.co.uk/tags/owl-kitty/</link>
       <pubDate>Mon, 12 Dec 2022 16:23:40 +0100</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/owl-kitty/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/owl-kitty/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Video</title>
-      <link>https://git.thedevopscat.co.uk/tags/video/</link>
+      <link>https://www.thedevopscat.co.uk/tags/video/</link>
       <pubDate>Mon, 12 Dec 2022 16:23:40 +0100</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/video/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/video/</guid>
       <description></description>
     </item>
     
     <item>
       <title>search engine</title>
-      <link>https://git.thedevopscat.co.uk/tags/search-engine/</link>
+      <link>https://www.thedevopscat.co.uk/tags/search-engine/</link>
       <pubDate>Mon, 01 Nov 2021 13:05:27 +0100</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/tags/search-engine/</guid>
+      <guid>https://www.thedevopscat.co.uk/tags/search-engine/</guid>
       <description></description>
     </item>
     

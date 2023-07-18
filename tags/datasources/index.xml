@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>datasources on thedevopscat blog</title>
-    <link>https://git.thedevopscat.co.uk/tags/datasources/</link>
-    <description>Recent content in datasources on thedevopscat blog</description>
+    <title>datasources on thedevopscat blog - t2</title>
+    <link>https://www.thedevopscat.co.uk/tags/datasources/</link>
+    <description>Recent content in datasources on thedevopscat blog - t2</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 22 Dec 2022 15:47:39 +0000</lastBuildDate><atom:link href="https://git.thedevopscat.co.uk/tags/datasources/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Dec 2022 15:47:39 +0000</lastBuildDate><atom:link href="https://www.thedevopscat.co.uk/tags/datasources/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Securing Access from a Public IP</title>
-      <link>https://git.thedevopscat.co.uk/code/terraform/terraform5/</link>
+      <link>https://www.thedevopscat.co.uk/code/terraform/terraform5/</link>
       <pubDate>Thu, 22 Dec 2022 15:47:39 +0000</pubDate>
       
-      <guid>https://git.thedevopscat.co.uk/code/terraform/terraform5/</guid>
+      <guid>https://www.thedevopscat.co.uk/code/terraform/terraform5/</guid>
       <description>&lt;p&gt;In this blog post I&amp;rsquo;ll share some tips on how you can securely use your cloud resources from a public IP, such as your home connection.  I&amp;rsquo;ll be using Azure but the principles will apply to other vendor clouds.&lt;/p&gt;
 &lt;p&gt;The specific use case we&amp;rsquo;ll consider is MSDN subscription access, hence the desire to avoid the cost of running a dedicated Azure Firewall, whilst not leaving ourselves vulnerable.&lt;/p&gt;</description>
     </item>
