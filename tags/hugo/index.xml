@@ -1,88 +1,68 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>hugo on thedevopscat blog</title>
+    <title>Hugo on thedevopscat blog</title>
     <link>https://www.thedevopscat.co.uk/tags/hugo/</link>
-    <description>Recent content in hugo on thedevopscat blog</description>
+    <description>Recent content in Hugo on thedevopscat blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 15 Feb 2023 13:14:42 +0000</lastBuildDate><atom:link href="https://www.thedevopscat.co.uk/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 15 Feb 2023 13:14:42 +0000</lastBuildDate>
+    <atom:link href="https://www.thedevopscat.co.uk/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Adding Grafana Cloud Website Monitoring via Terraform</title>
       <link>https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/</link>
       <pubDate>Wed, 15 Feb 2023 13:14:42 +0000</pubDate>
-      
       <guid>https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/</guid>
       <description>This post covers setting up Grafana Cloud Synthetic Monitoring for your Website Using Terraform</description>
     </item>
-    
     <item>
       <title>Azure Static Web Apps vs Github Pages</title>
       <link>https://www.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/</link>
       <pubDate>Sun, 15 Jan 2023 01:45:06 +0000</pubDate>
-      
       <guid>https://www.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/</guid>
       <description>I compare hosting a Hugo static website on Github Pages vs Azure Static Web App, and give my thoughts, which platform will win!?  Guess you&amp;rsquo;ll have to read it&amp;hellip;</description>
     </item>
-    
     <item>
       <title>Static Website Hosting on Github - Part 3</title>
       <link>https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/</link>
       <pubDate>Sat, 14 Jan 2023 09:43:24 +0000</pubDate>
-      
       <guid>https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/</guid>
       <description>This post covers hosting a Hugo static website on Github Pages with fully automated jamstack workflow and all builds performed by Github Actions.</description>
     </item>
-    
     <item>
       <title>Static Website Hosting on Github - Part 2</title>
       <link>https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/</link>
       <pubDate>Tue, 10 Jan 2023 17:43:24 +0000</pubDate>
-      
       <guid>https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/</guid>
       <description>This post explores hosting a Hugo static website code on Github repo&amp;rsquo;s and hosting using Github Pages for website hosting.</description>
     </item>
-    
     <item>
       <title>Static Website Hosting on Github - Part 1</title>
       <link>https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/</link>
       <pubDate>Mon, 09 Jan 2023 18:43:24 +0000</pubDate>
-      
       <guid>https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/</guid>
       <description>This post covers the basics of hosting a Hugo static website on Github Pages and what would be required to move to Github Pages from Azure Static Web App hosting.</description>
     </item>
-    
     <item>
       <title>Automating Algolia Search with Azure Static Web App</title>
       <link>https://www.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/</link>
       <pubDate>Fri, 06 Jan 2023 10:45:32 +0000</pubDate>
-      
       <guid>https://www.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/</guid>
       <description>Having just completed the setup of algolia search on this site I felt compelled to write a new post and let you know my experience, as it may save you some time! Suffice to say, the potentially difficult part was easy, and the easy part was hard! This may be down to the combination of my (feature rich) Bilberry theme and Hugo, so if you choose this combination, This may be of particular interest.</description>
     </item>
-    
     <item>
       <title>Installing Bilberry Theme</title>
       <link>https://www.thedevopscat.co.uk/2022/11/installing-bilberry-theme/</link>
       <pubDate>Tue, 01 Nov 2022 09:31:27 +0100</pubDate>
-      
       <guid>https://www.thedevopscat.co.uk/2022/11/installing-bilberry-theme/</guid>
-      <description>&lt;p&gt;You will find all information to setup this theme with your hugo site
-on the official &lt;!-- raw HTML omitted --&gt; &lt;a href=&#34;https://github.com/Lednerb/bilberry-hugo-theme&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;
-    Github Repository
-&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>&lt;p&gt;You will find all information to setup this theme with your hugo site&#xA;on the official &lt;!-- raw HTML omitted --&gt; &lt;a href=&#34;https://github.com/Lednerb/bilberry-hugo-theme&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;&#xA;    Github Repository&#xA;&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Hugo &amp; Bilberry Features</title>
       <link>https://www.thedevopscat.co.uk/2021/11/hugo-bilberry-features/</link>
       <pubDate>Mon, 01 Nov 2021 13:18:45 +0100</pubDate>
-      
       <guid>https://www.thedevopscat.co.uk/2021/11/hugo-bilberry-features/</guid>
-      <description>This site is built using Hugo Static Website Builder .
-Written in Go, Hugo is an open source static site generator available under the Apache Licence 2.0. Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
-I use a customised version of the Bilberry theme, which is a premium theme featuring comprehensive built-in functionality and integrations such as:</description>
+      <description>This site is built using Hugo Static Website Builder .&#xA;Written in Go, Hugo is an open source static site generator available under the Apache Licence 2.0. Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.&#xA;I use a customised version of the Bilberry theme, which is a premium theme featuring comprehensive built-in functionality and integrations such as:</description>
     </item>
-    
   </channel>
 </rss>

@@ -1,47 +1,40 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>github pages on thedevopscat blog</title>
+    <title>Github Pages on thedevopscat blog</title>
     <link>https://www.thedevopscat.co.uk/tags/github-pages/</link>
-    <description>Recent content in github pages on thedevopscat blog</description>
+    <description>Recent content in Github Pages on thedevopscat blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 15 Jan 2023 01:45:06 +0000</lastBuildDate><atom:link href="https://www.thedevopscat.co.uk/tags/github-pages/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 Jan 2023 01:45:06 +0000</lastBuildDate>
+    <atom:link href="https://www.thedevopscat.co.uk/tags/github-pages/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Azure Static Web Apps vs Github Pages</title>
       <link>https://www.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/</link>
       <pubDate>Sun, 15 Jan 2023 01:45:06 +0000</pubDate>
-      
       <guid>https://www.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/</guid>
       <description>I compare hosting a Hugo static website on Github Pages vs Azure Static Web App, and give my thoughts, which platform will win!?  Guess you&amp;rsquo;ll have to read it&amp;hellip;</description>
     </item>
-    
     <item>
       <title>Static Website Hosting on Github - Part 3</title>
       <link>https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/</link>
       <pubDate>Sat, 14 Jan 2023 09:43:24 +0000</pubDate>
-      
       <guid>https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/</guid>
       <description>This post covers hosting a Hugo static website on Github Pages with fully automated jamstack workflow and all builds performed by Github Actions.</description>
     </item>
-    
     <item>
       <title>Static Website Hosting on Github - Part 2</title>
       <link>https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/</link>
       <pubDate>Tue, 10 Jan 2023 17:43:24 +0000</pubDate>
-      
       <guid>https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/</guid>
       <description>This post explores hosting a Hugo static website code on Github repo&amp;rsquo;s and hosting using Github Pages for website hosting.</description>
     </item>
-    
     <item>
       <title>Static Website Hosting on Github - Part 1</title>
       <link>https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/</link>
       <pubDate>Mon, 09 Jan 2023 18:43:24 +0000</pubDate>
-      
       <guid>https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/</guid>
       <description>This post covers the basics of hosting a Hugo static website on Github Pages and what would be required to move to Github Pages from Azure Static Web App hosting.</description>
     </item>
-    
   </channel>
 </rss>

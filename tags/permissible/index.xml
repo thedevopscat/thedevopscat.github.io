@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>permissible on thedevopscat blog</title>
+    <title>Permissible on thedevopscat blog</title>
     <link>https://www.thedevopscat.co.uk/tags/permissible/</link>
-    <description>Recent content in permissible on thedevopscat blog</description>
+    <description>Recent content in Permissible on thedevopscat blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 07 Jan 2023 15:05:50 +0000</lastBuildDate><atom:link href="https://www.thedevopscat.co.uk/tags/permissible/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 07 Jan 2023 15:05:50 +0000</lastBuildDate>
+    <atom:link href="https://www.thedevopscat.co.uk/tags/permissible/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>What Info is Permissible on a Redacted CV?</title>
       <link>https://www.thedevopscat.co.uk/2023/01/what-info-is-permissible-on-a-redacted-cv/</link>
       <pubDate>Sat, 07 Jan 2023 15:05:50 +0000</pubDate>
-      
       <guid>https://www.thedevopscat.co.uk/2023/01/what-info-is-permissible-on-a-redacted-cv/</guid>
-      <description>I recently saw a job advertised where the application process required a redacted CV, but didn&amp;rsquo;t go as far to say what information was permissible. It did however state if your CV contains any personal details your application may be withdrawn. Assuming you were genuinely interested in the job, this is not something that you want to get wrong!
-I think we can all agree that we all like to be treated fairly, and would like to think we were hired for a new job based on the merits of our skills and experience rather than gender, age, race, or ethnicity etc.</description>
+      <description>I recently saw a job advertised where the application process required a redacted CV, but didn&amp;rsquo;t go as far to say what information was permissible. It did however state if your CV contains any personal details your application may be withdrawn. Assuming you were genuinely interested in the job, this is not something that you want to get wrong!&#xA;I think we can all agree that we all like to be treated fairly, and would like to think we were hired for a new job based on the merits of our skills and experience rather than gender, age, race, or ethnicity etc.</description>
     </item>
-    
   </channel>
 </rss>

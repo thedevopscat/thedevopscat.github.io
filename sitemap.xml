@@ -68,7 +68,7 @@
     <loc>https://www.thedevopscat.co.uk/categories/hugo/</loc>
     <lastmod>2023-02-15T13:14:42+00:00</lastmod>
   </url><url>
-    <loc>https://www.thedevopscat.co.uk/series/hugo-themes/</loc>
+    <loc>https://www.thedevopscat.co.uk/series/hugo--themes/</loc>
     <lastmod>2023-02-15T13:14:42+00:00</lastmod>
   </url><url>
     <loc>https://www.thedevopscat.co.uk/tags/jamstack/</loc>
@@ -85,6 +85,9 @@
   </url><url>
     <loc>https://www.thedevopscat.co.uk/tags/uptime/</loc>
     <lastmod>2023-02-15T13:14:42+00:00</lastmod>
+  </url><url>
+    <loc>https://www.thedevopscat.co.uk/page/</loc>
+    <lastmod>2023-01-16T13:38:19+00:00</lastmod>
   </url><url>
     <loc>https://www.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/</loc>
     <lastmod>2023-01-15T01:45:06+00:00</lastmod>
@@ -142,9 +145,6 @@
   </url><url>
     <loc>https://www.thedevopscat.co.uk/tags/theme/</loc>
     <lastmod>2023-01-06T10:45:32+00:00</lastmod>
-  </url><url>
-    <loc>https://www.thedevopscat.co.uk/page/</loc>
-    <lastmod>2023-01-04T16:08:14+00:00</lastmod>
   </url><url>
     <loc>https://www.thedevopscat.co.uk/series/terraform-articles/</loc>
     <lastmod>2022-12-23T14:45:39+00:00</lastmod>

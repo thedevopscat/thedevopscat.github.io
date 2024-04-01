@@ -5,6 +5,7 @@
     <link>https://www.thedevopscat.co.uk/gallery/</link>
     <description>Recent content on thedevopscat blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language><atom:link href="https://www.thedevopscat.co.uk/gallery/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <atom:link href="https://www.thedevopscat.co.uk/gallery/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

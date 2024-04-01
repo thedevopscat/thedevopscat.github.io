@@ -6,7 +6,7 @@
     <meta name="siteBaseUrl" content="https://www.thedevopscat.co.uk/">
     <meta name="author" content="thedevopscat">
     <meta name="description" content="thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!">
-    <meta name="keywords" content="blog,personal,cats,devops,terraform,azure,hugo,algolia,git,github"><meta name="generator" content="Hugo 0.115.3"><title>Automating Algolia Search with Azure Static Web App&vert;thedevopscat blog</title>
+    <meta name="keywords" content="blog,personal,cats,devops,terraform,azure,hugo,algolia,git,github"><meta name="generator" content="Hugo 0.124.1"><title>Automating Algolia Search with Azure Static Web App&vert;thedevopscat blog</title>
     <meta itemprop="name" content="Automating Algolia Search with Azure Static Web App">
     <meta itemprop="description" content="Automating Algolia Search with Azure Static Web App - thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!">
     <meta property="og:site_name" content="thedevopscat blog"><meta property="og:title" content="Automating Algolia Search with Azure Static Web App" />
@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://www.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/" /><meta property="article:section" content="article" />
 <meta property="article:published_time" content="2023-01-06T10:45:32+00:00" />
 <meta property="article:modified_time" content="2023-01-06T10:45:32+00:00" />
-<meta property="og:see_also" content="https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/" /><meta property="og:see_also" content="https://www.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/" /><meta property="og:see_also" content="https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/" /><meta property="og:see_also" content="https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/" /><meta property="og:see_also" content="https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/" />
+
 
 
 <script src="/modernizr-simple.js"></script><link href="/2023/01/automating-algolia-search-with-azure-static-web-app/" rel="alternate" type="application/rss+xml" title="thedevopscat blog" />
@@ -28,19 +28,26 @@
         <ul class="topnav">
             
                 
-                    <li><a href="/categories/hugo/" target="">Hugo&#43;Themes</a></li>
+                
+                    <li><a href="/categories/hugo/"
+                           target="">Hugo&#43;Themes</a></li>
                 
             
                 
-                    <li><a href="/categories/terraform/" target="">Terraform</a></li>
+                
+                    <li><a href="/categories/terraform/"
+                           target="">Terraform</a></li>
                 
             
                 
-                    <li><a href="https://github.com/thedevopscat" target="_blank&#34; rel=&#34;nofollow noopener noreferrer">My Github</a></li>
+                
+                    <li><a href="https://github.com/thedevopscat"
+                           target="_blank&#34; rel=&#34;nofollow noopener noreferrer">My Github</a></li>
                 
             
                 
-                    <li><a href="https://www.thedevopscat.co.uk/page/disclaimer/">Disclaimer</a></li>
+                
+                    <li><a href="/page/disclaimer/">Disclaimer</a></li>
                 
             
         </ul>
@@ -55,6 +62,10 @@
 </nav>
 
     <header>
+
+    <a id="back-to-top-button">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
     <div class="container">
         <div class="logo">
@@ -77,14 +88,17 @@
                 <span class="subtitle">Thoughts, observations and learnings of the devopscat...</span>
             
         </div>
-
-        
+        <div class="selectors">
+          
+          
+       </div>
 
         
             <div class="toggler">
         
                 <i class="fa fa-bars" aria-hidden="true"></i>
             </div>
+    </div>
     </div>
 </header>
 <div class="main container"><div class="article-wrapper u-cf single"><a class="bubble" href="https://www.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/">
@@ -93,6 +107,7 @@
 
 <article class="default article">
     
+
     <div class="content">
     <h1 class="article-title">
         <a href="https://www.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/">
@@ -128,7 +143,7 @@
             <span class="author">
                 
                 
-                    <a href="https://www.thedevopscat.co.uk/author/thedevopscat/">thedevopscat</a>
+                    <a href="https://www.thedevopscat.co.uk/author/thedevopscat/">Thedevopscat</a>
                 
             </span>
         
@@ -217,7 +232,7 @@ Suffice to say, the potentially difficult part was easy, and the easy part was h
 </span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">action</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;close&#34;</span>
 </span></span></code></pre></div><p>Now, when I perform a new deployment, the automated Hugo site compilation recreates a new index file and the JavaScript built-in to the theme is called to upload the index file to the algolia website to populate the live index using my algolia admin API key which is stored in GitHub as a secret for obvious reasons.</p>
 <p>We can check this is working by going to the algolia portal, we should now see our index has been automatically populated and we can search from the algolia portal for keywords featured on our blog site and note some matches.</p>
-<p><figure><img src="/images/enabling-algolia/algolia-matches.png"/>
+<p><figure><img src="/images/enabling-algolia/algolia-matches.png">
 </figure>
  <!-- raw HTML omitted --></p>
 <h2 id="the-missing-link---troubleshooting">The Missing Link - Troubleshooting</h2>
@@ -235,7 +250,7 @@ Suffice to say, the potentially difficult part was easy, and the easy part was h
 <li>Considered what could be different in my setup from the example site…</li>
 </ul>
 <p>From the algolia portal <em>Search API Logs</em> I noticed my blog site searches <em>query request body</em> was filtering on language and figured this was my issue:</p>
-<figure><img src="/images/enabling-algolia/algolia-logs.png"/>
+<figure><img src="/images/enabling-algolia/algolia-logs.png">
 </figure>
 
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>{
@@ -244,11 +259,11 @@ Suffice to say, the potentially difficult part was easy, and the easy part was h
 </span></span></code></pre></div><p>I verified my theory by changing the <em>algolia_currentLanguageOnly = true</em> setting to <em>false</em> in my <em>config.toml</em> and the search results worked immediately.  This is more of a work-around rather than a fix, so I set about adding the missing settings for my index.</p>
 <h2 id="launguage-setting-and-filters-in-the-index">Launguage Setting and Filters in the Index</h2>
 <p>From the algolia portal, in the index configuration page I firstly set the index languages and query languages to English.</p>
-<p><figure><img src="/images/enabling-algolia/algolia-lang.png"/>
+<p><figure><img src="/images/enabling-algolia/algolia-lang.png">
 </figure>
   <!-- raw HTML omitted --></p>
 <p>Then, under filtering and faceting, I added a facet for language, ignoring the unknown attribute warning encountered as some of the content lacks the language marking from my site.</p>
-<p><figure><img src="/images/enabling-algolia/algolia-facet.png"/>
+<p><figure><img src="/images/enabling-algolia/algolia-facet.png">
 </figure>
  <!-- raw HTML omitted --></p>
 <p>I could then set <em>algolia_currentLanguageOnly = true</em> in my <em>config.toml</em> file for my site and it worked perfectly.  Phew!</p>
@@ -270,37 +285,37 @@ Suffice to say, the potentially difficult part was easy, and the easy part was h
                 
                     
                     
-                    <a href="https://www.thedevopscat.co.uk/tags/hugo/">hugo</a>
+                    <a href="https://www.thedevopscat.co.uk/tags/hugo/">Hugo</a>
                     
                 
                     
                     
-                    <a href="https://www.thedevopscat.co.uk/tags/bilberry/">bilberry</a>
+                    <a href="https://www.thedevopscat.co.uk/tags/bilberry/">Bilberry</a>
                     
                 
                     
                     
-                    <a href="https://www.thedevopscat.co.uk/tags/theme/">theme</a>
+                    <a href="https://www.thedevopscat.co.uk/tags/theme/">Theme</a>
                     
                 
                     
                     
-                    <a href="https://www.thedevopscat.co.uk/tags/jamstack/">jamstack</a>
+                    <a href="https://www.thedevopscat.co.uk/tags/jamstack/">Jamstack</a>
                     
                 
                     
                     
-                    <a href="https://www.thedevopscat.co.uk/tags/algolia/">algolia</a>
+                    <a href="https://www.thedevopscat.co.uk/tags/algolia/">Algolia</a>
                     
                 
                     
                     
-                    <a href="https://www.thedevopscat.co.uk/tags/search/">search</a>
+                    <a href="https://www.thedevopscat.co.uk/tags/search/">Search</a>
                     
                 
                     
                     
-                    <a href="https://www.thedevopscat.co.uk/tags/github-actions/">github actions</a>
+                    <a href="https://www.thedevopscat.co.uk/tags/github-actions/">Github Actions</a>
                     
                 
             </div>
@@ -312,21 +327,24 @@ Suffice to say, the potentially difficult part was easy, and the easy part was h
 
 </article>
 </div><div id="comments-container">
-<details class="comments">
-    <summary class="ctr pokey">
-        <strong>View/hide comments</strong>
-    </summary>
-    <div class="giscus-comments">
-        <script src="https://giscus.app/client.js" data-repo="thedevopscat/blogcomments"
-            data-repo-id="R_kgDOIoOO8A" data-category="General"
-            data-category-id="DIC_kwDOIoOO8M4CTG6Z" data-mapping="www"
-            data-reactions-enabled="1"
-            data-emit-metadata="" data-theme="light"  data-lang="en"  crossorigin="anonymous" async>
-            </script>
-        <p class="ctr pokey sansSerif">
-        </p>
-    </div>
-</details>
+    <script src="https://giscus.app/client.js"
+        data-repo="thedevopscat/blogcomments"
+        data-repo-id="R_kgDOIoOO8A"
+        data-category="General"
+        data-category-id="DIC_kwDOIoOO8M4CTG6Z"
+        data-mapping="www"
+        data-reactions-enabled="1"
+        data-emit-metadata=""
+        data-theme="light"
+        
+            data-lang="en"
+        
+        crossorigin="anonymous"
+        async>
+    </script>
+
+    <div id="giscus"></div>
+
 </div></div>
 <footer>
     <div class="container">
@@ -443,7 +461,7 @@ Suffice to say, the potentially difficult part was easy, and the easy part was h
             <a href="https://www.thedevopscat.co.uk/page/disclaimer/" target="_blank">
                 &copy;
                 
-                2023
+                2024
                 
                 thedevopscat
             </a>
