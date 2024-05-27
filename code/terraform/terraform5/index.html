@@ -1,454 +1,71 @@
-<!DOCTYPE html><html itemscope itemtype="https://schema.org/WebPage" class="no-js" lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="siteBaseUrl" content="https://www.thedevopscat.co.uk/">
-    <meta name="author" content="thedevopscat">
-    <meta name="description" content="thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!">
-    <meta name="keywords" content="blog,personal,cats,devops,terraform,azure,hugo,algolia,git,github"><meta name="generator" content="Hugo 0.124.1"><title>Securing Access from a Public IP&vert;thedevopscat blog</title>
-    <meta itemprop="name" content="Securing Access from a Public IP">
-    <meta itemprop="description" content="Securing Access from a Public IP - thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!">
-    <meta property="og:site_name" content="thedevopscat blog"><meta property="og:title" content="Securing Access from a Public IP" />
-<meta property="og:description" content="In this blog post I&rsquo;ll share some tips on how you can securely use your cloud resources from a public IP, such as your home connection.  I&rsquo;ll be using Azure but the principles will apply to other vendor clouds.
-The specific use case we&rsquo;ll consider is MSDN subscription access, hence the desire to avoid the cost of running a dedicated Azure Firewall, whilst not leaving ourselves vulnerable." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.thedevopscat.co.uk/code/terraform/terraform5/" /><meta property="article:section" content="code" />
-<meta property="article:published_time" content="2022-12-22T15:47:39+00:00" />
-<meta property="article:modified_time" content="2022-12-22T15:47:39+00:00" />
-
-
-<script src="/modernizr-simple.js"></script><link href="/code/terraform/terraform5/" rel="alternate" type="application/rss+xml" title="thedevopscat blog" />
-    <link href="/code/terraform/terraform5/" rel="feed" type="application/rss+xml" title="thedevopscat blog" /><link rel="canonical" href="https://www.thedevopscat.co.uk/code/terraform/terraform5/"><link rel="stylesheet" href="https://www.thedevopscat.co.uk/theme.css"></head>
-
-<body class="bilberry-hugo-theme">
-    <nav>
-
-    <div class="container">
-        <ul class="topnav">
-            
-                
-                
-                    <li><a href="/categories/hugo/"
-                           target="">Hugo&#43;Themes</a></li>
-                
-            
-                
-                
-                    <li><a href="/categories/terraform/"
-                           target="">Terraform</a></li>
-                
-            
-                
-                
-                    <li><a href="https://github.com/thedevopscat"
-                           target="_blank&#34; rel=&#34;nofollow noopener noreferrer">My Github</a></li>
-                
-            
-                
-                
-                    <li><a href="/page/disclaimer/">Disclaimer</a></li>
-                
-            
-        </ul>
-
-        
-            <div id="search-box" class="search">
-                <i class="fas fa-search"></i>
-                <input id="search" type="text" placeholder="Search ...">
-            </div>
-        
-    </div>
-</nav>
-
-    <header>
-
-    <a id="back-to-top-button">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <div class="container">
-        <div class="logo">
-            <a href="/" class="logo">
-                
-                    <img src="/images/davey.jpg" alt="">
-                
-
-                <span class="overlay"><i class="fa fa-home"></i></span>
-            </a>
-        </div>
-        <div class="titles">
-            <h3 class="title">
-                <a href="/">
-                    thedevopscat blog
-                </a>
-            </h3>
-
-            
-                <span class="subtitle">Thoughts, observations and learnings of the devopscat...</span>
-            
-        </div>
-        <div class="selectors">
-          
-          
-       </div>
-
-        
-            <div class="toggler">
-        
-                <i class="fa fa-bars" aria-hidden="true"></i>
-            </div>
-    </div>
-    </div>
-</header>
-<div class="main container"><div class="article-wrapper u-cf single"><a class="bubble" href="https://www.thedevopscat.co.uk/code/terraform/terraform5/">
-    <i class="fas fa-fw fa-code"></i>
-</a>
-
-<article class="default article">
-    
-
-    <div class="content">
-    <h1 class="article-title">
-        <a href="https://www.thedevopscat.co.uk/code/terraform/terraform5/">
-            Securing Access from a Public IP
-        </a>
-    </h1>
-
-    <div class="meta">
-        
-            
-                <span class="date moment">2022-12-22</span>
-            
-        
-
-        
-            
-                <span class="readingTime">4 min read</span>
-            
-        
-
-        
-            <span class="categories">
-                
-                    
-                    
-                        <a href="https://www.thedevopscat.co.uk/categories/terraform/">Terraform</a>
-                    
-                
-            </span>
-        
-
-        
-    </div>
-
-    
-        
-            <h2>Table of Contents</h2>
-            <nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#terraform-datasources">Terraform Datasources</a>
-          <ul>
-            <li>
-              <ul>
-                <li></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li><a href="#current-config">Current Config</a></li>
-        <li><a href="#current-ip-address">Current IP Address</a>
-          <ul>
-            <li>
-              <ul>
-                <li></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li><a href="#limitations">Limitations</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-        
-
-        <p>In this blog post I&rsquo;ll share some tips on how you can securely use your cloud resources from a public IP, such as your home connection.  I&rsquo;ll be using Azure but the principles will apply to other vendor clouds.</p>
-<p>The specific use case we&rsquo;ll consider is MSDN subscription access, hence the desire to avoid the cost of running a dedicated Azure Firewall, whilst not leaving ourselves vulnerable.</p>
-<p>The assumptions are we will be signed in to our console session and running the code locally with the credentials, and from the location from which we wish to access the resources/portal.</p>
-<p><strong>TLDR: We will lock down to our (dynamically resolved) current user credential and current IP address.</strong></p>
-<h3 id="terraform-datasources">Terraform Datasources</h3>
-<p>We&rsquo;ll start with a quick review of Terraform datasources, which are objects you wish to reference in your code, that are pre-existing and created elsewhere.  An important feature of a datasource is that it is dynamic in nature, as such the object referenced will be queried and the latest values retrieved and stored in state each time the code is planned/applied.</p>
-<p>The arguments Terraform stores for each datasource varies dependant on the resource type, so check the <a href="https://developer.hashicorp.com/terraform/language/data-sources"  target="_blank" rel="noopener noreferrer" >
-    Terraform website
-</a> for this, but essentially you specify a couple of argument values, such an object name and location (i.e. enough to identify the object in question) and the datasource retrieves a more comprehensive set of values and stores them in state to allow you to reference these as arguments in your code (such as a current value or ID).</p>
-<h6 id="enumerating-datasources">Enumerating Datasources</h6>
-<p>The Terraform console can also be used enumerate a datasource, useful to see what arguments are held in state and the exact format in which they are stored, this will help you use them in your code.  We&rsquo;ll look at specific examples of this in the following sub-sections.</p>
-<h3 id="current-config">Current Config</h3>
-<p>The first useful example of this is <a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config"  target="_blank" rel="noopener noreferrer" >
-    azurerm_client_config
-</a></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span><span style="color:#66d9ef">data</span> <span style="color:#e6db74">&#34;azurerm_client_config&#34; &#34;current_config&#34;</span> {}
-</span></span><span style="display:flex;"><span>...
-</span></span></code></pre></div><p>As this resolves the current <em>Tenant-ID</em> and <em>Object-ID</em>, these can be used on the built-in firewalls of PaaS services to set access for our current user.  Here&rsquo;s an Azure KeyVault example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;azurerm_key_vault_access_policy&#34; &#34;dave_msdn_kv_access_policy_myuser&#34;</span> {
-</span></span><span style="display:flex;"><span>  key_vault_id       <span style="color:#f92672">=</span> <span style="color:#66d9ef">azurerm_key_vault</span>.<span style="color:#66d9ef">dave_msdn</span>.<span style="color:#66d9ef">id</span>
-</span></span><span style="display:flex;"><span>  tenant_id          <span style="color:#f92672">=</span> <span style="color:#66d9ef">data</span>.<span style="color:#66d9ef">azurerm_client_config</span>.<span style="color:#66d9ef">current_config</span>.<span style="color:#66d9ef">tenant_id</span>
-</span></span><span style="display:flex;"><span>  object_id          <span style="color:#f92672">=</span> <span style="color:#66d9ef">data</span>.<span style="color:#66d9ef">azurerm_client_config</span>.<span style="color:#66d9ef">current_config</span>.<span style="color:#66d9ef">object_id</span>
-</span></span><span style="display:flex;"><span>  key_permissions    <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;Get&#34;</span>]
-</span></span><span style="display:flex;"><span>  secret_permissions <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;Get&#34;, &#34;Set&#34;</span>]
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>...
-</span></span></code></pre></div><h3 id="current-ip-address">Current IP Address</h3>
-<p>The really useful, (at least for MSDN) bit is the local IP address.  Here we resolve this via a web-service, we chose this one specifically for its clean output, it literally returns our local public IP with no other formatting or characters.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span><span style="color:#66d9ef">data</span> <span style="color:#e6db74">&#34;http&#34; &#34;mycurrentexternalipaddress&#34;</span> {
-</span></span><span style="display:flex;"><span>  url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://whatismyip.akamai.com&#34;</span>
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>...
-</span></span></code></pre></div><p>We can check this in the Terraform console, by just entering the name of the datasource, as it is stored in state.  We can retrieve this by listing the contents of state with the command &lsquo;<em>terraform state list</em>&rsquo;:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">❯</span> <span style="color:#66d9ef">terraform</span> <span style="color:#66d9ef">console</span>
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&gt;</span> <span style="color:#66d9ef">data</span>.<span style="color:#66d9ef">http</span>.<span style="color:#66d9ef">mycurrentexternalipaddress</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  &#34;body&#34; <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;88.33.97.86&#34;</span>
-</span></span><span style="display:flex;"><span>  &#34;ca_cert_pem&#34; <span style="color:#f92672">=</span> <span style="color:#66d9ef">tostring</span>(<span style="color:#66d9ef">null</span>)
-</span></span><span style="display:flex;"><span>  &#34;id&#34; <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://whatismyip.akamai.com&#34;</span>
-</span></span><span style="display:flex;"><span>  &#34;insecure&#34; <span style="color:#f92672">=</span> <span style="color:#66d9ef">tobool</span>(<span style="color:#66d9ef">null</span>)
-</span></span><span style="display:flex;"><span>  &#34;method&#34; <span style="color:#f92672">=</span> <span style="color:#66d9ef">tostring</span>(<span style="color:#66d9ef">null</span>)
-</span></span><span style="display:flex;"><span>  &#34;request_body&#34; <span style="color:#f92672">=</span> <span style="color:#66d9ef">tostring</span>(<span style="color:#66d9ef">null</span>)
-</span></span><span style="display:flex;"><span>  &#34;request_headers&#34; <span style="color:#f92672">=</span> <span style="color:#66d9ef">tomap</span>(<span style="color:#66d9ef">null</span>)<span style="color:#75715e"> /* of string */</span>
-</span></span><span style="display:flex;"><span>  &#34;response_body&#34; <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;88.33.97.86&#34;</span>
-</span></span><span style="display:flex;"><span>  &#34;response_headers&#34; <span style="color:#f92672">=</span> <span style="color:#66d9ef">tomap</span>({
-</span></span><span style="display:flex;"><span>    &#34;Cache-Control&#34; <span style="color:#f92672">=</span> &#34;max-age<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">no</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">cache</span>, <span style="color:#66d9ef">no</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">store</span><span style="color:#960050;background-color:#1e0010">&#34;</span>
-</span></span><span style="display:flex;"><span>    &#34;Content-Length&#34; <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;12&#34;</span>
-</span></span><span style="display:flex;"><span>    &#34;Content-Type&#34; <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;text/html&#34;</span>
-</span></span><span style="display:flex;"><span>    &#34;Date&#34; <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Mon, 2 Jan 2023 16:02:58 GMT&#34;</span>
-</span></span><span style="display:flex;"><span>    &#34;Expires&#34; <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Mon, 2 Jan 2023 16:02:58 GMT&#34;</span>
-</span></span><span style="display:flex;"><span>    &#34;Pragma&#34; <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;no-cache&#34;</span>
-</span></span><span style="display:flex;"><span>  })
-</span></span><span style="display:flex;"><span>  &#34;status_code&#34; <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>
-</span></span><span style="display:flex;"><span>  &#34;url&#34; <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://whatismyip.akamai.com&#34;</span>
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&gt;</span>
-</span></span></code></pre></div><p>You can see a bunch of information is stored in state, but we&rsquo;re only interested in the <em>response_body</em>.  We can reference this in our code to lock down a PaaS service as shown below, we&rsquo;ll stick with the KeyVault example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;azurerm_key_vault&#34; &#34;dave_msdn&#34;</span> {
-</span></span><span style="display:flex;"><span>  ...
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">network_acls</span> {
-</span></span><span style="display:flex;"><span>    default_action             <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Deny&#34;</span>
-</span></span><span style="display:flex;"><span>    bypass                     <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;AzureServices&#34;</span><span style="color:#75715e"> # https://learn.microsoft.com/en-us/azure/key-vault/general/overview-vnet-service-endpoints#trusted-services
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    virtual_network_subnet_ids <span style="color:#f92672">=</span> []
-</span></span><span style="display:flex;"><span>    ip_rules                   <span style="color:#f92672">=</span> [<span style="color:#66d9ef">join</span>(<span style="color:#e6db74">&#34;&#34;, [data.http.mycurrentexternalipaddress.response_body, &#34;/32&#34;</span>])]
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>Here you can see we use the <em>Join</em> function to add a /32 to the string as required by this resource so we specify just our single IP, this varies per resource so check the help pages, for examples storage accounts use subtly/annoyingly different syntax!</p>
-<h6 id="other-use-cases">Other Use Cases</h6>
-<p>Another obvious use case would be for an NSG rule on a VM where you enable RDP access via a public IP.</p>
-<h3 id="limitations">Limitations</h3>
-<p>If you have a regular home-user ISP setup, your local IP address will change from time-to-time.  So, you will need to re-run your code to regain access.  But given the one-to-one security you can achieve at zero cost I think the pros outweight the cons, what do you think?</p>
-    
-</div>
-
-    
-<div class="footer">
-
-
-    
-        <div class="tags">
-            <i class="fa fa-tags"></i>
-            <div class="links">
-                
-                    
-                    
-                    <a href="https://www.thedevopscat.co.uk/tags/terraform/">Terraform</a>
-                    
-                
-                    
-                    
-                    <a href="https://www.thedevopscat.co.uk/tags/security/">Security</a>
-                    
-                
-                    
-                    
-                    <a href="https://www.thedevopscat.co.uk/tags/datasources/">Datasources</a>
-                    
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-</article>
-</div><div id="comments-container">
-    <script src="https://giscus.app/client.js"
-        data-repo="thedevopscat/blogcomments"
-        data-repo-id="R_kgDOIoOO8A"
-        data-category="General"
-        data-category-id="DIC_kwDOIoOO8M4CTG6Z"
-        data-mapping="www"
-        data-reactions-enabled="1"
-        data-emit-metadata=""
-        data-theme="light"
-        
-            data-lang="en"
-        
-        crossorigin="anonymous"
-        async>
-    </script>
-
-    <div id="giscus"></div>
-
-</div></div>
-<footer>
-    <div class="container">
-
-        
-        <div class="recent-posts">
-            <strong>Latest posts</strong>
-            <ul>
-                
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/code/terraform/terraform15/">Automatic Code Generation for Imported Resources!</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/">Adding Grafana Cloud Website Monitoring via Terraform</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/">Azure Static Web Apps vs Github Pages</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/">Static Website Hosting on Github - Part 3</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/">Static Website Hosting on Github - Part 2</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/">Static Website Hosting on Github - Part 1</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/2023/01/what-info-is-permissible-on-a-redacted-cv/">What Info is Permissible on a Redacted CV?</a>
-                    </li>
-                
-            </ul>
-        </div>
-        
-
-        
-        <div class="categories">
-            <a href="/categories/"><strong>Categories</strong></a>
-            <ul>
-                
-                <li>
-                    <a href="/categories/hugo">Hugo
-                        (8)</a>
-                </li>
-                
-                <li>
-                    <a href="/categories/terraform">Terraform
-                        (7)</a>
-                </li>
-                
-                <li>
-                    <a href="/categories/github-pages">Github pages
-                        (5)</a>
-                </li>
-                
-                <li>
-                    <a href="/categories/psychology">Psychology
-                        (2)</a>
-                </li>
-                
-                <li>
-                    <a href="/categories/cats">Cats
-                        (1)</a>
-                </li>
-                
-                <li>
-                    <a href="/categories/privacy">Privacy
-                        (1)</a>
-                </li>
-                
-            </ul>
-        </div>
-        
-
-        <div class="right">
-            
-            <div class="external-profiles">
-                <strong>My Links</strong>
-
-                
-                <a href="https://www.linkedin.com/in/mr-david-kent" target="_blank" rel="me"><em class="fab fa-linkedin"></em></a>
-                
-                <a href="https://github.com/thedevopscat" target="_blank" rel=""><em class="fab fa-github"></em></a>
-                
-                <a href="https://discord.com/users/thedevopscat#8281" target="_blank" rel=""><em class="fab fa-discord"></em></a>
-                
-                <br><br>
-                <a href="https://www.buymeacoffee.com/thedevopscat" target="_blank" rel="nofollow noopener noreferrer" rel="me"><img src="/images/bmc_qr.png" width="84px" height="80px" alt="Buy Me A Coffee"></a>
-            </div>
-            
-
-            
-
-            
-            <div class="archive">
-                <a href="/archive/"><strong>Archive</strong></a>
-            </div>			
-            
-        </div>
-    </div>
-</footer>
-
-
-<div class="credits">
-    <div class="container">
-        <div class="copyright">
-            <a href="https://www.thedevopscat.co.uk/page/disclaimer/" target="_blank">
-                &copy;
-                
-                2024
-                
-                thedevopscat
-            </a>
-            
-        </div>
-        <div class="author">
-            <a href="https://github.com/Lednerb/bilberry-hugo-theme"
-                target="_blank">Powered by Bilberry Hugo Theme</a>
-        </div>
-    </div>
-</div>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F4HL48LHFR"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-F4HL48LHFR', { 'anonymize_ip': false });
-}
-</script>
-<script src="https://www.thedevopscat.co.uk/theme.js"></script><div id="activate-algolia-search" class="hidden">
-  <input type="hidden" id="algolia-search-appId" value="CKM9HO0A7S">
-  <input type="hidden" id="algolia-search-apiKey" value="180d489edd420a08db5915d22d7232db">
-  <input type="hidden" id="algolia-search-indexName" value="gitdoc">
-  <input type="hidden" id="algolia-search-noSearchResults" value="Nothing found.">
-
-  
-  <input type="hidden" id="algolia-search-currentLanguageOnly">
-  
-</div>
-</body>
-
-</html>
+<!doctype html><html itemscope itemtype=https://schema.org/WebPage class=no-js lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=siteBaseUrl content="https://www.thedevopscat.co.uk/"><meta name=author content="thedevopscat"><meta name=description content="thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!"><meta name=keywords content="blog,personal,cats,devops,terraform,azure,hugo,algolia,git,github"><meta name=generator content="Hugo 0.126.1"><title>Securing Access from a Public IP|thedevopscat blog</title>
+<meta itemprop=name content="Securing Access from a Public IP"><meta itemprop=description content="Securing Access from a Public IP - thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!"><meta property="og:site_name" content="thedevopscat blog"><meta property="og:url" content="https://www.thedevopscat.co.uk/code/terraform/terraform5/"><meta property="og:site_name" content="thedevopscat blog"><meta property="og:title" content="Securing Access from a Public IP"><meta property="og:description" content="In this blog post I’ll share some tips on how you can securely use your cloud resources from a public IP, such as your home connection. I’ll be using Azure but the principles will apply to other vendor clouds.
+The specific use case we’ll consider is MSDN subscription access, hence the desire to avoid the cost of running a dedicated Azure Firewall, whilst not leaving ourselves vulnerable."><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="code"><meta property="article:published_time" content="2022-12-22T15:47:39+00:00"><meta property="article:modified_time" content="2022-12-22T15:47:39+00:00"><meta property="article:tag" content="Terraform"><meta property="article:tag" content="Security"><meta property="article:tag" content="Datasources"><script src=/modernizr-simple.js></script><link href=/code/terraform/terraform5/ rel=alternate type=application/rss+xml title="thedevopscat blog"><link href=/code/terraform/terraform5/ rel=feed type=application/rss+xml title="thedevopscat blog"><link rel=canonical href=https://www.thedevopscat.co.uk/code/terraform/terraform5/><link rel=stylesheet href=https://www.thedevopscat.co.uk/theme.css></head><body class=bilberry-hugo-theme><nav><div class=container><ul class=topnav><li><a href=/categories/hugo/ target>Hugo+Themes</a></li><li><a href=/categories/terraform/ target>Terraform</a></li><li><a href=https://github.com/thedevopscat target='_blank" rel="nofollow noopener noreferrer'>My Github</a></li><li><a href=/page/disclaimer/>Disclaimer</a></li></ul><div id=search-box class=search><i class="fas fa-search"></i>
+<input id=search type=text placeholder="Search ..."></div></div></nav><header><a id=back-to-top-button><i class="fas fa-angle-up"></i></a><div class=container><div class=logo><a href=/ class=logo><img src=/images/davey.jpg alt>
+<span class=overlay><i class="fa fa-home"></i></span></a></div><div class=titles><h3 class=title><a href=/>thedevopscat blog</a></h3><span class=subtitle>Thoughts, observations and learnings of the devopscat...</span></div><div class=selectors></div><div class=toggler><i class="fa fa-bars" aria-hidden=true></i></div></div></div></header><div class="main container"><div class="article-wrapper u-cf single"><a class=bubble href=https://www.thedevopscat.co.uk/code/terraform/terraform5/><i class="fas fa-fw fa-code"></i></a><article class="default article"><div class=content><h1 class=article-title><a href=https://www.thedevopscat.co.uk/code/terraform/terraform5/>Securing Access from a Public IP</a></h1><div class=meta><span class="date moment">2022-12-22</span>
+<span class=readingTime>4 min read</span>
+<span class=categories><a href=https://www.thedevopscat.co.uk/categories/terraform/>Terraform</a></span></div><h2>Table of Contents</h2><nav id=TableOfContents><ul><li><ul><li><a href=#terraform-datasources>Terraform Datasources</a><ul><li><ul><li></li></ul></li></ul></li><li><a href=#current-config>Current Config</a></li><li><a href=#current-ip-address>Current IP Address</a><ul><li><ul><li></li></ul></li></ul></li><li><a href=#limitations>Limitations</a></li></ul></li></ul></nav><p>In this blog post I&rsquo;ll share some tips on how you can securely use your cloud resources from a public IP, such as your home connection. I&rsquo;ll be using Azure but the principles will apply to other vendor clouds.</p><p>The specific use case we&rsquo;ll consider is MSDN subscription access, hence the desire to avoid the cost of running a dedicated Azure Firewall, whilst not leaving ourselves vulnerable.</p><p>The assumptions are we will be signed in to our console session and running the code locally with the credentials, and from the location from which we wish to access the resources/portal.</p><p><strong>TLDR: We will lock down to our (dynamically resolved) current user credential and current IP address.</strong></p><h3 id=terraform-datasources>Terraform Datasources</h3><p>We&rsquo;ll start with a quick review of Terraform datasources, which are objects you wish to reference in your code, that are pre-existing and created elsewhere. An important feature of a datasource is that it is dynamic in nature, as such the object referenced will be queried and the latest values retrieved and stored in state each time the code is planned/applied.</p><p>The arguments Terraform stores for each datasource varies dependant on the resource type, so check the <a href=https://developer.hashicorp.com/terraform/language/data-sources target=_blank rel="noopener noreferrer">Terraform website
+</a>for this, but essentially you specify a couple of argument values, such an object name and location (i.e. enough to identify the object in question) and the datasource retrieves a more comprehensive set of values and stores them in state to allow you to reference these as arguments in your code (such as a current value or ID).</p><h6 id=enumerating-datasources>Enumerating Datasources</h6><p>The Terraform console can also be used enumerate a datasource, useful to see what arguments are held in state and the exact format in which they are stored, this will help you use them in your code. We&rsquo;ll look at specific examples of this in the following sub-sections.</p><h3 id=current-config>Current Config</h3><p>The first useful example of this is <a href=https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config target=_blank rel="noopener noreferrer">azurerm_client_config</a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-hcl data-lang=hcl><span style=display:flex><span><span style=color:#66d9ef>data</span> <span style=color:#e6db74>&#34;azurerm_client_config&#34; &#34;current_config&#34;</span> {}
+</span></span><span style=display:flex><span>...
+</span></span></code></pre></div><p>As this resolves the current <em>Tenant-ID</em> and <em>Object-ID</em>, these can be used on the built-in firewalls of PaaS services to set access for our current user. Here&rsquo;s an Azure KeyVault example:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-hcl data-lang=hcl><span style=display:flex><span><span style=color:#66d9ef>resource</span> <span style=color:#e6db74>&#34;azurerm_key_vault_access_policy&#34; &#34;dave_msdn_kv_access_policy_myuser&#34;</span> {
+</span></span><span style=display:flex><span>  key_vault_id       <span style=color:#f92672>=</span> <span style=color:#66d9ef>azurerm_key_vault</span>.<span style=color:#66d9ef>dave_msdn</span>.<span style=color:#66d9ef>id</span>
+</span></span><span style=display:flex><span>  tenant_id          <span style=color:#f92672>=</span> <span style=color:#66d9ef>data</span>.<span style=color:#66d9ef>azurerm_client_config</span>.<span style=color:#66d9ef>current_config</span>.<span style=color:#66d9ef>tenant_id</span>
+</span></span><span style=display:flex><span>  object_id          <span style=color:#f92672>=</span> <span style=color:#66d9ef>data</span>.<span style=color:#66d9ef>azurerm_client_config</span>.<span style=color:#66d9ef>current_config</span>.<span style=color:#66d9ef>object_id</span>
+</span></span><span style=display:flex><span>  key_permissions    <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#34;Get&#34;</span>]
+</span></span><span style=display:flex><span>  secret_permissions <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#34;Get&#34;, &#34;Set&#34;</span>]
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>...
+</span></span></code></pre></div><h3 id=current-ip-address>Current IP Address</h3><p>The really useful, (at least for MSDN) bit is the local IP address. Here we resolve this via a web-service, we chose this one specifically for its clean output, it literally returns our local public IP with no other formatting or characters.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-hcl data-lang=hcl><span style=display:flex><span><span style=color:#66d9ef>data</span> <span style=color:#e6db74>&#34;http&#34; &#34;mycurrentexternalipaddress&#34;</span> {
+</span></span><span style=display:flex><span>  url <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;http://whatismyip.akamai.com&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>...
+</span></span></code></pre></div><p>We can check this in the Terraform console, by just entering the name of the datasource, as it is stored in state. We can retrieve this by listing the contents of state with the command &lsquo;<em>terraform state list</em>&rsquo;:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-hcl data-lang=hcl><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>❯</span> <span style=color:#66d9ef>terraform</span> <span style=color:#66d9ef>console</span>
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>&gt;</span> <span style=color:#66d9ef>data</span>.<span style=color:#66d9ef>http</span>.<span style=color:#66d9ef>mycurrentexternalipaddress</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  &#34;body&#34; <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;88.33.97.86&#34;</span>
+</span></span><span style=display:flex><span>  &#34;ca_cert_pem&#34; <span style=color:#f92672>=</span> <span style=color:#66d9ef>tostring</span>(<span style=color:#66d9ef>null</span>)
+</span></span><span style=display:flex><span>  &#34;id&#34; <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;http://whatismyip.akamai.com&#34;</span>
+</span></span><span style=display:flex><span>  &#34;insecure&#34; <span style=color:#f92672>=</span> <span style=color:#66d9ef>tobool</span>(<span style=color:#66d9ef>null</span>)
+</span></span><span style=display:flex><span>  &#34;method&#34; <span style=color:#f92672>=</span> <span style=color:#66d9ef>tostring</span>(<span style=color:#66d9ef>null</span>)
+</span></span><span style=display:flex><span>  &#34;request_body&#34; <span style=color:#f92672>=</span> <span style=color:#66d9ef>tostring</span>(<span style=color:#66d9ef>null</span>)
+</span></span><span style=display:flex><span>  &#34;request_headers&#34; <span style=color:#f92672>=</span> <span style=color:#66d9ef>tomap</span>(<span style=color:#66d9ef>null</span>)<span style=color:#75715e> /* of string */</span>
+</span></span><span style=display:flex><span>  &#34;response_body&#34; <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;88.33.97.86&#34;</span>
+</span></span><span style=display:flex><span>  &#34;response_headers&#34; <span style=color:#f92672>=</span> <span style=color:#66d9ef>tomap</span>({
+</span></span><span style=display:flex><span>    &#34;Cache-Control&#34; <span style=color:#f92672>=</span> &#34;max-age<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>, <span style=color:#66d9ef>no</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#66d9ef>cache</span>, <span style=color:#66d9ef>no</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#66d9ef>store</span><span style=color:#960050;background-color:#1e0010>&#34;</span>
+</span></span><span style=display:flex><span>    &#34;Content-Length&#34; <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;12&#34;</span>
+</span></span><span style=display:flex><span>    &#34;Content-Type&#34; <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;text/html&#34;</span>
+</span></span><span style=display:flex><span>    &#34;Date&#34; <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Mon, 2 Jan 2023 16:02:58 GMT&#34;</span>
+</span></span><span style=display:flex><span>    &#34;Expires&#34; <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Mon, 2 Jan 2023 16:02:58 GMT&#34;</span>
+</span></span><span style=display:flex><span>    &#34;Pragma&#34; <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;no-cache&#34;</span>
+</span></span><span style=display:flex><span>  })
+</span></span><span style=display:flex><span>  &#34;status_code&#34; <span style=color:#f92672>=</span> <span style=color:#ae81ff>200</span>
+</span></span><span style=display:flex><span>  &#34;url&#34; <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;http://whatismyip.akamai.com&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>&gt;</span>
+</span></span></code></pre></div><p>You can see a bunch of information is stored in state, but we&rsquo;re only interested in the <em>response_body</em>. We can reference this in our code to lock down a PaaS service as shown below, we&rsquo;ll stick with the KeyVault example:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-hcl data-lang=hcl><span style=display:flex><span><span style=color:#66d9ef>resource</span> <span style=color:#e6db74>&#34;azurerm_key_vault&#34; &#34;dave_msdn&#34;</span> {
+</span></span><span style=display:flex><span>  ...
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>network_acls</span> {
+</span></span><span style=display:flex><span>    default_action             <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Deny&#34;</span>
+</span></span><span style=display:flex><span>    bypass                     <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;AzureServices&#34;</span><span style=color:#75715e> # https://learn.microsoft.com/en-us/azure/key-vault/general/overview-vnet-service-endpoints#trusted-services
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    virtual_network_subnet_ids <span style=color:#f92672>=</span> []
+</span></span><span style=display:flex><span>    ip_rules                   <span style=color:#f92672>=</span> [<span style=color:#66d9ef>join</span>(<span style=color:#e6db74>&#34;&#34;, [data.http.mycurrentexternalipaddress.response_body, &#34;/32&#34;</span>])]
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Here you can see we use the <em>Join</em> function to add a /32 to the string as required by this resource so we specify just our single IP, this varies per resource so check the help pages, for examples storage accounts use subtly/annoyingly different syntax!</p><h6 id=other-use-cases>Other Use Cases</h6><p>Another obvious use case would be for an NSG rule on a VM where you enable RDP access via a public IP.</p><h3 id=limitations>Limitations</h3><p>If you have a regular home-user ISP setup, your local IP address will change from time-to-time. So, you will need to re-run your code to regain access. But given the one-to-one security you can achieve at zero cost I think the pros outweight the cons, what do you think?</p></div><div class=footer><div class=tags><i class="fa fa-tags"></i><div class=links><a href=https://www.thedevopscat.co.uk/tags/terraform/>Terraform</a>
+<a href=https://www.thedevopscat.co.uk/tags/security/>Security</a>
+<a href=https://www.thedevopscat.co.uk/tags/datasources/>Datasources</a></div></div></div></article></div><div id=comments-container><script src=https://giscus.app/client.js data-repo=thedevopscat/blogcomments data-repo-id=R_kgDOIoOO8A data-category=General data-category-id=DIC_kwDOIoOO8M4CTG6Z data-mapping=www data-reactions-enabled=1 data-emit-metadata data-theme=light data-lang=en crossorigin=anonymous async></script><div id=giscus></div></div></div><footer><div class=container><div class=recent-posts><strong>Latest posts</strong><ul><li><a href=https://www.thedevopscat.co.uk/code/terraform/terraform15/>Automatic Code Generation for Imported Resources!</a></li><li><a href=https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/>Adding Grafana Cloud Website Monitoring via Terraform</a></li><li><a href=https://www.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/>Azure Static Web Apps vs Github Pages</a></li><li><a href=https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/>Static Website Hosting on Github - Part 3</a></li><li><a href=https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/>Static Website Hosting on Github - Part 2</a></li><li><a href=https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/>Static Website Hosting on Github - Part 1</a></li><li><a href=https://www.thedevopscat.co.uk/2023/01/what-info-is-permissible-on-a-redacted-cv/>What Info is Permissible on a Redacted CV?</a></li></ul></div><div class=categories><a href=/categories/><strong>Categories</strong></a><ul><li><a href=/categories/hugo>Hugo
+(8)</a></li><li><a href=/categories/terraform>Terraform
+(7)</a></li><li><a href=/categories/github-pages>Github pages
+(5)</a></li><li><a href=/categories/psychology>Psychology
+(2)</a></li><li><a href=/categories/cats>Cats
+(1)</a></li><li><a href=/categories/privacy>Privacy
+(1)</a></li></ul></div><div class=right><div class=external-profiles><strong>My Links</strong>
+<a href=https://www.linkedin.com/in/mr-david-kent target=_blank rel=me><em class="fab fa-linkedin"></em></a>
+<a href=https://github.com/thedevopscat target=_blank rel><em class="fab fa-github"></em></a>
+<a href=https://discord.com/users/thedevopscat#8281 target=_blank rel><em class="fab fa-discord"></em></a><br><br><a href=https://www.buymeacoffee.com/thedevopscat target=_blank rel="nofollow noopener noreferrer" rel=me><img src=/images/bmc_qr.png width=84px height=80px alt="Buy Me A Coffee"></a></div><div class=archive><a href=/archive/><strong>Archive</strong></a></div></div></div></footer><div class=credits><div class=container><div class=copyright><a href=https://www.thedevopscat.co.uk/page/disclaimer/ target=_blank>&copy;
+2024
+thedevopscat</a></div><div class=author><a href=https://github.com/Lednerb/bilberry-hugo-theme target=_blank>Powered by Bilberry Hugo Theme</a></div></div></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-F4HL48LHFR"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-F4HL48LHFR")}</script><script src=https://www.thedevopscat.co.uk/theme.js></script><div id=activate-algolia-search class=hidden><input type=hidden id=algolia-search-appId value=CKM9HO0A7S>
+<input type=hidden id=algolia-search-apiKey value=180d489edd420a08db5915d22d7232db>
+<input type=hidden id=algolia-search-indexName value=gitdoc>
+<input type=hidden id=algolia-search-noSearchResults value="Nothing found.">
+<input type=hidden id=algolia-search-currentLanguageOnly></div></body></html>

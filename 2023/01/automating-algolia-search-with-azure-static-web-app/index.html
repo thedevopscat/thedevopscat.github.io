@@ -1,499 +1,88 @@
-<!DOCTYPE html><html itemscope itemtype="https://schema.org/WebPage" class="no-js" lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="siteBaseUrl" content="https://www.thedevopscat.co.uk/">
-    <meta name="author" content="thedevopscat">
-    <meta name="description" content="thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!">
-    <meta name="keywords" content="blog,personal,cats,devops,terraform,azure,hugo,algolia,git,github"><meta name="generator" content="Hugo 0.124.1"><title>Automating Algolia Search with Azure Static Web App&vert;thedevopscat blog</title>
-    <meta itemprop="name" content="Automating Algolia Search with Azure Static Web App">
-    <meta itemprop="description" content="Automating Algolia Search with Azure Static Web App - thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!">
-    <meta property="og:site_name" content="thedevopscat blog"><meta property="og:title" content="Automating Algolia Search with Azure Static Web App" />
-<meta property="og:description" content="Having just completed the setup of algolia search on this site I felt compelled to write a new post and let you know my experience, as it may save you some time! Suffice to say, the potentially difficult part was easy, and the easy part was hard! This may be down to the combination of my (feature rich) Bilberry theme and Hugo, so if you choose this combination, This may be of particular interest." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/" /><meta property="article:section" content="article" />
-<meta property="article:published_time" content="2023-01-06T10:45:32+00:00" />
-<meta property="article:modified_time" content="2023-01-06T10:45:32+00:00" />
-
-
-
-<script src="/modernizr-simple.js"></script><link href="/2023/01/automating-algolia-search-with-azure-static-web-app/" rel="alternate" type="application/rss+xml" title="thedevopscat blog" />
-    <link href="/2023/01/automating-algolia-search-with-azure-static-web-app/" rel="feed" type="application/rss+xml" title="thedevopscat blog" /><link rel="canonical" href="https://www.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/"><link rel="stylesheet" href="https://www.thedevopscat.co.uk/theme.css"></head>
-
-<body class="bilberry-hugo-theme">
-    <nav>
-
-    <div class="container">
-        <ul class="topnav">
-            
-                
-                
-                    <li><a href="/categories/hugo/"
-                           target="">Hugo&#43;Themes</a></li>
-                
-            
-                
-                
-                    <li><a href="/categories/terraform/"
-                           target="">Terraform</a></li>
-                
-            
-                
-                
-                    <li><a href="https://github.com/thedevopscat"
-                           target="_blank&#34; rel=&#34;nofollow noopener noreferrer">My Github</a></li>
-                
-            
-                
-                
-                    <li><a href="/page/disclaimer/">Disclaimer</a></li>
-                
-            
-        </ul>
-
-        
-            <div id="search-box" class="search">
-                <i class="fas fa-search"></i>
-                <input id="search" type="text" placeholder="Search ...">
-            </div>
-        
-    </div>
-</nav>
-
-    <header>
-
-    <a id="back-to-top-button">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <div class="container">
-        <div class="logo">
-            <a href="/" class="logo">
-                
-                    <img src="/images/davey.jpg" alt="">
-                
-
-                <span class="overlay"><i class="fa fa-home"></i></span>
-            </a>
-        </div>
-        <div class="titles">
-            <h3 class="title">
-                <a href="/">
-                    thedevopscat blog
-                </a>
-            </h3>
-
-            
-                <span class="subtitle">Thoughts, observations and learnings of the devopscat...</span>
-            
-        </div>
-        <div class="selectors">
-          
-          
-       </div>
-
-        
-            <div class="toggler">
-        
-                <i class="fa fa-bars" aria-hidden="true"></i>
-            </div>
-    </div>
-    </div>
-</header>
-<div class="main container"><div class="article-wrapper u-cf single"><a class="bubble" href="https://www.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/">
-    <i class="fas fa-fw fa-pencil-alt"></i>
-</a>
-
-<article class="default article">
-    
-
-    <div class="content">
-    <h1 class="article-title">
-        <a href="https://www.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/">
-            Automating Algolia Search with Azure Static Web App
-        </a>
-    </h1>
-
-    <div class="meta">
-        
-            
-                <span class="date moment">2023-01-06</span>
-            
-        
-
-        
-            
-                <span class="readingTime">5 min read</span>
-            
-        
-
-        
-            <span class="categories">
-                
-                    
-                    
-                        <a href="https://www.thedevopscat.co.uk/categories/hugo/">Hugo</a>
-                    
-                
-            </span>
-        
-
-        
-            <span class="author">
-                
-                
-                    <a href="https://www.thedevopscat.co.uk/author/thedevopscat/">Thedevopscat</a>
-                
-            </span>
-        
-    </div>
-
-    
-        
-            <h2>Table of Contents</h2>
-            <nav id="TableOfContents">
-  <ul>
-    <li><a href="#create-an-account">Create an Account</a></li>
-    <li><a href="#the-index-file">The Index File</a></li>
-    <li><a href="#the-missing-link---troubleshooting">The Missing Link - Troubleshooting</a></li>
-    <li><a href="#launguage-setting-and-filters-in-the-index">Launguage Setting and Filters in the Index</a></li>
-    <li><a href="#conclusions">Conclusions</a></li>
-  </ul>
-</nav>
-        
-
-        <p>Having just completed the setup of algolia search on this site I felt compelled to write a new post and let you know my experience, as it may save you some time!
-Suffice to say, the potentially difficult part was easy, and the easy part was hard!  This may be down to the combination of my (feature rich) Bilberry theme and Hugo, so if you choose this combination, This may be of particular interest.</p>
-<p>I chose to use algolia for my search as support is built-in to the bilberry theme, and having briefly played with some local scripted alternatives, algolia seemed like the path of least resistance for my basic and initially low volume search needs.</p>
-<h2 id="create-an-account">Create an Account</h2>
-<p>I won&rsquo;t go too in-depth here, this process has been documented elsewhere and is straight forward, but in summary we create a new algolia account, then create our first (empty) index, from this process we need to capture our app ID, our (search only) API key, and the name we chose for our index.</p>
-<p>These parameters are then added to our <em>config.toml</em> file for our site, then we can enable <em>algolia_search</em>.  Your setting should be along the line of the code snippet below (the appid, apikey and index name are unique to you):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">…</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Enable / Disable algolia search
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>algolia_search <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
-</span></span><span style="display:flex;"><span>algolia_appId <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;DOC3HO0A3S&#34;</span>
-</span></span><span style="display:flex;"><span>algolia_apiKey <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;199d489edd990a99db5915d882d7232db&#34;</span>
-</span></span><span style="display:flex;"><span>algolia_indexName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;myblogindex&#34;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Set this option to false if you want to search within all articles in all languages at once
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>algolia_currentLanguageOnly <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
-</span></span></code></pre></div><h2 id="the-index-file">The Index File</h2>
-<p>You would naively hope that was it! But it turns out that a website search facility is more complex behind the scenes than a non-techie might imagine.  An index needs to be created and maintained each time the site content is modified, having already automated the deployment of my site to Azure via GitHub actions, the thought of downloading more binaries to my local machine and manually running scripts to generate an index file to manually upload to the algolia website each time I make an update to the site was not something I wanted to get into, and is so not DevOps!</p>
-<p>Consequently, rightly or wrongly, I went straight to the automation phase to add this dependency to my deployment pipeline, which I expected might be the difficult bit, but as it happened work first time!  The manual process of creating/updating the index file is covered in the <a href="https://github.com/Lednerb/bilberry-hugo-theme#algolia-search"  target="_blank" rel="noopener noreferrer" >
-    bilberry theme readme
-</a>.  All I did was refer to the <a href="https://learn.microsoft.com/en-gb/azure/static-web-apps/build-configuration?tabs=github-actions#build-configuration"  target="_blank" rel="noopener noreferrer" >
-    GitHub action help page
-</a> and integrated this additional step into my GitHub action, which for reference now looks like this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span><span style="color:#66d9ef">name</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">Azure</span> <span style="color:#66d9ef">Static</span> <span style="color:#66d9ef">Web</span> <span style="color:#66d9ef">Apps</span> <span style="color:#66d9ef">CI</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#66d9ef">CD</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">on</span><span style="color:#960050;background-color:#1e0010">:</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">push</span><span style="color:#960050;background-color:#1e0010">:</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">branches</span><span style="color:#960050;background-color:#1e0010">:</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">-</span> <span style="color:#66d9ef">main</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">pull_request</span><span style="color:#960050;background-color:#1e0010">:</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">types</span><span style="color:#960050;background-color:#1e0010">:</span> [<span style="color:#66d9ef">opened</span>, <span style="color:#66d9ef">synchronize</span>, <span style="color:#66d9ef">reopened</span>, <span style="color:#66d9ef">closed</span>]
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">branches</span><span style="color:#960050;background-color:#1e0010">:</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">-</span> <span style="color:#66d9ef">main</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">jobs</span><span style="color:#960050;background-color:#1e0010">:</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">build_and_deploy_job</span><span style="color:#960050;background-color:#1e0010">:</span>
-</span></span><span style="display:flex;"><span>    if: github.event_name <span style="color:#f92672">==</span> &#39;push&#39; || (github.event_name <span style="color:#f92672">==</span> &#39;pull_request&#39; &amp;&amp; github.event.action !<span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#66d9ef">closed</span><span style="color:#960050;background-color:#1e0010">&#39;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">runs</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">on</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">ubuntu</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">latest</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">name</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">Build</span> <span style="color:#66d9ef">and</span> <span style="color:#66d9ef">Deploy</span> <span style="color:#66d9ef">Job</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">steps</span><span style="color:#960050;background-color:#1e0010">:</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">-</span> <span style="color:#66d9ef">uses</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">actions</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#66d9ef">checkout</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#66d9ef">v3</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">with</span><span style="color:#960050;background-color:#1e0010">:</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">submodules</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">true</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">-</span> <span style="color:#66d9ef">name</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">Build</span> <span style="color:#66d9ef">And</span> <span style="color:#66d9ef">Deploy</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">id</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">builddeploy</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uses</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">Azure</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#66d9ef">static</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">web</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">apps</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">deploy</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#66d9ef">latest</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">with</span><span style="color:#960050;background-color:#1e0010">:</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">azure_static_web_apps_api_token</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">${</span><span style="color:#960050;background-color:#1e0010">{</span> <span style="color:#960050;background-color:#1e0010">secrets</span>.<span style="color:#960050;background-color:#1e0010">AZURE_STATIC_WEB_APPS_API_TOKEN</span> <span style="color:#e6db74">}</span>}
-</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">repo_token</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">${</span><span style="color:#960050;background-color:#1e0010">{</span> <span style="color:#960050;background-color:#1e0010">secrets</span>.<span style="color:#960050;background-color:#1e0010">GITHUB_TOKEN</span> <span style="color:#e6db74">}</span>}<span style="color:#75715e"> # Used for Github integrations (i.e. PR comments)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>          <span style="color:#66d9ef">action</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;upload&#34;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>          <span style="color:#66d9ef">app_location</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;/website/&#34;</span><span style="color:#75715e"> # App source code path
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>          <span style="color:#66d9ef">api_location</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;/website/algolia/&#34;</span><span style="color:#75715e"> # Api source code path - optional
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>          <span style="color:#66d9ef">output_location</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;public&#34;</span><span style="color:#75715e"> # Built app content directory - optional
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>          <span style="color:#66d9ef">api_build_command</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;npm run data-upload -- -c -f ../public/index.json -a DOC3HO0A3S -k ${{ secrets.ALGOLIA_ADMIN_API_KEY }} -n myblogindex&#34;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">          ###### End of Repository/Build Configurations ######
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">close_pull_request_job</span><span style="color:#960050;background-color:#1e0010">:</span>
-</span></span><span style="display:flex;"><span>    if: github.event_name <span style="color:#f92672">==</span> &#39;pull_request&#39; &amp;&amp; github.event.action <span style="color:#f92672">==</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#66d9ef">closed</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">runs</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">on</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">ubuntu</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">latest</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">name</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">Close</span> <span style="color:#66d9ef">Pull</span> <span style="color:#66d9ef">Request</span> <span style="color:#66d9ef">Job</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">steps</span><span style="color:#960050;background-color:#1e0010">:</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">-</span> <span style="color:#66d9ef">name</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">Close</span> <span style="color:#66d9ef">Pull</span> <span style="color:#66d9ef">Request</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">id</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">closepullrequest</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uses</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">Azure</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#66d9ef">static</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">web</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">apps</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#66d9ef">deploy</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#66d9ef">latest</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">with</span><span style="color:#960050;background-color:#1e0010">:</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">azure_static_web_apps_api_token</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">${</span><span style="color:#960050;background-color:#1e0010">{</span> <span style="color:#960050;background-color:#1e0010">secrets</span>.<span style="color:#960050;background-color:#1e0010">AZURE_STATIC_WEB_APPS_API_TOKEN</span> <span style="color:#e6db74">}</span>}
-</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">action</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;close&#34;</span>
-</span></span></code></pre></div><p>Now, when I perform a new deployment, the automated Hugo site compilation recreates a new index file and the JavaScript built-in to the theme is called to upload the index file to the algolia website to populate the live index using my algolia admin API key which is stored in GitHub as a secret for obvious reasons.</p>
-<p>We can check this is working by going to the algolia portal, we should now see our index has been automatically populated and we can search from the algolia portal for keywords featured on our blog site and note some matches.</p>
-<p><figure><img src="/images/enabling-algolia/algolia-matches.png">
-</figure>
- <!-- raw HTML omitted --></p>
-<h2 id="the-missing-link---troubleshooting">The Missing Link - Troubleshooting</h2>
-<p>Surely now we are done? but no(!), the search function on my site stubbornly returned no results, time for some troubleshooting…</p>
-<p>What we know:</p>
-<ul>
-<li>The pipeline ran with no errors</li>
-<li>The index was populated and search works in the algolia portal</li>
-</ul>
-<p>What I did next:</p>
-<ul>
-<li>Substitute out the bilberry example site algolia settings on my local test site (this worked with their results)</li>
-<li>Website verified, I Reverted back to my algolia settings</li>
-<li>Checked the query logs from the algolia portal (my website searches were hitting my index but returning no results)</li>
-<li>Considered what could be different in my setup from the example site…</li>
-</ul>
-<p>From the algolia portal <em>Search API Logs</em> I noticed my blog site searches <em>query request body</em> was filtering on language and figured this was my issue:</p>
-<figure><img src="/images/enabling-algolia/algolia-logs.png">
-</figure>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  &#34;params&#34;: &#34;query=aaa&amp;hitsPerPage=5&amp;filters=language%3A%20en&#34;
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>I verified my theory by changing the <em>algolia_currentLanguageOnly = true</em> setting to <em>false</em> in my <em>config.toml</em> and the search results worked immediately.  This is more of a work-around rather than a fix, so I set about adding the missing settings for my index.</p>
-<h2 id="launguage-setting-and-filters-in-the-index">Launguage Setting and Filters in the Index</h2>
-<p>From the algolia portal, in the index configuration page I firstly set the index languages and query languages to English.</p>
-<p><figure><img src="/images/enabling-algolia/algolia-lang.png">
-</figure>
-  <!-- raw HTML omitted --></p>
-<p>Then, under filtering and faceting, I added a facet for language, ignoring the unknown attribute warning encountered as some of the content lacks the language marking from my site.</p>
-<p><figure><img src="/images/enabling-algolia/algolia-facet.png">
-</figure>
- <!-- raw HTML omitted --></p>
-<p>I could then set <em>algolia_currentLanguageOnly = true</em> in my <em>config.toml</em> file for my site and it worked perfectly.  Phew!</p>
-<h2 id="conclusions">Conclusions</h2>
-<p>Bilberry theme has multilingual support, this may have made my search journey more complicated, always take the time to read the documentation that goes with your theme as it will likely save you some time down the line.</p>
-<p>Automation and Github actions are great!</p>
-
-    
-</div>
-
-    
-<div class="footer">
-
-
-    
-        <div class="tags">
-            <i class="fa fa-tags"></i>
-            <div class="links">
-                
-                    
-                    
-                    <a href="https://www.thedevopscat.co.uk/tags/hugo/">Hugo</a>
-                    
-                
-                    
-                    
-                    <a href="https://www.thedevopscat.co.uk/tags/bilberry/">Bilberry</a>
-                    
-                
-                    
-                    
-                    <a href="https://www.thedevopscat.co.uk/tags/theme/">Theme</a>
-                    
-                
-                    
-                    
-                    <a href="https://www.thedevopscat.co.uk/tags/jamstack/">Jamstack</a>
-                    
-                
-                    
-                    
-                    <a href="https://www.thedevopscat.co.uk/tags/algolia/">Algolia</a>
-                    
-                
-                    
-                    
-                    <a href="https://www.thedevopscat.co.uk/tags/search/">Search</a>
-                    
-                
-                    
-                    
-                    <a href="https://www.thedevopscat.co.uk/tags/github-actions/">Github Actions</a>
-                    
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-</article>
-</div><div id="comments-container">
-    <script src="https://giscus.app/client.js"
-        data-repo="thedevopscat/blogcomments"
-        data-repo-id="R_kgDOIoOO8A"
-        data-category="General"
-        data-category-id="DIC_kwDOIoOO8M4CTG6Z"
-        data-mapping="www"
-        data-reactions-enabled="1"
-        data-emit-metadata=""
-        data-theme="light"
-        
-            data-lang="en"
-        
-        crossorigin="anonymous"
-        async>
-    </script>
-
-    <div id="giscus"></div>
-
-</div></div>
-<footer>
-    <div class="container">
-
-        
-        <div class="recent-posts">
-            <strong>Latest posts</strong>
-            <ul>
-                
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/code/terraform/terraform15/">Automatic Code Generation for Imported Resources!</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/">Adding Grafana Cloud Website Monitoring via Terraform</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/">Azure Static Web Apps vs Github Pages</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/">Static Website Hosting on Github - Part 3</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/">Static Website Hosting on Github - Part 2</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/">Static Website Hosting on Github - Part 1</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/2023/01/what-info-is-permissible-on-a-redacted-cv/">What Info is Permissible on a Redacted CV?</a>
-                    </li>
-                
-            </ul>
-        </div>
-        
-
-        
-        <div class="categories">
-            <a href="/categories/"><strong>Categories</strong></a>
-            <ul>
-                
-                <li>
-                    <a href="/categories/hugo">Hugo
-                        (8)</a>
-                </li>
-                
-                <li>
-                    <a href="/categories/terraform">Terraform
-                        (7)</a>
-                </li>
-                
-                <li>
-                    <a href="/categories/github-pages">Github pages
-                        (5)</a>
-                </li>
-                
-                <li>
-                    <a href="/categories/psychology">Psychology
-                        (2)</a>
-                </li>
-                
-                <li>
-                    <a href="/categories/cats">Cats
-                        (1)</a>
-                </li>
-                
-                <li>
-                    <a href="/categories/privacy">Privacy
-                        (1)</a>
-                </li>
-                
-            </ul>
-        </div>
-        
-
-        <div class="right">
-            
-            <div class="external-profiles">
-                <strong>My Links</strong>
-
-                
-                <a href="https://www.linkedin.com/in/mr-david-kent" target="_blank" rel="me"><em class="fab fa-linkedin"></em></a>
-                
-                <a href="https://github.com/thedevopscat" target="_blank" rel=""><em class="fab fa-github"></em></a>
-                
-                <a href="https://discord.com/users/thedevopscat#8281" target="_blank" rel=""><em class="fab fa-discord"></em></a>
-                
-                <br><br>
-                <a href="https://www.buymeacoffee.com/thedevopscat" target="_blank" rel="nofollow noopener noreferrer" rel="me"><img src="/images/bmc_qr.png" width="84px" height="80px" alt="Buy Me A Coffee"></a>
-            </div>
-            
-
-            
-
-            
-            <div class="archive">
-                <a href="/archive/"><strong>Archive</strong></a>
-            </div>			
-            
-        </div>
-    </div>
-</footer>
-
-
-<div class="credits">
-    <div class="container">
-        <div class="copyright">
-            <a href="https://www.thedevopscat.co.uk/page/disclaimer/" target="_blank">
-                &copy;
-                
-                2024
-                
-                thedevopscat
-            </a>
-            
-        </div>
-        <div class="author">
-            <a href="https://github.com/Lednerb/bilberry-hugo-theme"
-                target="_blank">Powered by Bilberry Hugo Theme</a>
-        </div>
-    </div>
-</div>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F4HL48LHFR"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-F4HL48LHFR', { 'anonymize_ip': false });
-}
-</script>
-<script src="https://www.thedevopscat.co.uk/theme.js"></script><div id="activate-algolia-search" class="hidden">
-  <input type="hidden" id="algolia-search-appId" value="CKM9HO0A7S">
-  <input type="hidden" id="algolia-search-apiKey" value="180d489edd420a08db5915d22d7232db">
-  <input type="hidden" id="algolia-search-indexName" value="gitdoc">
-  <input type="hidden" id="algolia-search-noSearchResults" value="Nothing found.">
-
-  
-  <input type="hidden" id="algolia-search-currentLanguageOnly">
-  
-</div>
-</body>
-
-</html>
+<!doctype html><html itemscope itemtype=https://schema.org/WebPage class=no-js lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=siteBaseUrl content="https://www.thedevopscat.co.uk/"><meta name=author content="thedevopscat"><meta name=description content="thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!"><meta name=keywords content="blog,personal,cats,devops,terraform,azure,hugo,algolia,git,github"><meta name=generator content="Hugo 0.126.1"><title>Automating Algolia Search with Azure Static Web App|thedevopscat blog</title>
+<meta itemprop=name content="Automating Algolia Search with Azure Static Web App"><meta itemprop=description content="Automating Algolia Search with Azure Static Web App - thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!"><meta property="og:site_name" content="thedevopscat blog"><meta property="og:url" content="https://www.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/"><meta property="og:site_name" content="thedevopscat blog"><meta property="og:title" content="Automating Algolia Search with Azure Static Web App"><meta property="og:description" content="Having just completed the setup of algolia search on this site I felt compelled to write a new post and let you know my experience, as it may save you some time! Suffice to say, the potentially difficult part was easy, and the easy part was hard! This may be down to the combination of my (feature rich) Bilberry theme and Hugo, so if you choose this combination, This may be of particular interest."><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="article"><meta property="article:published_time" content="2023-01-06T10:45:32+00:00"><meta property="article:modified_time" content="2023-01-06T10:45:32+00:00"><meta property="article:tag" content="Hugo"><meta property="article:tag" content="Bilberry"><meta property="article:tag" content="Theme"><meta property="article:tag" content="Jamstack"><meta property="article:tag" content="Algolia"><meta property="article:tag" content="Search"><meta property="og:see_also" content="https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/"><meta property="og:see_also" content="https://www.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/"><meta property="og:see_also" content="https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/"><meta property="og:see_also" content="https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/"><meta property="og:see_also" content="https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/"><meta property="og:see_also" content="https://www.thedevopscat.co.uk/2022/11/installing-bilberry-theme/"><script src=/modernizr-simple.js></script><link href=/2023/01/automating-algolia-search-with-azure-static-web-app/ rel=alternate type=application/rss+xml title="thedevopscat blog"><link href=/2023/01/automating-algolia-search-with-azure-static-web-app/ rel=feed type=application/rss+xml title="thedevopscat blog"><link rel=canonical href=https://www.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/><link rel=stylesheet href=https://www.thedevopscat.co.uk/theme.css></head><body class=bilberry-hugo-theme><nav><div class=container><ul class=topnav><li><a href=/categories/hugo/ target>Hugo+Themes</a></li><li><a href=/categories/terraform/ target>Terraform</a></li><li><a href=https://github.com/thedevopscat target='_blank" rel="nofollow noopener noreferrer'>My Github</a></li><li><a href=/page/disclaimer/>Disclaimer</a></li></ul><div id=search-box class=search><i class="fas fa-search"></i>
+<input id=search type=text placeholder="Search ..."></div></div></nav><header><a id=back-to-top-button><i class="fas fa-angle-up"></i></a><div class=container><div class=logo><a href=/ class=logo><img src=/images/davey.jpg alt>
+<span class=overlay><i class="fa fa-home"></i></span></a></div><div class=titles><h3 class=title><a href=/>thedevopscat blog</a></h3><span class=subtitle>Thoughts, observations and learnings of the devopscat...</span></div><div class=selectors></div><div class=toggler><i class="fa fa-bars" aria-hidden=true></i></div></div></div></header><div class="main container"><div class="article-wrapper u-cf single"><a class=bubble href=https://www.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/><i class="fas fa-fw fa-pencil-alt"></i></a><article class="default article"><div class=content><h1 class=article-title><a href=https://www.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/>Automating Algolia Search with Azure Static Web App</a></h1><div class=meta><span class="date moment">2023-01-06</span>
+<span class=readingTime>5 min read</span>
+<span class=categories><a href=https://www.thedevopscat.co.uk/categories/hugo/>Hugo</a>
+</span><span class=author><a href=https://www.thedevopscat.co.uk/author/thedevopscat/>Thedevopscat</a></span></div><h2>Table of Contents</h2><nav id=TableOfContents><ul><li><a href=#create-an-account>Create an Account</a></li><li><a href=#the-index-file>The Index File</a></li><li><a href=#the-missing-link---troubleshooting>The Missing Link - Troubleshooting</a></li><li><a href=#launguage-setting-and-filters-in-the-index>Launguage Setting and Filters in the Index</a></li><li><a href=#conclusions>Conclusions</a></li></ul></nav><p>Having just completed the setup of algolia search on this site I felt compelled to write a new post and let you know my experience, as it may save you some time!
+Suffice to say, the potentially difficult part was easy, and the easy part was hard! This may be down to the combination of my (feature rich) Bilberry theme and Hugo, so if you choose this combination, This may be of particular interest.</p><p>I chose to use algolia for my search as support is built-in to the bilberry theme, and having briefly played with some local scripted alternatives, algolia seemed like the path of least resistance for my basic and initially low volume search needs.</p><h2 id=create-an-account>Create an Account</h2><p>I won&rsquo;t go too in-depth here, this process has been documented elsewhere and is straight forward, but in summary we create a new algolia account, then create our first (empty) index, from this process we need to capture our app ID, our (search only) API key, and the name we chose for our index.</p><p>These parameters are then added to our <em>config.toml</em> file for our site, then we can enable <em>algolia_search</em>. Your setting should be along the line of the code snippet below (the appid, apikey and index name are unique to you):</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-hcl data-lang=hcl><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>…</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e># Enable / Disable algolia search
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>algolia_search <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>algolia_appId <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;DOC3HO0A3S&#34;</span>
+</span></span><span style=display:flex><span>algolia_apiKey <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;199d489edd990a99db5915d882d7232db&#34;</span>
+</span></span><span style=display:flex><span>algolia_indexName <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;myblogindex&#34;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e># Set this option to false if you want to search within all articles in all languages at once
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>algolia_currentLanguageOnly <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>
+</span></span></code></pre></div><h2 id=the-index-file>The Index File</h2><p>You would naively hope that was it! But it turns out that a website search facility is more complex behind the scenes than a non-techie might imagine. An index needs to be created and maintained each time the site content is modified, having already automated the deployment of my site to Azure via GitHub actions, the thought of downloading more binaries to my local machine and manually running scripts to generate an index file to manually upload to the algolia website each time I make an update to the site was not something I wanted to get into, and is so not DevOps!</p><p>Consequently, rightly or wrongly, I went straight to the automation phase to add this dependency to my deployment pipeline, which I expected might be the difficult bit, but as it happened work first time! The manual process of creating/updating the index file is covered in the <a href=https://github.com/Lednerb/bilberry-hugo-theme#algolia-search target=_blank rel="noopener noreferrer">bilberry theme readme
+</a>. All I did was refer to the <a href="https://learn.microsoft.com/en-gb/azure/static-web-apps/build-configuration?tabs=github-actions#build-configuration" target=_blank rel="noopener noreferrer">GitHub action help page
+</a>and integrated this additional step into my GitHub action, which for reference now looks like this:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-hcl data-lang=hcl><span style=display:flex><span><span style=color:#66d9ef>name</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#66d9ef>Azure</span> <span style=color:#66d9ef>Static</span> <span style=color:#66d9ef>Web</span> <span style=color:#66d9ef>Apps</span> <span style=color:#66d9ef>CI</span><span style=color:#960050;background-color:#1e0010>/</span><span style=color:#66d9ef>CD</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>on</span><span style=color:#960050;background-color:#1e0010>:</span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>push</span><span style=color:#960050;background-color:#1e0010>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>branches</span><span style=color:#960050;background-color:#1e0010>:</span>
+</span></span><span style=display:flex><span>      <span style=color:#960050;background-color:#1e0010>-</span> <span style=color:#66d9ef>main</span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>pull_request</span><span style=color:#960050;background-color:#1e0010>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>types</span><span style=color:#960050;background-color:#1e0010>:</span> [<span style=color:#66d9ef>opened</span>, <span style=color:#66d9ef>synchronize</span>, <span style=color:#66d9ef>reopened</span>, <span style=color:#66d9ef>closed</span>]
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>branches</span><span style=color:#960050;background-color:#1e0010>:</span>
+</span></span><span style=display:flex><span>      <span style=color:#960050;background-color:#1e0010>-</span> <span style=color:#66d9ef>main</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>jobs</span><span style=color:#960050;background-color:#1e0010>:</span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>build_and_deploy_job</span><span style=color:#960050;background-color:#1e0010>:</span>
+</span></span><span style=display:flex><span>    if: github.event_name <span style=color:#f92672>==</span> &#39;push&#39; || (github.event_name <span style=color:#f92672>==</span> &#39;pull_request&#39; &amp;&amp; github.event.action !<span style=color:#f92672>=</span> <span style=color:#960050;background-color:#1e0010>&#39;</span><span style=color:#66d9ef>closed</span><span style=color:#960050;background-color:#1e0010>&#39;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>runs</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#66d9ef>on</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#66d9ef>ubuntu</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#66d9ef>latest</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>name</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#66d9ef>Build</span> <span style=color:#66d9ef>and</span> <span style=color:#66d9ef>Deploy</span> <span style=color:#66d9ef>Job</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>steps</span><span style=color:#960050;background-color:#1e0010>:</span>
+</span></span><span style=display:flex><span>      <span style=color:#960050;background-color:#1e0010>-</span> <span style=color:#66d9ef>uses</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#66d9ef>actions</span><span style=color:#960050;background-color:#1e0010>/</span><span style=color:#66d9ef>checkout</span><span style=color:#960050;background-color:#1e0010>@</span><span style=color:#66d9ef>v3</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>with</span><span style=color:#960050;background-color:#1e0010>:</span>
+</span></span><span style=display:flex><span>          <span style=color:#66d9ef>submodules</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>      <span style=color:#960050;background-color:#1e0010>-</span> <span style=color:#66d9ef>name</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#66d9ef>Build</span> <span style=color:#66d9ef>And</span> <span style=color:#66d9ef>Deploy</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>id</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#66d9ef>builddeploy</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>uses</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#66d9ef>Azure</span><span style=color:#960050;background-color:#1e0010>/</span><span style=color:#66d9ef>static</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#66d9ef>web</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#66d9ef>apps</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#66d9ef>deploy</span><span style=color:#960050;background-color:#1e0010>@</span><span style=color:#66d9ef>latest</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>with</span><span style=color:#960050;background-color:#1e0010>:</span>
+</span></span><span style=display:flex><span>          <span style=color:#66d9ef>azure_static_web_apps_api_token</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#e6db74>${</span><span style=color:#960050;background-color:#1e0010>{</span> <span style=color:#960050;background-color:#1e0010>secrets</span>.<span style=color:#960050;background-color:#1e0010>AZURE_STATIC_WEB_APPS_API_TOKEN</span> <span style=color:#e6db74>}</span>}
+</span></span><span style=display:flex><span>          <span style=color:#66d9ef>repo_token</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#e6db74>${</span><span style=color:#960050;background-color:#1e0010>{</span> <span style=color:#960050;background-color:#1e0010>secrets</span>.<span style=color:#960050;background-color:#1e0010>GITHUB_TOKEN</span> <span style=color:#e6db74>}</span>}<span style=color:#75715e> # Used for Github integrations (i.e. PR comments)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>          <span style=color:#66d9ef>action</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#e6db74>&#34;upload&#34;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
+</span></span></span><span style=display:flex><span><span style=color:#75715e>          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>          <span style=color:#66d9ef>app_location</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#e6db74>&#34;/website/&#34;</span><span style=color:#75715e> # App source code path
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>          <span style=color:#66d9ef>api_location</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#e6db74>&#34;/website/algolia/&#34;</span><span style=color:#75715e> # Api source code path - optional
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>          <span style=color:#66d9ef>output_location</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#e6db74>&#34;public&#34;</span><span style=color:#75715e> # Built app content directory - optional
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>          <span style=color:#66d9ef>api_build_command</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#e6db74>&#34;npm run data-upload -- -c -f ../public/index.json -a DOC3HO0A3S -k ${{ secrets.ALGOLIA_ADMIN_API_KEY }} -n myblogindex&#34;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>          ###### End of Repository/Build Configurations ######
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>close_pull_request_job</span><span style=color:#960050;background-color:#1e0010>:</span>
+</span></span><span style=display:flex><span>    if: github.event_name <span style=color:#f92672>==</span> &#39;pull_request&#39; &amp;&amp; github.event.action <span style=color:#f92672>==</span> <span style=color:#960050;background-color:#1e0010>&#39;</span><span style=color:#66d9ef>closed</span><span style=color:#960050;background-color:#1e0010>&#39;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>runs</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#66d9ef>on</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#66d9ef>ubuntu</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#66d9ef>latest</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>name</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#66d9ef>Close</span> <span style=color:#66d9ef>Pull</span> <span style=color:#66d9ef>Request</span> <span style=color:#66d9ef>Job</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>steps</span><span style=color:#960050;background-color:#1e0010>:</span>
+</span></span><span style=display:flex><span>      <span style=color:#960050;background-color:#1e0010>-</span> <span style=color:#66d9ef>name</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#66d9ef>Close</span> <span style=color:#66d9ef>Pull</span> <span style=color:#66d9ef>Request</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>id</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#66d9ef>closepullrequest</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>uses</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#66d9ef>Azure</span><span style=color:#960050;background-color:#1e0010>/</span><span style=color:#66d9ef>static</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#66d9ef>web</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#66d9ef>apps</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#66d9ef>deploy</span><span style=color:#960050;background-color:#1e0010>@</span><span style=color:#66d9ef>latest</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>with</span><span style=color:#960050;background-color:#1e0010>:</span>
+</span></span><span style=display:flex><span>          <span style=color:#66d9ef>azure_static_web_apps_api_token</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#e6db74>${</span><span style=color:#960050;background-color:#1e0010>{</span> <span style=color:#960050;background-color:#1e0010>secrets</span>.<span style=color:#960050;background-color:#1e0010>AZURE_STATIC_WEB_APPS_API_TOKEN</span> <span style=color:#e6db74>}</span>}
+</span></span><span style=display:flex><span>          <span style=color:#66d9ef>action</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#e6db74>&#34;close&#34;</span>
+</span></span></code></pre></div><p>Now, when I perform a new deployment, the automated Hugo site compilation recreates a new index file and the JavaScript built-in to the theme is called to upload the index file to the algolia website to populate the live index using my algolia admin API key which is stored in GitHub as a secret for obvious reasons.</p><p>We can check this is working by going to the algolia portal, we should now see our index has been automatically populated and we can search from the algolia portal for keywords featured on our blog site and note some matches.</p><p><figure><img src=/images/enabling-algolia/algolia-matches.png></figure></p><h2 id=the-missing-link---troubleshooting>The Missing Link - Troubleshooting</h2><p>Surely now we are done? but no(!), the search function on my site stubbornly returned no results, time for some troubleshooting…</p><p>What we know:</p><ul><li>The pipeline ran with no errors</li><li>The index was populated and search works in the algolia portal</li></ul><p>What I did next:</p><ul><li>Substitute out the bilberry example site algolia settings on my local test site (this worked with their results)</li><li>Website verified, I Reverted back to my algolia settings</li><li>Checked the query logs from the algolia portal (my website searches were hitting my index but returning no results)</li><li>Considered what could be different in my setup from the example site…</li></ul><p>From the algolia portal <em>Search API Logs</em> I noticed my blog site searches <em>query request body</em> was filtering on language and figured this was my issue:</p><figure><img src=/images/enabling-algolia/algolia-logs.png></figure><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  &#34;params&#34;: &#34;query=aaa&amp;hitsPerPage=5&amp;filters=language%3A%20en&#34;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>I verified my theory by changing the <em>algolia_currentLanguageOnly = true</em> setting to <em>false</em> in my <em>config.toml</em> and the search results worked immediately. This is more of a work-around rather than a fix, so I set about adding the missing settings for my index.</p><h2 id=launguage-setting-and-filters-in-the-index>Launguage Setting and Filters in the Index</h2><p>From the algolia portal, in the index configuration page I firstly set the index languages and query languages to English.</p><p><figure><img src=/images/enabling-algolia/algolia-lang.png></figure></p><p>Then, under filtering and faceting, I added a facet for language, ignoring the unknown attribute warning encountered as some of the content lacks the language marking from my site.</p><p><figure><img src=/images/enabling-algolia/algolia-facet.png></figure></p><p>I could then set <em>algolia_currentLanguageOnly = true</em> in my <em>config.toml</em> file for my site and it worked perfectly. Phew!</p><h2 id=conclusions>Conclusions</h2><p>Bilberry theme has multilingual support, this may have made my search journey more complicated, always take the time to read the documentation that goes with your theme as it will likely save you some time down the line.</p><p>Automation and Github actions are great!</p></div><div class=footer><div class=tags><i class="fa fa-tags"></i><div class=links><a href=https://www.thedevopscat.co.uk/tags/hugo/>Hugo</a>
+<a href=https://www.thedevopscat.co.uk/tags/bilberry/>Bilberry</a>
+<a href=https://www.thedevopscat.co.uk/tags/theme/>Theme</a>
+<a href=https://www.thedevopscat.co.uk/tags/jamstack/>Jamstack</a>
+<a href=https://www.thedevopscat.co.uk/tags/algolia/>Algolia</a>
+<a href=https://www.thedevopscat.co.uk/tags/search/>Search</a>
+<a href=https://www.thedevopscat.co.uk/tags/github-actions/>Github Actions</a></div></div></div></article></div><div id=comments-container><script src=https://giscus.app/client.js data-repo=thedevopscat/blogcomments data-repo-id=R_kgDOIoOO8A data-category=General data-category-id=DIC_kwDOIoOO8M4CTG6Z data-mapping=www data-reactions-enabled=1 data-emit-metadata data-theme=light data-lang=en crossorigin=anonymous async></script><div id=giscus></div></div></div><footer><div class=container><div class=recent-posts><strong>Latest posts</strong><ul><li><a href=https://www.thedevopscat.co.uk/code/terraform/terraform15/>Automatic Code Generation for Imported Resources!</a></li><li><a href=https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/>Adding Grafana Cloud Website Monitoring via Terraform</a></li><li><a href=https://www.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/>Azure Static Web Apps vs Github Pages</a></li><li><a href=https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/>Static Website Hosting on Github - Part 3</a></li><li><a href=https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/>Static Website Hosting on Github - Part 2</a></li><li><a href=https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/>Static Website Hosting on Github - Part 1</a></li><li><a href=https://www.thedevopscat.co.uk/2023/01/what-info-is-permissible-on-a-redacted-cv/>What Info is Permissible on a Redacted CV?</a></li></ul></div><div class=categories><a href=/categories/><strong>Categories</strong></a><ul><li><a href=/categories/hugo>Hugo
+(8)</a></li><li><a href=/categories/terraform>Terraform
+(7)</a></li><li><a href=/categories/github-pages>Github pages
+(5)</a></li><li><a href=/categories/psychology>Psychology
+(2)</a></li><li><a href=/categories/cats>Cats
+(1)</a></li><li><a href=/categories/privacy>Privacy
+(1)</a></li></ul></div><div class=right><div class=external-profiles><strong>My Links</strong>
+<a href=https://www.linkedin.com/in/mr-david-kent target=_blank rel=me><em class="fab fa-linkedin"></em></a>
+<a href=https://github.com/thedevopscat target=_blank rel><em class="fab fa-github"></em></a>
+<a href=https://discord.com/users/thedevopscat#8281 target=_blank rel><em class="fab fa-discord"></em></a><br><br><a href=https://www.buymeacoffee.com/thedevopscat target=_blank rel="nofollow noopener noreferrer" rel=me><img src=/images/bmc_qr.png width=84px height=80px alt="Buy Me A Coffee"></a></div><div class=archive><a href=/archive/><strong>Archive</strong></a></div></div></div></footer><div class=credits><div class=container><div class=copyright><a href=https://www.thedevopscat.co.uk/page/disclaimer/ target=_blank>&copy;
+2024
+thedevopscat</a></div><div class=author><a href=https://github.com/Lednerb/bilberry-hugo-theme target=_blank>Powered by Bilberry Hugo Theme</a></div></div></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-F4HL48LHFR"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-F4HL48LHFR")}</script><script src=https://www.thedevopscat.co.uk/theme.js></script><div id=activate-algolia-search class=hidden><input type=hidden id=algolia-search-appId value=CKM9HO0A7S>
+<input type=hidden id=algolia-search-apiKey value=180d489edd420a08db5915d22d7232db>
+<input type=hidden id=algolia-search-indexName value=gitdoc>
+<input type=hidden id=algolia-search-noSearchResults value="Nothing found.">
+<input type=hidden id=algolia-search-currentLanguageOnly></div></body></html>

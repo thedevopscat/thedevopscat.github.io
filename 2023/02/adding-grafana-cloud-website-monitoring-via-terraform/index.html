@@ -1,564 +1,114 @@
-<!DOCTYPE html><html itemscope itemtype="https://schema.org/WebPage" class="no-js" lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="siteBaseUrl" content="https://www.thedevopscat.co.uk/">
-    <meta name="author" content="thedevopscat">
-    <meta name="description" content="thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!">
-    <meta name="keywords" content="blog,personal,cats,devops,terraform,azure,hugo,algolia,git,github"><meta name="generator" content="Hugo 0.124.1"><title>Adding Grafana Cloud Website Monitoring via Terraform&vert;thedevopscat blog</title>
-    <meta itemprop="name" content="Adding Grafana Cloud Website Monitoring via Terraform">
-    <meta itemprop="description" content="Adding Grafana Cloud Website Monitoring via Terraform - thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!">
-    <meta property="og:site_name" content="thedevopscat blog"><meta property="og:title" content="Adding Grafana Cloud Website Monitoring via Terraform" />
-<meta property="og:description" content="This post covers setting up Grafana Cloud Synthetic Monitoring for your Website Using Terraform" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/" /><meta property="article:section" content="article" />
-<meta property="article:published_time" content="2023-02-15T13:14:42+00:00" />
-<meta property="article:modified_time" content="2023-02-15T13:14:42+00:00" />
-
-
-
-<script src="/modernizr-simple.js"></script><link href="/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/" rel="alternate" type="application/rss+xml" title="thedevopscat blog" />
-    <link href="/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/" rel="feed" type="application/rss+xml" title="thedevopscat blog" /><link rel="canonical" href="https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/"><link rel="stylesheet" href="https://www.thedevopscat.co.uk/theme.css"></head>
-
-<body class="bilberry-hugo-theme">
-    <nav>
-
-    <div class="container">
-        <ul class="topnav">
-            
-                
-                
-                    <li><a href="/categories/hugo/"
-                           target="">Hugo&#43;Themes</a></li>
-                
-            
-                
-                
-                    <li><a href="/categories/terraform/"
-                           target="">Terraform</a></li>
-                
-            
-                
-                
-                    <li><a href="https://github.com/thedevopscat"
-                           target="_blank&#34; rel=&#34;nofollow noopener noreferrer">My Github</a></li>
-                
-            
-                
-                
-                    <li><a href="/page/disclaimer/">Disclaimer</a></li>
-                
-            
-        </ul>
-
-        
-            <div id="search-box" class="search">
-                <i class="fas fa-search"></i>
-                <input id="search" type="text" placeholder="Search ...">
-            </div>
-        
-    </div>
-</nav>
-
-    <header>
-
-    <a id="back-to-top-button">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <div class="container">
-        <div class="logo">
-            <a href="/" class="logo">
-                
-                    <img src="/images/davey.jpg" alt="">
-                
-
-                <span class="overlay"><i class="fa fa-home"></i></span>
-            </a>
-        </div>
-        <div class="titles">
-            <h3 class="title">
-                <a href="/">
-                    thedevopscat blog
-                </a>
-            </h3>
-
-            
-                <span class="subtitle">Thoughts, observations and learnings of the devopscat...</span>
-            
-        </div>
-        <div class="selectors">
-          
-          
-       </div>
-
-        
-            <div class="toggler">
-        
-                <i class="fa fa-bars" aria-hidden="true"></i>
-            </div>
-    </div>
-    </div>
-</header>
-<div class="main container"><div class="article-wrapper u-cf single"><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>
-        mermaid.initialize({ startOnLoad: true });
-    </script><a class="bubble" href="https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/">
-    <i class="fas fa-fw fa-pencil-alt"></i>
-</a>
-
-<article class="default article">
-    
-
-    <div class="content">
-    <h1 class="article-title">
-        <a href="https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/">
-            Adding Grafana Cloud Website Monitoring via Terraform
-        </a>
-    </h1>
-
-    <div class="meta">
-        
-            
-                <span class="date moment">2023-02-15</span>
-            
-        
-
-        
-            
-                <span class="readingTime">5 min read</span>
-            
-        
-
-        
-            <span class="categories">
-                
-                    
-                    
-                        <a href="https://www.thedevopscat.co.uk/categories/hugo/">Hugo</a>
-                    
-                
-                    
-                    
-                        <a href="https://www.thedevopscat.co.uk/categories/github-pages/">Github Pages</a>
-                    
-                
-            </span>
-        
-
-        
-            <span class="author">
-                
-                
-                    <a href="https://www.thedevopscat.co.uk/author/thedevopscat/">Thedevopscat</a>
-                
-            </span>
-        
-    </div>
-
-    
-        
-            <h2>Table of Contents</h2>
-            <nav id="TableOfContents">
-  <ul>
-    <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#grafana-hierarchy">Grafana Hierarchy</a></li>
-    <li><a href="#disclaimers-an-limitations">Disclaimers an Limitations</a></li>
-    <li><a href="#terraform-code">Terraform Code</a>
-      <ul>
-        <li>
-          <ul>
-            <li><a href="#creating-a-new-cloud-stack">Creating a New Cloud Stack</a></li>
-            <li><a href="#enabling-synthetic-monitoring">Enabling Synthetic Monitoring</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-    <li><a href="#conclusions">Conclusions</a></li>
-  </ul>
-</nav>
-        
-
-        <h2 id="introduction">Introduction</h2>
-<p>Let me start be saying if you want to try Grafana, please use my <a href="https://grafana.com/auth/sign-up?refCode=gr8iBawxULrMBPn"  target="_blank" rel="noopener noreferrer" >
-    referral code
-</a> which will enable me to unlock more features to write about and share!</p>
-<p>Following on from my static website hosting posts, I wanted to add some uptime monitoring so I could keep an eye on things and potentially differentiate between hosting platforms.</p>
-<p>Initially I chose <a href="https://uptimerobot.com/"  target="_blank" rel="noopener noreferrer" >
-    Uptime Robot
-</a> , but their free tier is so basic and easy to setup in the portal it doesn&rsquo;t warrant a blog post, which could be a good thing, but doesn&rsquo;t make for good content!</p>
-<p>I then looked at <a href="https://grafana.com/auth/sign-up?refCode=gr8iBawxULrMBPn"  target="_blank" rel="noopener noreferrer" >
-    Grafana
-</a>, which is a multi-platform open source analytics and interactive visualization web application. Providing charts, graphs, and alerts for the web when connected to supported data sources.  This peaked my interest as it has a vendor supported <a href="https://registry.terraform.io/providers/grafana/grafana/latest/docs"  target="_blank" rel="noopener noreferrer" >
-    Terraform Provider
-</a> so I attempted to set the whole thing up in code with a view to deploy with Github Actions.</p>
-<p>I&rsquo;ll be focusing on Grafana cloud, you can use Grafana Cloud to avoid installing, maintaining, and scaling your own instance of Grafana. A free account includes free forever access to 10k metrics, 50GB logs, 50GB traces, &amp; more, so may be sufficient for by humble blog site!</p>
-<p>First of all I registered for a Grafana account, I used their <a href="https://grafana.com/docs/grafana-cloud/quickstart/"  target="_blank" rel="noopener noreferrer" >
-    quickstart guide
-</a></p>
-<p>Then I started to build in code, the first thing to appreciate is Grafana is hierarchical, which I didn&rsquo;t at first, so I added my API key in the wrong place!</p>
-<h2 id="grafana-hierarchy">Grafana Hierarchy</h2>
-<p>I couldn&rsquo;t find a decent overview on the website, but from what I understand, it looks like this:</p>
-<div class="mermaid">graph TD
+<!doctype html><html itemscope itemtype=https://schema.org/WebPage class=no-js lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=siteBaseUrl content="https://www.thedevopscat.co.uk/"><meta name=author content="thedevopscat"><meta name=description content="thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!"><meta name=keywords content="blog,personal,cats,devops,terraform,azure,hugo,algolia,git,github"><meta name=generator content="Hugo 0.126.1"><title>Adding Grafana Cloud Website Monitoring via Terraform|thedevopscat blog</title>
+<meta itemprop=name content="Adding Grafana Cloud Website Monitoring via Terraform"><meta itemprop=description content="Adding Grafana Cloud Website Monitoring via Terraform - thedevopscat blog, thoughts, observations and learnings of the devopscat on Devops, Azure, Terraform, Static Websites, Hugo, Themes, Git, Github, Github Actions, Professional Certifications and Cute Cat Videos!"><meta property="og:site_name" content="thedevopscat blog"><meta property="og:url" content="https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/"><meta property="og:site_name" content="thedevopscat blog"><meta property="og:title" content="Adding Grafana Cloud Website Monitoring via Terraform"><meta property="og:description" content="This post covers setting up Grafana Cloud Synthetic Monitoring for your Website Using Terraform"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="article"><meta property="article:published_time" content="2023-02-15T13:14:42+00:00"><meta property="article:modified_time" content="2023-02-15T13:14:42+00:00"><meta property="article:tag" content="Hugo"><meta property="article:tag" content="Hosting"><meta property="article:tag" content="Static Website"><meta property="article:tag" content="Jamstack"><meta property="article:tag" content="Uptime"><meta property="article:tag" content="Monitoring"><meta property="og:see_also" content="https://www.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/"><meta property="og:see_also" content="https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/"><meta property="og:see_also" content="https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/"><meta property="og:see_also" content="https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/"><meta property="og:see_also" content="https://www.thedevopscat.co.uk/2023/01/automating-algolia-search-with-azure-static-web-app/"><meta property="og:see_also" content="https://www.thedevopscat.co.uk/2022/11/installing-bilberry-theme/"><script src=/modernizr-simple.js></script><link href=/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/ rel=alternate type=application/rss+xml title="thedevopscat blog"><link href=/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/ rel=feed type=application/rss+xml title="thedevopscat blog"><link rel=canonical href=https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/><link rel=stylesheet href=https://www.thedevopscat.co.uk/theme.css></head><body class=bilberry-hugo-theme><nav><div class=container><ul class=topnav><li><a href=/categories/hugo/ target>Hugo+Themes</a></li><li><a href=/categories/terraform/ target>Terraform</a></li><li><a href=https://github.com/thedevopscat target='_blank" rel="nofollow noopener noreferrer'>My Github</a></li><li><a href=/page/disclaimer/>Disclaimer</a></li></ul><div id=search-box class=search><i class="fas fa-search"></i>
+<input id=search type=text placeholder="Search ..."></div></div></nav><header><a id=back-to-top-button><i class="fas fa-angle-up"></i></a><div class=container><div class=logo><a href=/ class=logo><img src=/images/davey.jpg alt>
+<span class=overlay><i class="fa fa-home"></i></span></a></div><div class=titles><h3 class=title><a href=/>thedevopscat blog</a></h3><span class=subtitle>Thoughts, observations and learnings of the devopscat...</span></div><div class=selectors></div><div class=toggler><i class="fa fa-bars" aria-hidden=true></i></div></div></div></header><div class="main container"><div class="article-wrapper u-cf single"><script src=https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js></script><script>mermaid.initialize({startOnLoad:!0})</script><a class=bubble href=https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/><i class="fas fa-fw fa-pencil-alt"></i></a><article class="default article"><div class=content><h1 class=article-title><a href=https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/>Adding Grafana Cloud Website Monitoring via Terraform</a></h1><div class=meta><span class="date moment">2023-02-15</span>
+<span class=readingTime>5 min read</span>
+<span class=categories><a href=https://www.thedevopscat.co.uk/categories/hugo/>Hugo</a>
+<a href=https://www.thedevopscat.co.uk/categories/github-pages/>Github Pages</a>
+</span><span class=author><a href=https://www.thedevopscat.co.uk/author/thedevopscat/>Thedevopscat</a></span></div><h2>Table of Contents</h2><nav id=TableOfContents><ul><li><a href=#introduction>Introduction</a></li><li><a href=#grafana-hierarchy>Grafana Hierarchy</a></li><li><a href=#disclaimers-an-limitations>Disclaimers an Limitations</a></li><li><a href=#terraform-code>Terraform Code</a><ul><li><ul><li><a href=#creating-a-new-cloud-stack>Creating a New Cloud Stack</a></li><li><a href=#enabling-synthetic-monitoring>Enabling Synthetic Monitoring</a></li></ul></li></ul></li><li><a href=#conclusions>Conclusions</a></li></ul></nav><h2 id=introduction>Introduction</h2><p>Let me start be saying if you want to try Grafana, please use my <a href="https://grafana.com/auth/sign-up?refCode=gr8iBawxULrMBPn" target=_blank rel="noopener noreferrer">referral code
+</a>which will enable me to unlock more features to write about and share!</p><p>Following on from my static website hosting posts, I wanted to add some uptime monitoring so I could keep an eye on things and potentially differentiate between hosting platforms.</p><p>Initially I chose <a href=https://uptimerobot.com/ target=_blank rel="noopener noreferrer">Uptime Robot
+</a>, but their free tier is so basic and easy to setup in the portal it doesn&rsquo;t warrant a blog post, which could be a good thing, but doesn&rsquo;t make for good content!</p><p>I then looked at <a href="https://grafana.com/auth/sign-up?refCode=gr8iBawxULrMBPn" target=_blank rel="noopener noreferrer">Grafana
+</a>, which is a multi-platform open source analytics and interactive visualization web application. Providing charts, graphs, and alerts for the web when connected to supported data sources. This peaked my interest as it has a vendor supported <a href=https://registry.terraform.io/providers/grafana/grafana/latest/docs target=_blank rel="noopener noreferrer">Terraform Provider
+</a>so I attempted to set the whole thing up in code with a view to deploy with Github Actions.</p><p>I&rsquo;ll be focusing on Grafana cloud, you can use Grafana Cloud to avoid installing, maintaining, and scaling your own instance of Grafana. A free account includes free forever access to 10k metrics, 50GB logs, 50GB traces, & more, so may be sufficient for by humble blog site!</p><p>First of all I registered for a Grafana account, I used their <a href=https://grafana.com/docs/grafana-cloud/quickstart/ target=_blank rel="noopener noreferrer">quickstart guide</a></p><p>Then I started to build in code, the first thing to appreciate is Grafana is hierarchical, which I didn&rsquo;t at first, so I added my API key in the wrong place!</p><h2 id=grafana-hierarchy>Grafana Hierarchy</h2><p>I couldn&rsquo;t find a decent overview on the website, but from what I understand, it looks like this:</p><div class=mermaid>graph TD
 A[Organisation e.g. https://grafana.com/orgs/thedevopscat] -->|Grafana Cloud| B(Grafana Cloud Stack e.g. https://thedevopscat.grafana.net/)
 B --> C(Grafana Instance)
 C --> D(Grafana Plugin e.g. Grafana Synthetic Monitoring)
-C --> E(Grafana Plugin e.g. Prometheus Monitoring)
-</div>
-<p>Some notable points, the trial is limited to 1 cloud stack and Grafana Synthetic Monitoring is installed by default, but not initialised.  API Keys can be granted at all levels in the diagram so make sure you are in the right dialogue.</p>
-<h2 id="disclaimers-an-limitations">Disclaimers an Limitations</h2>
-<p>Within the scope of my use case, this code project did not pan out as I would like, I was unable to build idempotent code that I could run in one go, nor could I initialise the Synthetic Monitoring plug-in via code.</p>
-<p>In all honesty you may as well just run in the synthetic_monitoring_check&rsquo;s, rather than re-build the cloud stack in code (start from step 5 / code block 3), unless you are going to use more of the functionality, so I&rsquo;ll leave all my code here for completeness.</p>
-<h2 id="terraform-code">Terraform Code</h2>
-<h4 id="creating-a-new-cloud-stack">Creating a New Cloud Stack</h4>
-<p>If you are running on the trial, you will need to delete your initial default cloud-stack from the portal if you already created one.</p>
-<figure><img src="/images/grafana/0-del-stack.png">
-</figure>
-
-<hr>
-<ol>
-<li>First you&rsquo;ll need an API key for Terraform to use, open your org level api keys e.g. <a href="https://grafana.com/orgs/thedevopscat/api-keys"  target="_blank" rel="noopener noreferrer" >
-    https://grafana.com/orgs/thedevopscat/api-keys
-</a> and create &lsquo;OrgAdmin&rsquo; with the Admin role, I pass this value in the <em>grafana_main_org_admin_api_key</em> variable.</li>
-<li>Run in stage 1 code block, you should now have a named cloud stack and a new cloud-stack level admin API key.</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span><span style="color:#75715e">##################################
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Code Block 1: Create the stack #
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">##################################
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">provider</span> <span style="color:#e6db74">&#34;grafana&#34;</span> {
-</span></span><span style="display:flex;"><span>  alias         <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;cloud&#34;</span>
-</span></span><span style="display:flex;"><span>  cloud_api_key <span style="color:#f92672">=</span> <span style="color:#66d9ef">var</span>.<span style="color:#66d9ef">grafana_main_org_admin_api_key</span>
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;grafana_cloud_stack&#34; &#34;doc_stack&#34;</span> {
-</span></span><span style="display:flex;"><span>  provider    <span style="color:#f92672">=</span> <span style="color:#66d9ef">grafana</span>.<span style="color:#66d9ef">cloud</span>
-</span></span><span style="display:flex;"><span>  name        <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;thedevopscat.grafana.net&#34;</span><span style="color:#75715e"> # Conventionally matches the url of the instance
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  slug        <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;thedevopscat&#34;</span><span style="color:#75715e">             # Subdomain that the Grafana instance will be available 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  region_slug <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prod-eu-west-3&#34;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  #description = &#34;Test Grafana Cloud Stack&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;grafana_api_key&#34; &#34;doc_stack_admin&#34;</span> {
-</span></span><span style="display:flex;"><span>  provider         <span style="color:#f92672">=</span> <span style="color:#66d9ef">grafana</span>.<span style="color:#66d9ef">cloud</span>
-</span></span><span style="display:flex;"><span>  cloud_stack_slug <span style="color:#f92672">=</span> <span style="color:#66d9ef">grafana_cloud_stack</span>.<span style="color:#66d9ef">doc_stack</span>.<span style="color:#66d9ef">slug</span>
-</span></span><span style="display:flex;"><span>  name             <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;StackAdmin&#34;</span>
-</span></span><span style="display:flex;"><span>  role             <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Admin&#34;</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><ol start="3">
-<li>Now you can run code block 2, note the new additional provider alias arguments are fed from the first stage.  This stage is optional, this is really just setting up and proving the provider for any future code additions.</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span><span style="color:#75715e">###############################################
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Code Block 2: Create resources in the stack #
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">###############################################
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">provider</span> <span style="color:#e6db74">&#34;grafana&#34;</span> {
-</span></span><span style="display:flex;"><span>  alias         <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;doc_stack&#34;</span>
-</span></span><span style="display:flex;"><span>  url           <span style="color:#f92672">=</span> <span style="color:#66d9ef">grafana_cloud_stack</span>.<span style="color:#66d9ef">doc_stack</span>.<span style="color:#66d9ef">url</span>
-</span></span><span style="display:flex;"><span>  auth          <span style="color:#f92672">=</span> <span style="color:#66d9ef">grafana_api_key</span>.<span style="color:#66d9ef">doc_stack_admin</span>.<span style="color:#66d9ef">key</span>
-</span></span><span style="display:flex;"><span>  cloud_api_key <span style="color:#f92672">=</span> <span style="color:#66d9ef">var</span>.<span style="color:#66d9ef">grafana_main_org_admin_api_key</span>
-</span></span><span style="display:flex;"><span>}<span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Just to test the api and provider config
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;grafana_folder&#34; &#34;cat_folder&#34;</span> {
-</span></span><span style="display:flex;"><span>  provider <span style="color:#f92672">=</span> <span style="color:#66d9ef">grafana</span>.<span style="color:#66d9ef">doc_stack</span>
-</span></span><span style="display:flex;"><span>  title    <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cat Folder&#34;</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h4 id="enabling-synthetic-monitoring">Enabling Synthetic Monitoring</h4>
-<ol start="4">
-<li>Now the unsatisfying manual part &#x1f61e;, from the portal click on your new stack, and launch Grafana</li>
-</ol>
-<figure><img src="/images/grafana/1-launch-grafana.png">
-</figure>
-
-<hr>
-<ol start="5">
-<li>If this is a fresh code-built stack, grant the application access, you should close the session and re-auth to make sure everything is happy.</li>
-</ol>
-<figure><img src="/images/grafana/2-auth-app.png">
-</figure>
-
-<ol start="6">
-<li>You now need to initialise the Synthetic Monitoring plug-in in the portal e.g. <a href="https://thedevopscat.grafana.net/a/grafana-synthetic-monitoring-app/home"  target="_blank" rel="noopener noreferrer" >
-    https://thedevopscat.grafana.net/a/grafana-synthetic-monitoring-app/home
-</a>, then generate another access token from <a href="https://thedevopscat.grafana.net/a/grafana-synthetic-monitoring-app/config"  target="_blank" rel="noopener noreferrer" >
-    https://thedevopscat.grafana.net/a/grafana-synthetic-monitoring-app/config
-</a> then copy out the value to populate variable <em>grafana_cloud_synthetic_monitoring_token</em></li>
-</ol>
-<p>Note: I tried this in code, <a href="https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/synthetic_monitoring_installation"  target="_blank" rel="noopener noreferrer" >
-    grafana_synthetic_monitoring_installation
-</a> installed for me, but wasn&rsquo;t usable via web or code, so is wasted effort, so I have omitted this code step.</p>
-<ol start="7">
-<li>Now you can run code block 4 and setup your monitoring, you can easily duplicate the grafana_synthetic_monitoring_check resource block, give a unique name and update the URL if you have multiple sites.</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span><span style="color:#75715e">####################################################
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Code Block 4: Interact with Synthetic Monitoring #
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">####################################################
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">provider</span> <span style="color:#e6db74">&#34;grafana&#34;</span> {
-</span></span><span style="display:flex;"><span>  alias           <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;sm&#34;</span>
-</span></span><span style="display:flex;"><span>  sm_access_token <span style="color:#f92672">=</span> <span style="color:#66d9ef">var</span>.<span style="color:#66d9ef">grafana_cloud_synthetic_monitoring_token</span><span style="color:#75715e">  # grafana_synthetic_monitoring_installation.sm_stack.sm_access_token did not work for me
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  sm_url          <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://synthetic-monitoring-api-eu-west-3.grafana.net&#34;</span>
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">data</span> <span style="color:#e6db74">&#34;grafana_synthetic_monitoring_probes&#34; &#34;main&#34;</span> {
-</span></span><span style="display:flex;"><span>  provider <span style="color:#f92672">=</span> <span style="color:#66d9ef">grafana</span>.<span style="color:#66d9ef">sm</span>
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;grafana_synthetic_monitoring_check&#34; &#34;www_doc&#34;</span> {
-</span></span><span style="display:flex;"><span>  provider <span style="color:#f92672">=</span> <span style="color:#66d9ef">grafana</span>.<span style="color:#66d9ef">sm</span>
-</span></span><span style="display:flex;"><span>  job      <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;wwwdoc&#34;</span>
-</span></span><span style="display:flex;"><span>  target   <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://www.thedevopscat.co.uk/&#34;</span>
-</span></span><span style="display:flex;"><span>  enabled  <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
-</span></span><span style="display:flex;"><span>  probes <span style="color:#f92672">=</span> [<span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    # all_probes = data.grafana_synthetic_monitoring_probes.main.probes.*
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">data</span>.<span style="color:#66d9ef">grafana_synthetic_monitoring_probes</span>.<span style="color:#66d9ef">main</span>.<span style="color:#66d9ef">probes</span>.<span style="color:#66d9ef">London</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">data</span>.<span style="color:#66d9ef">grafana_synthetic_monitoring_probes</span>.<span style="color:#66d9ef">main</span>.<span style="color:#66d9ef">probes</span>.<span style="color:#66d9ef">Paris</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">data</span>.<span style="color:#66d9ef">grafana_synthetic_monitoring_probes</span>.<span style="color:#66d9ef">main</span>.<span style="color:#66d9ef">probes</span>.<span style="color:#66d9ef">NewYork</span>
-</span></span><span style="display:flex;"><span>  ]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">settings</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">http</span> {
-</span></span><span style="display:flex;"><span>      ip_version <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Any&#34;</span>
-</span></span><span style="display:flex;"><span>      method     <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;GET&#34;</span>
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>...
-</span></span></code></pre></div><h2 id="conclusions">Conclusions</h2>
-<p>Don&rsquo;t judge me, this is not how I usually write Terraform!  Building this from scratch is very chicken-and-egg, each code block is entirely dependent on the next, as this extends to the multiple provider blocks and Terraform initialises these before an apply this can&rsquo;t be a single stage apply.</p>
-<p>Furthermore, synthetic monitoring can&rsquo;t be fully enabled in code, this seems to be a limitation of the current provider (v1.35) at the time of writing.</p>
-<p>All that said, I like the end result, just not the imperfect code base!</p>
-<p>If you want to try Grafana, please use my referral code <a href="https://grafana.com/auth/sign-up?refCode=gr8iBawxULrMBPn"  target="_blank" rel="noopener noreferrer" >
-    https://grafana.com/auth/sign-up?refCode=gr8iBawxULrMBPn
-</a> which will enable me to unlock more features to write about and share!</p>
-<figure><img src="/images/grafana/final-dash.png">
-</figure>
-
-
-    
-</div>
-
-    
-<div class="footer">
-
-
-    
-        <div class="tags">
-            <i class="fa fa-tags"></i>
-            <div class="links">
-                
-                    
-                    
-                    <a href="https://www.thedevopscat.co.uk/tags/hugo/">Hugo</a>
-                    
-                
-                    
-                    
-                    <a href="https://www.thedevopscat.co.uk/tags/hosting/">Hosting</a>
-                    
-                
-                    
-                    
-                    <a href="https://www.thedevopscat.co.uk/tags/static-website/">Static Website</a>
-                    
-                
-                    
-                    
-                    <a href="https://www.thedevopscat.co.uk/tags/jamstack/">Jamstack</a>
-                    
-                
-                    
-                    
-                    <a href="https://www.thedevopscat.co.uk/tags/uptime/">Uptime</a>
-                    
-                
-                    
-                    
-                    <a href="https://www.thedevopscat.co.uk/tags/monitoring/">Monitoring</a>
-                    
-                
-                    
-                    
-                    <a href="https://www.thedevopscat.co.uk/tags/automation/">Automation</a>
-                    
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-</article>
-</div><div id="comments-container">
-    <script src="https://giscus.app/client.js"
-        data-repo="thedevopscat/blogcomments"
-        data-repo-id="R_kgDOIoOO8A"
-        data-category="General"
-        data-category-id="DIC_kwDOIoOO8M4CTG6Z"
-        data-mapping="www"
-        data-reactions-enabled="1"
-        data-emit-metadata=""
-        data-theme="light"
-        
-            data-lang="en"
-        
-        crossorigin="anonymous"
-        async>
-    </script>
-
-    <div id="giscus"></div>
-
-</div></div>
-<footer>
-    <div class="container">
-
-        
-        <div class="recent-posts">
-            <strong>Latest posts</strong>
-            <ul>
-                
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/code/terraform/terraform15/">Automatic Code Generation for Imported Resources!</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/">Adding Grafana Cloud Website Monitoring via Terraform</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/">Azure Static Web Apps vs Github Pages</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/">Static Website Hosting on Github - Part 3</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/">Static Website Hosting on Github - Part 2</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/">Static Website Hosting on Github - Part 1</a>
-                    </li>
-                
-                    <li>
-                        <a href="https://www.thedevopscat.co.uk/2023/01/what-info-is-permissible-on-a-redacted-cv/">What Info is Permissible on a Redacted CV?</a>
-                    </li>
-                
-            </ul>
-        </div>
-        
-
-        
-        <div class="categories">
-            <a href="/categories/"><strong>Categories</strong></a>
-            <ul>
-                
-                <li>
-                    <a href="/categories/hugo">Hugo
-                        (8)</a>
-                </li>
-                
-                <li>
-                    <a href="/categories/terraform">Terraform
-                        (7)</a>
-                </li>
-                
-                <li>
-                    <a href="/categories/github-pages">Github pages
-                        (5)</a>
-                </li>
-                
-                <li>
-                    <a href="/categories/psychology">Psychology
-                        (2)</a>
-                </li>
-                
-                <li>
-                    <a href="/categories/cats">Cats
-                        (1)</a>
-                </li>
-                
-                <li>
-                    <a href="/categories/privacy">Privacy
-                        (1)</a>
-                </li>
-                
-            </ul>
-        </div>
-        
-
-        <div class="right">
-            
-            <div class="external-profiles">
-                <strong>My Links</strong>
-
-                
-                <a href="https://www.linkedin.com/in/mr-david-kent" target="_blank" rel="me"><em class="fab fa-linkedin"></em></a>
-                
-                <a href="https://github.com/thedevopscat" target="_blank" rel=""><em class="fab fa-github"></em></a>
-                
-                <a href="https://discord.com/users/thedevopscat#8281" target="_blank" rel=""><em class="fab fa-discord"></em></a>
-                
-                <br><br>
-                <a href="https://www.buymeacoffee.com/thedevopscat" target="_blank" rel="nofollow noopener noreferrer" rel="me"><img src="/images/bmc_qr.png" width="84px" height="80px" alt="Buy Me A Coffee"></a>
-            </div>
-            
-
-            
-
-            
-            <div class="archive">
-                <a href="/archive/"><strong>Archive</strong></a>
-            </div>			
-            
-        </div>
-    </div>
-</footer>
-
-
-<div class="credits">
-    <div class="container">
-        <div class="copyright">
-            <a href="https://www.thedevopscat.co.uk/page/disclaimer/" target="_blank">
-                &copy;
-                
-                2024
-                
-                thedevopscat
-            </a>
-            
-        </div>
-        <div class="author">
-            <a href="https://github.com/Lednerb/bilberry-hugo-theme"
-                target="_blank">Powered by Bilberry Hugo Theme</a>
-        </div>
-    </div>
-</div>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F4HL48LHFR"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-F4HL48LHFR', { 'anonymize_ip': false });
-}
-</script>
-<script src="https://www.thedevopscat.co.uk/theme.js"></script><div id="activate-algolia-search" class="hidden">
-  <input type="hidden" id="algolia-search-appId" value="CKM9HO0A7S">
-  <input type="hidden" id="algolia-search-apiKey" value="180d489edd420a08db5915d22d7232db">
-  <input type="hidden" id="algolia-search-indexName" value="gitdoc">
-  <input type="hidden" id="algolia-search-noSearchResults" value="Nothing found.">
-
-  
-  <input type="hidden" id="algolia-search-currentLanguageOnly">
-  
-</div>
-</body>
-
-</html>
+C --> E(Grafana Plugin e.g. Prometheus Monitoring)</div><p>Some notable points, the trial is limited to 1 cloud stack and Grafana Synthetic Monitoring is installed by default, but not initialised. API Keys can be granted at all levels in the diagram so make sure you are in the right dialogue.</p><h2 id=disclaimers-an-limitations>Disclaimers an Limitations</h2><p>Within the scope of my use case, this code project did not pan out as I would like, I was unable to build idempotent code that I could run in one go, nor could I initialise the Synthetic Monitoring plug-in via code.</p><p>In all honesty you may as well just run in the synthetic_monitoring_check&rsquo;s, rather than re-build the cloud stack in code (start from step 5 / code block 3), unless you are going to use more of the functionality, so I&rsquo;ll leave all my code here for completeness.</p><h2 id=terraform-code>Terraform Code</h2><h4 id=creating-a-new-cloud-stack>Creating a New Cloud Stack</h4><p>If you are running on the trial, you will need to delete your initial default cloud-stack from the portal if you already created one.</p><figure><img src=/images/grafana/0-del-stack.png></figure><hr><ol><li>First you&rsquo;ll need an API key for Terraform to use, open your org level api keys e.g. <a href=https://grafana.com/orgs/thedevopscat/api-keys target=_blank rel="noopener noreferrer">https://grafana.com/orgs/thedevopscat/api-keys
+</a>and create &lsquo;OrgAdmin&rsquo; with the Admin role, I pass this value in the <em>grafana_main_org_admin_api_key</em> variable.</li><li>Run in stage 1 code block, you should now have a named cloud stack and a new cloud-stack level admin API key.</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-hcl data-lang=hcl><span style=display:flex><span><span style=color:#75715e>##################################
+</span></span></span><span style=display:flex><span><span style=color:#75715e># Code Block 1: Create the stack #
+</span></span></span><span style=display:flex><span><span style=color:#75715e>##################################
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>provider</span> <span style=color:#e6db74>&#34;grafana&#34;</span> {
+</span></span><span style=display:flex><span>  alias         <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;cloud&#34;</span>
+</span></span><span style=display:flex><span>  cloud_api_key <span style=color:#f92672>=</span> <span style=color:#66d9ef>var</span>.<span style=color:#66d9ef>grafana_main_org_admin_api_key</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>resource</span> <span style=color:#e6db74>&#34;grafana_cloud_stack&#34; &#34;doc_stack&#34;</span> {
+</span></span><span style=display:flex><span>  provider    <span style=color:#f92672>=</span> <span style=color:#66d9ef>grafana</span>.<span style=color:#66d9ef>cloud</span>
+</span></span><span style=display:flex><span>  name        <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;thedevopscat.grafana.net&#34;</span><span style=color:#75715e> # Conventionally matches the url of the instance
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  slug        <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;thedevopscat&#34;</span><span style=color:#75715e>             # Subdomain that the Grafana instance will be available 
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  region_slug <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;prod-eu-west-3&#34;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  #description = &#34;Test Grafana Cloud Stack&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>resource</span> <span style=color:#e6db74>&#34;grafana_api_key&#34; &#34;doc_stack_admin&#34;</span> {
+</span></span><span style=display:flex><span>  provider         <span style=color:#f92672>=</span> <span style=color:#66d9ef>grafana</span>.<span style=color:#66d9ef>cloud</span>
+</span></span><span style=display:flex><span>  cloud_stack_slug <span style=color:#f92672>=</span> <span style=color:#66d9ef>grafana_cloud_stack</span>.<span style=color:#66d9ef>doc_stack</span>.<span style=color:#66d9ef>slug</span>
+</span></span><span style=display:flex><span>  name             <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;StackAdmin&#34;</span>
+</span></span><span style=display:flex><span>  role             <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Admin&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><ol start=3><li>Now you can run code block 2, note the new additional provider alias arguments are fed from the first stage. This stage is optional, this is really just setting up and proving the provider for any future code additions.</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-hcl data-lang=hcl><span style=display:flex><span><span style=color:#75715e>###############################################
+</span></span></span><span style=display:flex><span><span style=color:#75715e># Code Block 2: Create resources in the stack #
+</span></span></span><span style=display:flex><span><span style=color:#75715e>###############################################
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>provider</span> <span style=color:#e6db74>&#34;grafana&#34;</span> {
+</span></span><span style=display:flex><span>  alias         <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;doc_stack&#34;</span>
+</span></span><span style=display:flex><span>  url           <span style=color:#f92672>=</span> <span style=color:#66d9ef>grafana_cloud_stack</span>.<span style=color:#66d9ef>doc_stack</span>.<span style=color:#66d9ef>url</span>
+</span></span><span style=display:flex><span>  auth          <span style=color:#f92672>=</span> <span style=color:#66d9ef>grafana_api_key</span>.<span style=color:#66d9ef>doc_stack_admin</span>.<span style=color:#66d9ef>key</span>
+</span></span><span style=display:flex><span>  cloud_api_key <span style=color:#f92672>=</span> <span style=color:#66d9ef>var</span>.<span style=color:#66d9ef>grafana_main_org_admin_api_key</span>
+</span></span><span style=display:flex><span>}<span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e># Just to test the api and provider config
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>resource</span> <span style=color:#e6db74>&#34;grafana_folder&#34; &#34;cat_folder&#34;</span> {
+</span></span><span style=display:flex><span>  provider <span style=color:#f92672>=</span> <span style=color:#66d9ef>grafana</span>.<span style=color:#66d9ef>doc_stack</span>
+</span></span><span style=display:flex><span>  title    <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Cat Folder&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h4 id=enabling-synthetic-monitoring>Enabling Synthetic Monitoring</h4><ol start=4><li>Now the unsatisfying manual part &#x1f61e;, from the portal click on your new stack, and launch Grafana</li></ol><figure><img src=/images/grafana/1-launch-grafana.png></figure><hr><ol start=5><li>If this is a fresh code-built stack, grant the application access, you should close the session and re-auth to make sure everything is happy.</li></ol><figure><img src=/images/grafana/2-auth-app.png></figure><ol start=6><li>You now need to initialise the Synthetic Monitoring plug-in in the portal e.g. <a href=https://thedevopscat.grafana.net/a/grafana-synthetic-monitoring-app/home target=_blank rel="noopener noreferrer">https://thedevopscat.grafana.net/a/grafana-synthetic-monitoring-app/home
+</a>, then generate another access token from <a href=https://thedevopscat.grafana.net/a/grafana-synthetic-monitoring-app/config target=_blank rel="noopener noreferrer">https://thedevopscat.grafana.net/a/grafana-synthetic-monitoring-app/config
+</a>then copy out the value to populate variable <em>grafana_cloud_synthetic_monitoring_token</em></li></ol><p>Note: I tried this in code, <a href=https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/synthetic_monitoring_installation target=_blank rel="noopener noreferrer">grafana_synthetic_monitoring_installation
+</a>installed for me, but wasn&rsquo;t usable via web or code, so is wasted effort, so I have omitted this code step.</p><ol start=7><li>Now you can run code block 4 and setup your monitoring, you can easily duplicate the grafana_synthetic_monitoring_check resource block, give a unique name and update the URL if you have multiple sites.</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-hcl data-lang=hcl><span style=display:flex><span><span style=color:#75715e>####################################################
+</span></span></span><span style=display:flex><span><span style=color:#75715e># Code Block 4: Interact with Synthetic Monitoring #
+</span></span></span><span style=display:flex><span><span style=color:#75715e>####################################################
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>provider</span> <span style=color:#e6db74>&#34;grafana&#34;</span> {
+</span></span><span style=display:flex><span>  alias           <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;sm&#34;</span>
+</span></span><span style=display:flex><span>  sm_access_token <span style=color:#f92672>=</span> <span style=color:#66d9ef>var</span>.<span style=color:#66d9ef>grafana_cloud_synthetic_monitoring_token</span><span style=color:#75715e>  # grafana_synthetic_monitoring_installation.sm_stack.sm_access_token did not work for me
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  sm_url          <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;https://synthetic-monitoring-api-eu-west-3.grafana.net&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>data</span> <span style=color:#e6db74>&#34;grafana_synthetic_monitoring_probes&#34; &#34;main&#34;</span> {
+</span></span><span style=display:flex><span>  provider <span style=color:#f92672>=</span> <span style=color:#66d9ef>grafana</span>.<span style=color:#66d9ef>sm</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>resource</span> <span style=color:#e6db74>&#34;grafana_synthetic_monitoring_check&#34; &#34;www_doc&#34;</span> {
+</span></span><span style=display:flex><span>  provider <span style=color:#f92672>=</span> <span style=color:#66d9ef>grafana</span>.<span style=color:#66d9ef>sm</span>
+</span></span><span style=display:flex><span>  job      <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;wwwdoc&#34;</span>
+</span></span><span style=display:flex><span>  target   <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;https://www.thedevopscat.co.uk/&#34;</span>
+</span></span><span style=display:flex><span>  enabled  <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>  probes <span style=color:#f92672>=</span> [<span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>    # all_probes = data.grafana_synthetic_monitoring_probes.main.probes.*
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>data</span>.<span style=color:#66d9ef>grafana_synthetic_monitoring_probes</span>.<span style=color:#66d9ef>main</span>.<span style=color:#66d9ef>probes</span>.<span style=color:#66d9ef>London</span>,
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>data</span>.<span style=color:#66d9ef>grafana_synthetic_monitoring_probes</span>.<span style=color:#66d9ef>main</span>.<span style=color:#66d9ef>probes</span>.<span style=color:#66d9ef>Paris</span>,
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>data</span>.<span style=color:#66d9ef>grafana_synthetic_monitoring_probes</span>.<span style=color:#66d9ef>main</span>.<span style=color:#66d9ef>probes</span>.<span style=color:#66d9ef>NewYork</span>
+</span></span><span style=display:flex><span>  ]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>settings</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>http</span> {
+</span></span><span style=display:flex><span>      ip_version <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Any&#34;</span>
+</span></span><span style=display:flex><span>      method     <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;GET&#34;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>...
+</span></span></code></pre></div><h2 id=conclusions>Conclusions</h2><p>Don&rsquo;t judge me, this is not how I usually write Terraform! Building this from scratch is very chicken-and-egg, each code block is entirely dependent on the next, as this extends to the multiple provider blocks and Terraform initialises these before an apply this can&rsquo;t be a single stage apply.</p><p>Furthermore, synthetic monitoring can&rsquo;t be fully enabled in code, this seems to be a limitation of the current provider (v1.35) at the time of writing.</p><p>All that said, I like the end result, just not the imperfect code base!</p><p>If you want to try Grafana, please use my referral code <a href="https://grafana.com/auth/sign-up?refCode=gr8iBawxULrMBPn" target=_blank rel="noopener noreferrer">https://grafana.com/auth/sign-up?refCode=gr8iBawxULrMBPn
+</a>which will enable me to unlock more features to write about and share!</p><figure><img src=/images/grafana/final-dash.png></figure></div><div class=footer><div class=tags><i class="fa fa-tags"></i><div class=links><a href=https://www.thedevopscat.co.uk/tags/hugo/>Hugo</a>
+<a href=https://www.thedevopscat.co.uk/tags/hosting/>Hosting</a>
+<a href=https://www.thedevopscat.co.uk/tags/static-website/>Static Website</a>
+<a href=https://www.thedevopscat.co.uk/tags/jamstack/>Jamstack</a>
+<a href=https://www.thedevopscat.co.uk/tags/uptime/>Uptime</a>
+<a href=https://www.thedevopscat.co.uk/tags/monitoring/>Monitoring</a>
+<a href=https://www.thedevopscat.co.uk/tags/automation/>Automation</a></div></div></div></article></div><div id=comments-container><script src=https://giscus.app/client.js data-repo=thedevopscat/blogcomments data-repo-id=R_kgDOIoOO8A data-category=General data-category-id=DIC_kwDOIoOO8M4CTG6Z data-mapping=www data-reactions-enabled=1 data-emit-metadata data-theme=light data-lang=en crossorigin=anonymous async></script><div id=giscus></div></div></div><footer><div class=container><div class=recent-posts><strong>Latest posts</strong><ul><li><a href=https://www.thedevopscat.co.uk/code/terraform/terraform15/>Automatic Code Generation for Imported Resources!</a></li><li><a href=https://www.thedevopscat.co.uk/2023/02/adding-grafana-cloud-website-monitoring-via-terraform/>Adding Grafana Cloud Website Monitoring via Terraform</a></li><li><a href=https://www.thedevopscat.co.uk/2023/01/azure-static-web-apps-vs-github-pages/>Azure Static Web Apps vs Github Pages</a></li><li><a href=https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-3/>Static Website Hosting on Github - Part 3</a></li><li><a href=https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-2/>Static Website Hosting on Github - Part 2</a></li><li><a href=https://www.thedevopscat.co.uk/2023/01/static-website-hosting-on-github-part-1/>Static Website Hosting on Github - Part 1</a></li><li><a href=https://www.thedevopscat.co.uk/2023/01/what-info-is-permissible-on-a-redacted-cv/>What Info is Permissible on a Redacted CV?</a></li></ul></div><div class=categories><a href=/categories/><strong>Categories</strong></a><ul><li><a href=/categories/hugo>Hugo
+(8)</a></li><li><a href=/categories/terraform>Terraform
+(7)</a></li><li><a href=/categories/github-pages>Github pages
+(5)</a></li><li><a href=/categories/psychology>Psychology
+(2)</a></li><li><a href=/categories/cats>Cats
+(1)</a></li><li><a href=/categories/privacy>Privacy
+(1)</a></li></ul></div><div class=right><div class=external-profiles><strong>My Links</strong>
+<a href=https://www.linkedin.com/in/mr-david-kent target=_blank rel=me><em class="fab fa-linkedin"></em></a>
+<a href=https://github.com/thedevopscat target=_blank rel><em class="fab fa-github"></em></a>
+<a href=https://discord.com/users/thedevopscat#8281 target=_blank rel><em class="fab fa-discord"></em></a><br><br><a href=https://www.buymeacoffee.com/thedevopscat target=_blank rel="nofollow noopener noreferrer" rel=me><img src=/images/bmc_qr.png width=84px height=80px alt="Buy Me A Coffee"></a></div><div class=archive><a href=/archive/><strong>Archive</strong></a></div></div></div></footer><div class=credits><div class=container><div class=copyright><a href=https://www.thedevopscat.co.uk/page/disclaimer/ target=_blank>&copy;
+2024
+thedevopscat</a></div><div class=author><a href=https://github.com/Lednerb/bilberry-hugo-theme target=_blank>Powered by Bilberry Hugo Theme</a></div></div></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-F4HL48LHFR"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-F4HL48LHFR")}</script><script src=https://www.thedevopscat.co.uk/theme.js></script><div id=activate-algolia-search class=hidden><input type=hidden id=algolia-search-appId value=CKM9HO0A7S>
+<input type=hidden id=algolia-search-apiKey value=180d489edd420a08db5915d22d7232db>
+<input type=hidden id=algolia-search-indexName value=gitdoc>
+<input type=hidden id=algolia-search-noSearchResults value="Nothing found.">
+<input type=hidden id=algolia-search-currentLanguageOnly></div></body></html>
