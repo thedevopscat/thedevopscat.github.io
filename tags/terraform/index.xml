@@ -24,7 +24,7 @@
  hashicorp help page
 &lt;/a&gt; is for, although sometimes the examples could be better.&lt;/p&gt;
 &lt;p&gt;The element function looks like this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-hcl" data-lang="hcl"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;element&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;list&lt;/span&gt;, &lt;span style="color:#66d9ef"&gt;index&lt;/span&gt;)
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-hcl" data-lang="hcl"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;element&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;list&lt;/span&gt;, &lt;span style="color:#66d9ef"&gt;index&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You&amp;rsquo;ll note it uses an index &amp;hellip; like our count index in the &lt;a href="https://www.thedevopscat.co.uk/code/terraform/terraform2" &gt;
  previous post
 &lt;/a&gt; so we will expand upon the previous example to demonstrate a real would use case.&lt;/p&gt;</description></item></channel></rss>
