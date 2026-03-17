@@ -1,0 +1,1 @@
+const darkStore=localStorage.getItem("dark-store"),docEle=document.documentElement,prefersDark=window.matchMedia("(prefers-color-scheme: dark)");darkStore==="true"?docEle.classList.add("dark-mode"):darkStore==="false"?docEle.classList.remove("dark-mode"):prefersDark.matches&&docEle.classList.add("dark-mode")
